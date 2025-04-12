@@ -2,8 +2,6 @@
 
 This repository contains my streamlined implementation derived from the original INPO (Iterative Nash Policy Optimization) codebase.
 
----
-
 ## Method Overview
 
 ### INPO (Iterative Nash Policy Optimization)
@@ -20,8 +18,6 @@ To execute the TDPO demonstration, sequentially run the following scripts:
 1_get_hf2.py → 2_get_pref_single.py → TDPO_multi_round_pipeline.py
 ```
 
----
-
 ## File Descriptions
 
 - **`dataset/toy.json`**: Contains a small set of five illustrative prompts.
@@ -29,8 +25,6 @@ To execute the TDPO demonstration, sequentially run the following scripts:
 - **`2_get_pref_single.py`**: Evaluates each set of `k` responses per prompt using the LLM and selects the preferred response.
 - **`3_precompute.py`**: Computes and outputs log probabilities (logps) across different policy models for given prompts, their `k` responses, and the selected preferred responses.
 - **`4_INPO_train.py`**: Performs model training based on datasets prepared by the preceding step, employing the INPO-specific loss function.
-
----
 
 ## Improvements from the Original INPO Implementation
 
