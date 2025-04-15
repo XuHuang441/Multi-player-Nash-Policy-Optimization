@@ -28,7 +28,7 @@ pip install torch torchvision torchaudio
 
 Install essential dependencies:
 ```bash
-pip install transformers accelerate datasets unsloth
+pip install transformers==4.48.2 trl==0.13.0 accelerate datasets unsloth
 ```
 
 #### 4. Install Flash Attention
