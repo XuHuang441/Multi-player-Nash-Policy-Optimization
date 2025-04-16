@@ -13,7 +13,7 @@ from trl import DPOConfig, DPOTrainer
 
 from trainer import MyPreferenceTrainer, INPOTrainer, PrecomputeDataCollator
 
-# ========== 配置 ==========
+# ========== arguments ==========
 MODEL_PATH = "meta-llama/Llama-3.2-1B"
 PRECOMPUTED_DATA_PATH = "output/precomputed_dataset"
 OUTPUT_DIR = "output/inpo_hf_model"
@@ -28,26 +28,26 @@ GRAD_ACC = 1
 LEARNING_RATE = 5e-7
 LOGGING_STEPS = 1
 
-# ========== Step 1: 加载模型和 tokenizer ==========
+# ========== Step 1: load model and tokenizer ==========
 model = AutoModelForCausalLM.from_pretrained(
     MODEL_PATH,
     torch_dtype=torch.bfloat16,
     device_map="auto",
 )
 tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)
-tokenizer.pad_token = tokenizer.eos_token  # 防止 padding 报错
+tokenizer.pad_token = tokenizer.eos_token
 
-# ========== Step 2: 构造 ref_model ==========
+# ========== Step 2:  ref_model ==========
 ref_model = copy.deepcopy(model)
 ref_model.eval()
 for p in ref_model.parameters():
     p.requires_grad = False
 
-# ========== Step 3: 加载数据 ==========
+# ========== Step 3: load dataset ==========
 train_dataset = load_from_disk(PRECOMPUTED_DATA_PATH)
 print(f"[✓] Loaded dataset with {len(train_dataset)} examples.")
 
-# ========== Step 4: 设置训练参数 ==========
+# ========== Step 4: training arguments ==========
 training_args = DPOConfig(
     per_device_train_batch_size = BATCH_SIZE,
     per_device_eval_batch_size = BATCH_SIZE,
@@ -65,7 +65,7 @@ training_args = DPOConfig(
     report_to = "none",
 )
 
-# ========== Step 5: 初始化 Trainer ==========
+# ========== Step 5: Initialize Trainer ==========
 # trainer = MyPreferenceTrainer(
 #     model = model,
 #     ref_model = ref_model,
@@ -88,14 +88,14 @@ trainer = INPOTrainer(
     args=training_args,  # transformers.TrainingArguments
     tokenizer=tokenizer,
     train_dataset=train_dataset,
-    data_collator=PrecomputeDataCollator(tokenizer),  # 你自己已有的
+    data_collator=PrecomputeDataCollator(tokenizer),
     ratio=RATIO,
     eta=ETA,
     beta=0.01,
     len_penalty=0.0,
 )
 
-# ========== Step 6: 训练并保存 ==========
+# ========== Step 6: train and save ==========
 print("[✓] Begin INPO training...")
 trainer.train()
 trainer.save_model(OUTPUT_DIR)

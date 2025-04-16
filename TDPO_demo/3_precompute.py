@@ -9,7 +9,7 @@ from trainer import PreComputer
 from trl import DPOConfig
 import os
 
-# ========== 配置 ==========
+# ========== arguments ==========
 DATASET_PATH = "output/output_pref_0.json"
 OUTPUT_PATH = "output/precomputed_dataset"
 MODEL_PATH = "meta-llama/Llama-3.2-1B"
@@ -21,7 +21,7 @@ EOT_TOKEN = ""
 SANITY_CHECK = False
 last_name = "meta-llama/Llama-3.2-1B"
 
-# ========== Step 1: 加载模型和 tokenizer ==========
+# ========== Step 1: load model and tokenizer ==========
 model = AutoModelForCausalLM.from_pretrained(
     MODEL_PATH,
     torch_dtype=torch.bfloat16,
@@ -30,7 +30,7 @@ model = AutoModelForCausalLM.from_pretrained(
 tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)
 tokenizer.pad_token = tokenizer.eos_token
 
-# ========== 加载偏好数据 ==========
+# ========== load preference dataset ==========
 ds = load_dataset("json", data_files=DATASET_PATH, split="train", field="instances")
 
 prompts, chosen, rejected = [], [], []
@@ -60,7 +60,7 @@ dataset = Dataset.from_dict({
 if SANITY_CHECK:
     dataset = dataset.select(range(min(len(dataset), 100)))
 
-# ========== 构建 TrainingArguments ==========
+# ==========  TrainingArguments ==========
 training_args = DPOConfig(
     per_device_train_batch_size=1,
     num_train_epochs=1,
@@ -70,7 +70,7 @@ training_args = DPOConfig(
     remove_unused_columns=False,
 )
 
-# ========== 初始化 PreComputer：使用相同 model 和 ref_model ==========
+# ========== initialize PreComputer: using same model as ref_model ==========
 ref_model = copy.deepcopy(model)
 ref_model.eval()
 for p in ref_model.parameters():
@@ -83,7 +83,7 @@ pre = PreComputer(
     beta=BETA,
     train_dataset=dataset,
     tokenizer=tokenizer,
-    loss_type="sigmoid",       # 视后续训练而定
+    loss_type="sigmoid",
     max_prompt_length=MAX_PROMPT_LENGTH,
     max_length=MAX_LENGTH,
     mask_prompt=False,
@@ -97,7 +97,7 @@ print(f"reference_chosen_logps: {reference_chosen_logps} reference_rejected_logp
 ref_model = AutoModelForCausalLM.from_pretrained(
     last_name,
     torch_dtype=torch.bfloat16,
-    # use_flash_attention_2=True,
+    use_flash_attention_2=True,
 )
 
 pre = PreComputer(
@@ -107,7 +107,7 @@ pre = PreComputer(
     beta=BETA,
     train_dataset=dataset,
     tokenizer=tokenizer,
-    loss_type="sigmoid",       # 视后续训练而定
+    loss_type="sigmoid",
     max_prompt_length=MAX_PROMPT_LENGTH,
     max_length=MAX_LENGTH,
     mask_prompt=False,
@@ -118,7 +118,7 @@ print("[✓] Computing last logps...")
 last_chosen_logps, last_rejected_logps = pre.precompute()
 print(f"last_chosen_logps: {last_chosen_logps} last_rejected_logps: {last_rejected_logps}")
 
-# ========== 保存带 logp 的 dataset ==========
+# ========== save dataset with logps ==========
 pre_dataset = pre.train_dataset
 pre_dataset = pre_dataset.add_column("reference_chosen_logps", reference_chosen_logps)
 pre_dataset = pre_dataset.add_column("reference_rejected_logps", reference_rejected_logps)

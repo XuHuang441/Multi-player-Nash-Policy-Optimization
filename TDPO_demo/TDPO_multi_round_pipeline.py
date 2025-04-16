@@ -1,4 +1,3 @@
-# === 多轮 TDPO 训练主循环 === #
 import sys
 from typing import List
 
@@ -9,9 +8,9 @@ from trl import DPOConfig
 from trainer import TDPOTrainer, PreComputer, PrecomputeDataCollator
 import os
 
-# ==== 配置项 ==== #
-base_model_path = "meta-llama/Llama-3.2-1B"               # 当前策略初始点
-reference_model_path = "meta-llama/Llama-3.2-1B"            # 固定参考策略
+# ==== arguments ==== #
+base_model_path = "meta-llama/Llama-3.2-1B"
+reference_model_path = "meta-llama/Llama-3.2-1B"
 output_dir_root = "./model"
 precomputed_dir_root = "./output/precomputed_dataset"
 data_path = "output/output_pref_0.json"
@@ -47,9 +46,9 @@ def precompute_multi_history(
     **kwargs
 ):
     """
-    从多个历史策略模型路径中分别计算 log-probs，返回历史 logprobs 列表
+    Calculate log-probs from each of the multiple historical policy model paths, returning a list of historical logprobs
 
-    返回：
+    return：
     - history_logps_list: List of (chosen_logps, rejected_logps) tensors
     """
     history_logps_list = []
@@ -59,13 +58,13 @@ def precompute_multi_history(
         history_model = AutoModelForCausalLM.from_pretrained(
             model_path,
             torch_dtype=torch.bfloat16,
-            # attn_implementation="flash_attention_2",
+            attn_implementation="flash_attention_2",
         )
 
         if tokenizer.pad_token is None:
             tokenizer.pad_token = tokenizer.eos_token
 
-        # 构造 PreComputer，每次用相同 random_model，变 ref_model 为历史策略
+        # Construct PreComputer with the same random_model each time, change ref_model to history strategy
         pre = precomputer_class(
             random_model,
             ref_model=history_model,
@@ -82,7 +81,7 @@ def precompute_multi_history(
     return history_logps_list
 
 
-# ==== 外部训练循环 ==== #
+# ==== outer training loop ==== #
 all_history_paths = []
 for round_idx in range(num_rounds):
     print(f"=== ROUND {round_idx} ===")
@@ -90,8 +89,8 @@ for round_idx in range(num_rounds):
     model_path = base_model_path if round_idx == 0 else f"model/step_{round_idx}"
     model = AutoModelForCausalLM.from_pretrained(model_path, torch_dtype=torch.bfloat16)
 
-    # 构造历史策略路径（最多保留 max_history_t 个）
-    history_model_paths = all_history_paths[-max_history_t:][::-1]  # 最近的靠前
+    # Construct history policy paths (keep up to max_history_t)
+    history_model_paths = all_history_paths[-max_history_t:][::-1]  # most recent comes first
 
     # === Precompute === #
     train_dataset = prepare_data(data_path)
@@ -135,7 +134,7 @@ for round_idx in range(num_rounds):
         pre_dataset = pre_dataset.add_column(f"history{j}_chosen_logps", cj.tolist())
         pre_dataset = pre_dataset.add_column(f"history{j}_rejected_logps", rj.tolist())
 
-    # 保存预计算数据
+    # save precompute results
     precompute_out = f"{precomputed_dir_root}/round_{round_idx}"
     pre_dataset.save_to_disk(precompute_out)
 
@@ -165,10 +164,10 @@ for round_idx in range(num_rounds):
 
     trainer.train()
 
-    # 保存当前策略模型
+    # save current policy(model)
     save_path = f"model/step_{round_idx + 1}"
     model.save_pretrained(save_path)
     tokenizer.save_pretrained(save_path)
 
-    # 更新历史路径列表
+    # update history paths
     all_history_paths.append(save_path)

@@ -591,12 +591,12 @@ class INPOTrainer(Trainer):
 
     def concatenated_forward(self, model, batch):
         """
-        使用模型对 chosen 和 rejected 样本分别前向传播，计算 logp。
-        需根据不同模型输出做适配。
+        Use the model to forward propagate the chosen and rejected samples separately and compute logp.
+        Note: Need to adapt to different model outputs.
         """
 
         def get_logps(input_ids):
-            # 动态构造 attention_mask
+            # construct attention_mask dynamically
             attention_mask = (input_ids != self.tokenizer.pad_token_id).long()
 
             output = model(input_ids=input_ids, attention_mask=attention_mask)
@@ -609,7 +609,7 @@ class INPOTrainer(Trainer):
             shift_labels = shift_labels.unsqueeze(-1)
             token_logps = torch.gather(log_probs, dim=-1, index=shift_labels).squeeze(-1)
 
-            mask = attention_mask[..., 1:]  # 对齐 log_probs
+            mask = attention_mask[..., 1:]  # align with log_probs
             sentence_logp = (token_logps * mask).sum(dim=-1)
 
             return sentence_logp, logits
@@ -673,9 +673,9 @@ class TDPOTrainer(Trainer):
         ref_logratios = reference_chosen_logps - reference_rejected_logps
 
         """
-        n = 0	不加历史项，退化为 DPO
-        n = 1	直接使用这一个 logratios，无需权重计算
-        n > 1	使用 $\lambda_j$ 公式正常加权
+        n = 0 without history term, fall back to DPO
+        n = 1 use logratios directly, no weighting required
+        n > 1 Use $\lambda_j$ formula for weighting
         """
         n = len(history_logps_list)
         if n == 1:
@@ -687,7 +687,7 @@ class TDPOTrainer(Trainer):
                 lambda_j = 2 * (t - time_j) / ((2 * t - n + 1) * (n - 1))
                 weighted_logratios += lambda_j * (chosen_j - rejected_j)
         else:
-            weighted_logratios = 0.0  # 没有历史，就完全不用这项
+            weighted_logratios = 0.0  # not using weighted_logratios without history term
 
         logits = pi_logratios - self.ratio * ref_logratios - (1 - self.ratio) * weighted_logratios
         losses = (logits - 1 / (2 * self.denom)) ** 2
@@ -727,7 +727,7 @@ class TDPOTrainer(Trainer):
             if key_c in inputs and key_r in inputs:
                 history_logps_list.append((inputs[key_c], inputs[key_r]))
             else:
-                # 没有更多历史，提前终止
+                # no more histories, stop early
                 break
         return history_logps_list
 

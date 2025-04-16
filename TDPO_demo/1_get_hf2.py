@@ -82,7 +82,7 @@ dtype = None # None for auto detection. Float16 for Tesla T4, V100, Bfloat16 for
 load_in_4bit = True # Use 4bit quantization to reduce memory usage. Can be False.
 
 model, tokenizer = FastLanguageModel.from_pretrained(
-    model_name = "unsloth/Llama-3.2-1B-Instruct", # or choose "unsloth/Llama-3.2-1B-Instruct"
+    model_name = "unsloth/Llama-3.2-1B-Instruct",
     max_seq_length = max_seq_length,
     dtype = dtype,
     load_in_4bit = load_in_4bit,
@@ -102,7 +102,7 @@ def build_chat(prompt):
 ds = ds.map(lambda x: {"messages": build_chat(x["content"])})
 
 # ------------------------
-# 执行生成
+# generation
 # ------------------------
 gathered_data = []
 print(f"Generating with {len(ds)} prompts...")
@@ -141,7 +141,7 @@ for i in tqdm(range(len(ds))):
     })
 
 # ------------------------
-# 保存结果
+# saving results
 # ------------------------
 output_eval_dataset = {
     "type": "text_only",

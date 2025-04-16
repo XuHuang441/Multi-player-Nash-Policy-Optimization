@@ -7,16 +7,16 @@ from unsloth import FastLanguageModel
 from unsloth.chat_templates import get_chat_template
 from transformers import AutoTokenizer
 
-# ========== 手动配置部分 ==========
-DATASET_PATH = "output/output_0.json"  # 上一步生成的文件
-OUTPUT_PATH = "output/output_pref_0.json"  # 偏好结果输出路径
+# ========== Arguments ==========
+DATASET_PATH = "output/output_0.json"  # generated from last step
+OUTPUT_PATH = "output/output_pref_0.json"  # output path for preference results
 PREFERENCE_MODEL_PATH = "unsloth/Llama-3.2-1B-Instruct"
 K = 2
 USE_TOURNAMENT = False
 SANITY_CHECK = False
 TEMPERATURE = 1.5
 
-# ========== 加载模型与tokenizer ==========
+# ========== load model and tokenizer ==========
 model, tokenizer = FastLanguageModel.from_pretrained(
     model_name=PREFERENCE_MODEL_PATH,
     max_seq_length=2048,
@@ -27,7 +27,7 @@ model, tokenizer = FastLanguageModel.from_pretrained(
 tokenizer = get_chat_template(tokenizer, chat_template="llama-3.1")
 FastLanguageModel.for_inference(model)
 
-# 第二个 tokenizer_plain 仅用于 context 渲染（chat_template 不加 generation prompt）
+# tokenizer_plain is only used for context (chat_template without generation prompt)
 tokenizer_plain = AutoTokenizer.from_pretrained(PREFERENCE_MODEL_PATH, use_fast=True)
 tokenizer_plain.chat_template = "\n{% for message in messages %}{% if loop.index0 % 2 == 0 %}\n\n<turn> user\n {{ message['content'] }}{% else %}\n\n<turn> assistant\n {{ message['content'] }}{% endif %}{% endfor %}\n\n\n"
 
@@ -39,7 +39,7 @@ model.eval()
 device = model.device
 
 
-# ========== 偏好判断函数 ==========
+# ========== preference function ==========
 def get_pref(context, responses):
     probs_chosen = []
     for chosen_position in [0, 1]:
@@ -71,13 +71,13 @@ def get_match_res(context, responses, id_0, id_1):
     return (id_0, id_1) if chosen_A >= 0.5 else (id_1, id_0)
 
 
-# ========== 加载数据 ==========
+# ========== load dataset ==========
 ds = load_dataset("json", data_files=DATASET_PATH, split="train", field="instances")
 
 if SANITY_CHECK:
     ds = ds.select(range(min(len(ds), 100)))
 
-# ========== 遍历样本 & 构造偏好 ==========
+# ========== Iterate over samples & construct preferences ==========
 results = []
 
 with torch.no_grad():
@@ -133,7 +133,7 @@ with torch.no_grad():
             "chosen": flag
         })
 
-# ========== 保存偏好结果 ==========
+# ========== Saving preference results ==========
 with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
     json.dump({"instances": results}, f, ensure_ascii=False, indent=2)
 
