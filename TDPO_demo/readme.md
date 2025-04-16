@@ -18,7 +18,8 @@ To execute the TDPO demonstration, sequentially run the following scripts:
 1_get_hf2.py → 2_get_pref_single.py → TDPO_multi_round_pipeline.py
 ```
 
-Note: You may need to post-process the model output to extract proper responses.
+### Note
+- You may need to post-process the model output to extract proper responses.
 
 ## File Descriptions
 
