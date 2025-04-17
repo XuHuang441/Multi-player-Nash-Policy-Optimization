@@ -43,6 +43,22 @@ After completing this step, you can verify the installation by running:
 python test_flash_attn.py
 ```
 
+#### 5. Install DeepSpeed
+
+1. Install CUDA compiler:
+```bash
+conda install -c nvidia cuda-compiler
+```
+
+2. Set `CUDA_HOME` environment variable:
+```bash
+export CUDA_HOME=/home/xu/anaconda3/envs/mypo/
+```
+
+3. Install DeepSpeed:
+```bash
+pip install deepspeed
+```
 
 ## Additional Information
 
