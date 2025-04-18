@@ -55,7 +55,7 @@ run_iteration() {
     pref_prob_path="${base_dataset_path}/${iteration_prefix}_${iteration_name}/data_pref_prob"
     mkdir $pref_prob_path
 
-# initializing with config file would cause a error
+# initializing with config file would cause an error
 #    accelerate launch --config_file ./configs/zero2.yaml ./inpo/precompute.py --run_name "${iteration_prefix}_${iteration}" --train_dir "${pref_output}_data.json" \
 #    --output_dir $pref_prob_path --ref_model $initial_model --last_model $previous_model \
 #    --loss_type inpo --lr_scheduler_type cosine
@@ -67,14 +67,14 @@ run_iteration() {
     output_model_path="${base_model_path}/${iteration_prefix}_iter${iteration}"
     mkdir $output_model_path
 
-    # initializing with config file would cause a error
+    # initializing with config file would cause an error
 #    accelerate launch --config_file ./configs/zero3.yaml ./inpo/inpo_train.py --run_name "${iteration_prefix}_${iteration}" \
 #        --output_dir $output_model_path --model_name_or_path $previous_model --learning_rate 5e-7 --ratio $ratio --eta $eta \
 #        --train_dir $pref_prob_path --loss_type inpo --lr_scheduler_type cosine
 
     accelerate ./inpo/inpo_train.py --run_name "${iteration_prefix}_${iteration}" \
     --output_dir $output_model_path --model_name_or_path $previous_model --learning_rate 5e-7 --ratio $ratio --eta $eta \
-    --train_dir $pref_prob_path --loss_type inpo --lr_scheduler_type cosine
+    --train_dir $pref_prob_path --loss_type inpo --lr_scheduler_type cosine --report_to wandb
 }
 
 
