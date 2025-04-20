@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import os
 from dataclasses import dataclass, field
 from typing import List, Optional
 import numpy as np
@@ -158,6 +159,8 @@ print("I collect ", len(gathered_data), "samples")
 
 output_path = script_args.output_dir + '_' + str(script_args.local_index) + ".json"
 print(output_path)
+
+os.makedirs(output_path, exist_ok=True)
 
 with open(output_path, "w", encoding="utf8") as f:
     json.dump(output_eval_dataset, f, ensure_ascii=False)
