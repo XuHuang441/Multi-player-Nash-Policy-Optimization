@@ -11,7 +11,7 @@ from transformers import (
 from vllm import LLM, SamplingParams
 from tqdm import tqdm
 import json
-
+import os
 
 @dataclass
 class ScriptArguments:
@@ -88,7 +88,6 @@ llm = LLM(
     tokenizer=model_path,
     dtype="bfloat16",
     # max_model_len=script_args.max_new_tokens,
-    max_tokens=script_args.max_new_tokens,
     load_format="auto",
     swap_space=2, # todo was 16
     seed=42,
@@ -157,8 +156,13 @@ output_eval_dataset["type"] = "text_only"
 output_eval_dataset["instances"] = gathered_data
 print("I collect ", len(gathered_data), "samples")
 
-output_path = script_args.output_dir + '_' + str(script_args.local_index) + ".json"
-print(output_path)
+# make sure the output directory exists
+output_dir = script_args.output_dir
+os.makedirs(output_dir, exist_ok=True)
 
-with open(output_path, "w", encoding="utf8") as f:
-    json.dump(output_eval_dataset, f, ensure_ascii=False)
+# save the output to a file
+output_path = f"{script_args.output_dir}_{script_args.local_index}.json"
+print("Saving output to:", output_path)
+
+with open(output_path, "w", encoding="utf-8") as f:
+    json.dump(output_eval_dataset, f, ensure_ascii=False, indent=2)
