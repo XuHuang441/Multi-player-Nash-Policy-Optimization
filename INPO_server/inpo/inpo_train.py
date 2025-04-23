@@ -118,13 +118,18 @@ if __name__ == "__main__":
     if script_args.sanity_check:
         train_dataset = train_dataset.select(range(min(len(train_dataset), 100)))
    
-   
+    local_rank = int(os.environ.get("LOCAL_RANK", 0))
+    device = f"cuda:{local_rank}"
+
+
     # 1. load a pretrained model
     model = AutoModelForCausalLM.from_pretrained(
         script_args.model_name_or_path,
         attn_implementation="flash_attention_2",
         torch_dtype=torch.float16,
+        device_map={"": device}, 
     )
+    # model = model.to("cuda") # Do we need this? It seems the model is loaded on the GPU automatically
     model.config.use_cache = False
 
     if script_args.ignore_bias_buffers:
@@ -138,7 +143,10 @@ if __name__ == "__main__":
     else:
         ref_name = script_args.model_name_or_path
 
-    model_ref = AutoModelForCausalLM.from_pretrained(ref_name)
+    model_ref = AutoModelForCausalLM.from_pretrained(
+        ref_name,
+        device_map={"": f"cuda:{(local_rank + 1) % 2}"}  # assuming we have two GPUs
+        )
 
     tokenizer = AutoTokenizer.from_pretrained(script_args.model_name_or_path)
     if script_args.eos_padding:
