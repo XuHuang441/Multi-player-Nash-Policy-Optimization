@@ -250,19 +250,22 @@ if __name__ == "__main__":
         torch_dtype=torch.bfloat16,
         attn_implementation="flash_attention_2",
     )
-    pre = PreComputer(
-        random_model,
-        ref_model=model,
-        args=training_args,
-        beta=script_args.beta,
-        train_dataset=train_dataset,
-        tokenizer=tokenizer,
-        loss_type=script_args.loss_type,
-        max_prompt_length=script_args.max_prompt_length,
-        max_length=script_args.max_length,
-        mask_prompt=script_args.mask_prompt,
-        len_penalty=script_args.len_penalty,
-    )
+    # pre = PreComputer(
+    #     random_model,
+    #     ref_model=model,
+    #     args=training_args,
+    #     beta=script_args.beta,
+    #     train_dataset=train_dataset,
+    #     tokenizer=tokenizer,
+    #     loss_type=script_args.loss_type,
+    #     max_prompt_length=script_args.max_prompt_length,
+    #     max_length=script_args.max_length,
+    #     mask_prompt=script_args.mask_prompt,
+    #     len_penalty=script_args.len_penalty,
+    # )
+    
+    pre.set_ref_model(new_ref_model=model)
+
     last_chosen_logps, last_rejected_logps = pre.precompute()
     pre_dataset = pre.train_dataset
 
