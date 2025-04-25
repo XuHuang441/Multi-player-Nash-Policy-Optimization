@@ -15,7 +15,7 @@ from transformers import (
     TrainingArguments,
     AutoModelForImageClassification
 )
-
+from accelerate import Accelerator, DistributedType
 
 @dataclass
 class ScriptArguments:
@@ -109,7 +109,6 @@ class ScriptArguments:
     mask_prompt: Optional[bool] = field(default=False, metadata={"help": "mask prompt"})
     len_penalty: Optional[float] = field(default=0, metadata={"help": "the length penalty"})
 
-
 if __name__ == "__main__":
     parser = HfArgumentParser(ScriptArguments)
     script_args = parser.parse_args_into_dataclasses()[0]
@@ -121,15 +120,15 @@ if __name__ == "__main__":
     local_rank = int(os.environ.get("LOCAL_RANK", 0))
     device = f"cuda:{local_rank}"
 
+    # Initialize accelerator
+    # accelerator = Accelerator()
 
     # 1. load a pretrained model
     model = AutoModelForCausalLM.from_pretrained(
         script_args.model_name_or_path,
         attn_implementation="flash_attention_2",
         torch_dtype=torch.float16,
-        device_map={"": device}, 
     )
-    # model = model.to("cuda") # Do we need this? It seems the model is loaded on the GPU automatically
     model.config.use_cache = False
 
     if script_args.ignore_bias_buffers:
@@ -145,7 +144,6 @@ if __name__ == "__main__":
 
     model_ref = AutoModelForCausalLM.from_pretrained(
         ref_name,
-        device_map={"": f"cuda:{(local_rank + 1) % 2}"}  # assuming we have two GPUs
         )
 
     tokenizer = AutoTokenizer.from_pretrained(script_args.model_name_or_path)
@@ -209,6 +207,7 @@ if __name__ == "__main__":
     trainer.train()
     trainer.save_model(script_args.output_dir)
 
+      
     # # 7. save
     # output_dir = os.path.join(script_args.output_dir, "final_checkpoint")
     # dpo_trainer.model.save_pretrained(output_dir)
