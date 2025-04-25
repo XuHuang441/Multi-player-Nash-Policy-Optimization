@@ -19,6 +19,7 @@ from transformers.trainer_callback import TrainerCallback
 from transformers.trainer_utils import EvalLoopOutput
 from trl import DPOTrainer, DPOConfig
 from accelerate.utils import is_deepspeed_available, tqdm
+import sys
 
 @dataclass
 class PreferenceDataCollatorWithPadding:
@@ -528,6 +529,13 @@ class PreComputer(DPOTrainer):
         self.precompute_ref_log_probs = True
         self._precomputed_train_ref_log_probs = True
 
+    
+    def set_ref_model(self, new_ref_model: Union[PreTrainedModel, nn.Module]):
+        """Update the reference model and rewrap the Trainer's internal state."""
+        self.ref_model = new_ref_model.to(self.accelerator.device)
+        self.model_wrapped = None  # Force rebuild
+        self._wrap_model(self.model, training=True)  # Re-wrap with new ref model if needed
+
     def precompute(self):
         dataloader_params = {
                 "batch_size": self.args.per_device_train_batch_size,
@@ -543,8 +551,10 @@ class PreComputer(DPOTrainer):
         reference_chosen_logps = []
         reference_rejected_logps = []
         for padded_batch in tqdm(iterable=data_loader, desc="Train dataset reference log probs"):
+
             # reference_chosen_logp, reference_rejected_logp = self.compute_reference_log_probs(padded_batch)
             reference_chosen_logp, reference_rejected_logp = self.compute_ref_log_probs(padded_batch)
+            
             reference_chosen_logp, reference_rejected_logp = self.accelerator.gather_for_metrics(
                 (reference_chosen_logp, reference_rejected_logp)
             )
