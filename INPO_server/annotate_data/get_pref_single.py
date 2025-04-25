@@ -193,6 +193,7 @@ with torch.no_grad():
         response_pair = [responses[win_id], responses[lose_id]]
         chosen_A = get_pref(context, response_pair)
         if n > 2 and chosen_A <= 0.5:
+            print("we don't know which one is better")
             continue
         
         if chosen_A > 0.5:
