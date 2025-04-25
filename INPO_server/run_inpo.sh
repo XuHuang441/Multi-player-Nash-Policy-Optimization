@@ -27,7 +27,7 @@ run_iteration() {
     K=8
 
     source ~/anaconda3/etc/profile.d/conda.sh
-    conda activate /home/zbz5349/anaconda3/envs/mypo
+    conda activate /home/zbz5349/anaconda3/envs/mypo # change to your conda path
     
     CUDA_VISIBLE_DEVICES=1 python ./generation/get_hf2.py --model_name_or_path ${previous_model} --dataset_name_or_path ${input_path} --output_dir ${json_output} --sanity_check $sanity_check --K $K --temperature 1.0 --local_index 0 --my_world_size ${my_world_size} --eos_ids 128009 &
     CUDA_VISIBLE_DEVICES=2 python ./generation/get_hf2.py --model_name_or_path ${previous_model} --dataset_name_or_path ${input_path} --output_dir ${json_output} --sanity_check $sanity_check --K $K --temperature 1.0 --local_index 1 --my_world_size ${my_world_size} --eos_ids 128009 &
