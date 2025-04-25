@@ -1,0 +1,22 @@
+compute_environment: LOCAL_MACHINE
+distributed_type: DEEPSPEED
+deepspeed_config:
+  zero_stage: 2
+  gradient_accumulation_steps: 1
+  offload_optimizer_device: none
+  offload_param_device: none
+  bf16: false
+  fp16: true
+  gradient_clipping: 1.0
+  stage3_gather_16bit_weights_on_model_save: true
+  zero3_save_16bit_model: false
+  overlap_comm: true
+  contiguous_gradients: true
+  reduce_bucket_size: 50000000
+  stage3_max_live_parameters: 1e9
+  stage3_max_reuse_distance: 1e9
+  stage3_prefetch_bucket_size: 20000000
+  stage3_param_persistence_threshold: 10000
+machine_rank: 0
+num_processes: 2   # 2 gpus
+use_cpu: false
