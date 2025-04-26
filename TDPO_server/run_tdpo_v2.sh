@@ -13,7 +13,7 @@ eta=0.005
 beta=0.01
 iteration_prefix="tdpo"
 max_history_t=2
-num_rounds=5  # Total number of rounds to run - CUSTOMIZE THIS
+num_rounds=3  # Total number of rounds to run - CUSTOMIZE THIS
 
 # Create an array to store all history model paths
 history_paths=()
@@ -26,33 +26,31 @@ run_iteration() {
     local json_output=$4
     local pref_output=$5
 
-    conda activate mypo
-    my_world_size=4
-    sanity_check=False
+    my_world_size=2
+    sanity_check=True
     use_tour=True
     K=8
+
+    source ~/anaconda3/etc/profile.d/conda.sh
+    conda activate /home/zbz5349/anaconda3/envs/mypo
 
     echo "Starting generation for iteration ${iteration}..."
 
     # Run parallel generation
-    CUDA_VISIBLE_DEVICES=0 python ./generation/get_hf2.py --model_name_or_path ${previous_model} --dataset_name_or_path ${input_path} --output_dir ${json_output} --sanity_check $sanity_check --K $K --temperature 1.0 --local_index 0 --my_world_size ${my_world_size} --eos_ids 128009 &
-    CUDA_VISIBLE_DEVICES=1 python ./generation/get_hf2.py --model_name_or_path ${previous_model} --dataset_name_or_path ${input_path} --output_dir ${json_output} --sanity_check $sanity_check --K $K --temperature 1.0 --local_index 1 --my_world_size ${my_world_size} --eos_ids 128009 &
-    CUDA_VISIBLE_DEVICES=2 python ./generation/get_hf2.py --model_name_or_path ${previous_model} --dataset_name_or_path ${input_path} --output_dir ${json_output} --sanity_check $sanity_check --K $K --temperature 1.0 --local_index 2 --my_world_size ${my_world_size} --eos_ids 128009 &
-    CUDA_VISIBLE_DEVICES=3 python ./generation/get_hf2.py --model_name_or_path ${previous_model} --dataset_name_or_path ${input_path} --output_dir ${json_output} --sanity_check $sanity_check --K $K --temperature 1.0 --local_index 3 --my_world_size ${my_world_size} --eos_ids 128009 &
+    CUDA_VISIBLE_DEVICES=2 conda run -n mypo python ./generation/get_hf2.py --model_name_or_path ${previous_model} --dataset_name_or_path ${input_path} --output_dir ${json_output} --sanity_check $sanity_check --K $K --temperature 1.0 --local_index 0 --my_world_size ${my_world_size} --eos_ids 128009 &
+    CUDA_VISIBLE_DEVICES=3 conda run -n mypo python ./generation/get_hf2.py --model_name_or_path ${previous_model} --dataset_name_or_path ${input_path} --output_dir ${json_output} --sanity_check $sanity_check --K $K --temperature 1.0 --local_index 1 --my_world_size ${my_world_size} --eos_ids 128009 &
     wait
 
     echo "Merging generation data..."
-    python ./generation/merge_data.py --base_path $json_output --output_dir "${json_output}.json" --num_datasets $my_world_size
+    conda run -n mypo python ./generation/merge_data.py --base_path $json_output --output_dir "${json_output}.json" --num_datasets $my_world_size
 
     echo "Starting preference modeling..."
-    CUDA_VISIBLE_DEVICES=0 accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_0.json" --output_dir "${pref_output}_0.json" --K $K &
-    CUDA_VISIBLE_DEVICES=1 accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_1.json" --output_dir "${pref_output}_1.json" --K $K &
-    CUDA_VISIBLE_DEVICES=2 accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_2.json" --output_dir "${pref_output}_2.json" --K $K &
-    CUDA_VISIBLE_DEVICES=3 accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_3.json" --output_dir "${pref_output}_3.json" --K $K &
+    CUDA_VISIBLE_DEVICES=2 conda run -n mypo accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_2.json" --output_dir "${pref_output}_2.json" --K $K &
+    CUDA_VISIBLE_DEVICES=3 conda run -n mypo accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_3.json" --output_dir "${pref_output}_3.json" --K $K &
     wait
 
     echo "Merging preference data..."
-    python ./annotate_data/merge.py --base_path $pref_output --output_dir "${pref_output}_data.json" --num_datasets $my_world_size
+    conda run -n mypo python ./annotate_data/merge.py --base_path $pref_output --output_dir "${pref_output}_data.json" --num_datasets $my_world_size
 
     # Create directories for precomputed data and output model
     pref_prob_path="${base_dataset_path}/${iteration_prefix}_${iteration_name}/data_pref_prob"
@@ -67,23 +65,31 @@ run_iteration() {
         history_args="--history_paths ${history_paths[@]}"
     fi
 
+    conda run -n mypo accelerate launch --config_file ./configs/zero2.yaml ./tdpo/precompute.py \
+    --base_model_path $previous_model \
+    --reference_model_path $initial_model \
+    --output_dir $pref_prob_path \
+    --data_path "${pref_output}_data.json" \
+    --max_history_t $max_history_t \
+    $history_args \
+    --beta $beta
+
     echo "Starting TDPO training for iteration ${iteration}..."
     # Run TDPO for a single iteration
-    accelerate launch ./tdpo/tdpo_precompute_train_v2.py \
-        --base_model_path $previous_model \
-        --reference_model_path $initial_model \
-        --output_dir $output_model_path \
-        --precomputed_dir $pref_prob_path \
-        --data_path "${pref_output}_data.json" \
-        --current_round $iteration \
-        --max_history_t $max_history_t \
-        $history_args \
-        --learning_rate 5e-7 \
-        --ratio $ratio \
-        --eta $eta \
-        --beta $beta \
-        --lr_scheduler_type cosine \
-        --report_to wandb
+    CUDA_VISIBLE_DEVICES=2,3 conda run -n mypo accelerate launch --config_file ./configs/zero3.yaml ./tdpo/tdpo_train.py \
+    --base_model_path $previous_model \
+    --precomputed_dir $pref_prob_path \
+    --output_dir $output_model_path \
+    --learning_rate 5e-7 \
+    --ratio $ratio \
+    --eta $eta \
+    --beta $beta \
+    --lr_scheduler_type cosine \
+    --report_to wandb 
+
+    # merge deepspeed checkpoints
+    echo "Merging deepspeed checkpoints..."
+    conda run -n mypo python $output_model_path/zero_to_fp32.py $output_model_path $output_model_path 
 
     # Add this model to history paths
     history_paths+=("$output_model_path")
