@@ -182,6 +182,7 @@ with torch.no_grad():
             
             for i in range(n):
                 if i == win_id or i == lose_id:
+                    print("we don't know which one is better")
                     continue
                 response_pair = [responses[lose_id], responses[i]]
                 chosen_A = get_pref(context, response_pair)
