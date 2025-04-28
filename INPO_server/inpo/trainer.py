@@ -661,6 +661,206 @@ class INPOTrainer(Trainer):
 
         return (losses.mean(), policy_chosen_logits) if return_outputs else losses.mean()
 
+class INPOTrainer_v2(DPOTrainer):
+    def __init__(
+        self,
+        model: Union[PreTrainedModel, nn.Module] = None,
+        ref_model: Optional[Union[PreTrainedModel, nn.Module]] = None,
+        ratio: float = 0,
+        eta: float = 0.0075,
+        args: TrainingArguments = None,
+        data_collator: Optional[DataCollator] = None,
+        train_dataset: Optional[Dataset] = None,
+        eval_dataset: Optional[Union[Dataset, Dict[str, Dataset]]] = None,
+        tokenizer: Optional[PreTrainedTokenizerBase] = None,
+        model_init: Optional[Callable[[], PreTrainedModel]] = None,
+        callbacks: Optional[List[TrainerCallback]] = None,
+        optimizers: Tuple[torch.optim.Optimizer, torch.optim.lr_scheduler.LambdaLR] = (
+            None,
+            None,
+        ),
+        preprocess_logits_for_metrics: Optional[Callable[[torch.Tensor, torch.Tensor], torch.Tensor]] = None,
+        peft_config: Optional[Dict] = None,
+        compute_metrics: Optional[Callable[[EvalLoopOutput], Dict]] = None,
+        len_penalty: float = 0,
+    ):
+        # Initialize with standard DPO params, but we'll override the loss function
+        super().__init__(
+            model=model,
+            ref_model=ref_model,
+            args=args,
+            data_collator=data_collator,
+            train_dataset=train_dataset,
+            eval_dataset=eval_dataset,
+            tokenizer=tokenizer,
+            model_init=model_init,
+            callbacks=callbacks,
+            optimizers=optimizers,
+            preprocess_logits_for_metrics=preprocess_logits_for_metrics,
+            peft_config=peft_config,
+            compute_metrics=compute_metrics,
+        )
+        # INPO specific parameters
+        self.ratio = ratio
+        self.denom = eta
+        self.len_penalty = len_penalty
+        print(f"INPO parameters: ratio={self.ratio}, denom={self.denom}, len_penalty={self.len_penalty}")
+
+    def concatenated_forward(self, model, batch):
+        """
+        Use the model to forward propagate the chosen and rejected samples separately and compute logp.
+        Note: Need to adapt to different model outputs.
+        """
+
+        def get_logps(input_ids):
+            # construct attention_mask dynamically
+            attention_mask = (input_ids != self.tokenizer.pad_token_id).long()
+
+            if hasattr(model, "encoder"):  # encoder-decoder model
+                decoder_input_ids = input_ids
+                output = model(
+                    input_ids=None,  # encoder-decoder model, so input_ids is None
+                    decoder_input_ids=decoder_input_ids,
+                    decoder_attention_mask=attention_mask,
+                )
+            else:  # causal language model
+                output = model(input_ids=input_ids, attention_mask=attention_mask)
+
+            logits = output.logits  # (B, T, V)
+
+            shift_logits = logits[..., :-1, :].contiguous()
+            shift_labels = input_ids[..., 1:].contiguous()
+
+            log_probs = torch.nn.functional.log_softmax(shift_logits, dim=-1)
+            shift_labels = shift_labels.unsqueeze(-1)
+            token_logps = torch.gather(log_probs, dim=-1, index=shift_labels).squeeze(-1)
+
+            mask = attention_mask[..., 1:]  # align with log_probs
+            sentence_logp = (token_logps * mask).sum(dim=-1)
+
+            return sentence_logp, logits
+
+        chosen_logps, chosen_logits = get_logps(batch["chosen_input_ids"])
+        rejected_logps, rejected_logits = get_logps(batch["rejected_input_ids"])
+        return chosen_logps, rejected_logps, chosen_logits, rejected_logits
+
+
+    def inpo_loss(
+        self,
+        policy_chosen_logps: torch.FloatTensor,
+        policy_rejected_logps: torch.FloatTensor,
+        reference_chosen_logps: torch.FloatTensor,
+        reference_rejected_logps: torch.FloatTensor,
+        last_chosen_logps: torch.FloatTensor,
+        last_rejected_logps: torch.FloatTensor,
+        reference_free: bool = False,
+        margin: Optional[torch.FloatTensor] = None,
+        len_penalty: float = 0,
+    ) -> Tuple[torch.FloatTensor, torch.FloatTensor, torch.FloatTensor]:
+        """Compute the INPO loss for a batch of policy and reference model log probabilities.
+
+        Args:
+            policy_chosen_logps: Log probabilities of the policy model for the chosen responses.
+            policy_rejected_logps: Log probabilities of the policy model for the rejected responses.
+            reference_chosen_logps: Log probabilities of the reference model for the chosen responses.
+            reference_rejected_logps: Log probabilities of the reference model for the rejected responses.
+            last_chosen_logps: Log probabilities of the previous model for the chosen responses.
+            last_rejected_logps: Log probabilities of the previous model for the rejected responses.
+            reference_free: If True, we ignore the reference model.
+            margin: Optional margin for the loss.
+            len_penalty: Length penalty for the responses.
+
+        Returns:
+            A tuple of three tensors: (losses, chosen_rewards, rejected_rewards).
+        """
+        pi_logratios = policy_chosen_logps - policy_rejected_logps
+        ref_logratios = reference_chosen_logps - reference_rejected_logps
+        last_logratios = last_chosen_logps - last_rejected_logps
+        
+        if reference_free:
+            ref_logratios = 0
+
+        # Apply length penalty if specified
+        if len_penalty > 0:
+            # Implementation would depend on how you want to incorporate length penalty
+            pass
+
+        # INPO loss calculation
+        logits = pi_logratios - self.ratio * ref_logratios - (1 - self.ratio) * last_logratios
+        losses = (logits - 1 / (2 * self.denom)) ** 2
+        
+        # Compute rewards for logging
+        chosen_rewards = self.beta * (policy_chosen_logps - reference_chosen_logps).detach()
+        rejected_rewards = self.beta * (policy_rejected_logps - reference_rejected_logps).detach()
+
+        return losses, chosen_rewards, rejected_rewards
+
+    def get_batch_loss_metrics(
+        self,
+        model,
+        batch: Dict[str, Union[List, torch.LongTensor]],
+        train_eval: Literal["train", "eval"] = "train",
+    ):
+        return self.get_batch_metrics(model, batch, train_eval)
+
+    def get_batch_metrics(
+        self,
+        model,
+        batch: Dict[str, Union[List, torch.Tensor]],
+        train_eval: Literal["train", "eval"] = "train",
+    ):
+        """Compute the INPO loss and other metrics for the given batch of inputs."""
+        metrics = {}
+        
+        # Get log probabilities from the policy model
+        (
+            policy_chosen_logps,
+            policy_rejected_logps,
+            policy_chosen_logits,
+            policy_rejected_logits,
+        ) = self.concatenated_forward(model, batch)
+        
+        # Get the precomputed log probabilities
+        reference_chosen_logps = batch['reference_chosen_logps'].to(self.accelerator.device)
+        reference_rejected_logps = batch['reference_rejected_logps'].to(self.accelerator.device)
+        last_chosen_logps = batch['last_chosen_logps'].to(self.accelerator.device)
+        last_rejected_logps = batch['last_rejected_logps'].to(self.accelerator.device)
+        
+        # Apply length penalty if needed
+        if self.len_penalty > 0:
+            chosen_len = batch["chosen_input_ids"].shape[1] * self.len_penalty
+            rejected_len = batch["rejected_input_ids"].shape[1] * self.len_penalty
+            len_penalty = chosen_len - rejected_len
+        else:
+            len_penalty = 0
+
+        # Compute the INPO loss
+        losses, chosen_rewards, rejected_rewards = self.inpo_loss(
+            policy_chosen_logps,
+            policy_rejected_logps,
+            reference_chosen_logps,
+            reference_rejected_logps,
+            last_chosen_logps,
+            last_rejected_logps,
+            len_penalty=len_penalty,
+        )
+        
+        # Calculate accuracy metrics
+        reward_accuracies = (chosen_rewards > rejected_rewards).float()
+       
+        # Prepare metrics for logging
+        prefix = "eval_" if train_eval == "eval" else ""
+        metrics[f"{prefix}rewards/chosen"] = chosen_rewards.cpu().mean()
+        metrics[f"{prefix}rewards/rejected"] = rejected_rewards.cpu().mean()
+        metrics[f"{prefix}rewards/accuracies"] = reward_accuracies.cpu().mean()
+        metrics[f"{prefix}rewards/margins"] = (chosen_rewards - rejected_rewards).cpu().mean()
+        metrics[f"{prefix}logps/rejected"] = policy_rejected_logps.detach().cpu().mean()
+        metrics[f"{prefix}logps/chosen"] = policy_chosen_logps.detach().cpu().mean()
+        metrics[f"{prefix}logits/rejected"] = policy_rejected_logits.detach().cpu().mean()
+        metrics[f"{prefix}logits/chosen"] = policy_chosen_logits.detach().cpu().mean()
+
+        return losses.mean(), metrics
+
 class TDPOTrainer(Trainer):
     def __init__(self, tokenizer, ratio=1.0, eta=0.01, len_penalty=0.0, beta=0.01, **kwargs):
         super().__init__(**kwargs)
