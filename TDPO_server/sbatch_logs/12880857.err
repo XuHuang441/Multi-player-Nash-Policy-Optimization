@@ -1,0 +1,905 @@
+[W427 20:40:23.018952957 socket.cpp:752] [c10d] The client socket cannot be initialized to connect to [holygpu8a29203.rc.fas.harvard.edu]:46751 (errno: 97 - Address family not supported by protocol).
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:07<00:21,  7.27s/it]
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:13<00:13,  6.79s/it]
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:20<00:06,  6.66s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:22<00:00,  4.75s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:22<00:00,  5.52s/it]
+
+Capturing CUDA graph shapes:   0%|          | 0/35 [00:00<?, ?it/s]Capturing CUDA graph shapes:   3%|▎         | 1/35 [00:01<00:52,  1.55s/it]Capturing CUDA graph shapes:   6%|▌         | 2/35 [00:02<00:35,  1.07s/it]Capturing CUDA graph shapes:   9%|▊         | 3/35 [00:03<00:29,  1.07it/s]Capturing CUDA graph shapes:  11%|█▏        | 4/35 [00:03<00:26,  1.17it/s]Capturing CUDA graph shapes:  14%|█▍        | 5/35 [00:04<00:24,  1.22it/s]Capturing CUDA graph shapes:  17%|█▋        | 6/35 [00:05<00:23,  1.25it/s]Capturing CUDA graph shapes:  20%|██        | 7/35 [00:06<00:21,  1.28it/s]Capturing CUDA graph shapes:  23%|██▎       | 8/35 [00:06<00:21,  1.25it/s]Capturing CUDA graph shapes:  26%|██▌       | 9/35 [00:07<00:20,  1.29it/s]Capturing CUDA graph shapes:  29%|██▊       | 10/35 [00:08<00:19,  1.30it/s]Capturing CUDA graph shapes:  31%|███▏      | 11/35 [00:09<00:18,  1.30it/s]Capturing CUDA graph shapes:  34%|███▍      | 12/35 [00:09<00:17,  1.33it/s]Capturing CUDA graph shapes:  37%|███▋      | 13/35 [00:10<00:16,  1.30it/s]Capturing CUDA graph shapes:  40%|████      | 14/35 [00:11<00:16,  1.31it/s]Capturing CUDA graph shapes:  43%|████▎     | 15/35 [00:12<00:15,  1.30it/s]Capturing CUDA graph shapes:  46%|████▌     | 16/35 [00:12<00:14,  1.32it/s]Capturing CUDA graph shapes:  49%|████▊     | 17/35 [00:13<00:13,  1.33it/s]Capturing CUDA graph shapes:  51%|█████▏    | 18/35 [00:14<00:12,  1.33it/s]Capturing CUDA graph shapes:  54%|█████▍    | 19/35 [00:15<00:11,  1.34it/s]Capturing CUDA graph shapes:  57%|█████▋    | 20/35 [00:15<00:11,  1.34it/s]Capturing CUDA graph shapes:  60%|██████    | 21/35 [00:16<00:10,  1.33it/s]Capturing CUDA graph shapes:  63%|██████▎   | 22/35 [00:17<00:09,  1.34it/s]Capturing CUDA graph shapes:  66%|██████▌   | 23/35 [00:18<00:08,  1.34it/s]Capturing CUDA graph shapes:  69%|██████▊   | 24/35 [00:18<00:08,  1.34it/s]Capturing CUDA graph shapes:  71%|███████▏  | 25/35 [00:19<00:07,  1.35it/s]Capturing CUDA graph shapes:  74%|███████▍  | 26/35 [00:20<00:06,  1.34it/s]Capturing CUDA graph shapes:  77%|███████▋  | 27/35 [00:21<00:05,  1.35it/s]Capturing CUDA graph shapes:  80%|████████  | 28/35 [00:21<00:05,  1.35it/s]Capturing CUDA graph shapes:  83%|████████▎ | 29/35 [00:22<00:04,  1.35it/s]Capturing CUDA graph shapes:  86%|████████▌ | 30/35 [00:23<00:03,  1.31it/s]Capturing CUDA graph shapes:  89%|████████▊ | 31/35 [00:24<00:03,  1.30it/s]Capturing CUDA graph shapes:  91%|█████████▏| 32/35 [00:24<00:02,  1.32it/s]Capturing CUDA graph shapes:  94%|█████████▍| 33/35 [00:25<00:01,  1.33it/s]Capturing CUDA graph shapes:  97%|█████████▋| 34/35 [00:26<00:00,  1.33it/s]Capturing CUDA graph shapes: 100%|██████████| 35/35 [00:27<00:00,  1.29it/s]Capturing CUDA graph shapes: 100%|██████████| 35/35 [00:27<00:00,  1.29it/s]
+Map:   0%|          | 0/5 [00:00<?, ? examples/s]Map: 100%|██████████| 5/5 [00:00<00:00, 61.04 examples/s]
+Processed prompts:   0%|          | 0/16 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   6%|▋         | 1/16 [00:00<00:06,  2.49it/s, est. speed input: 466.00 toks/s, output: 39.87 toks/s]Processed prompts:  12%|█▎        | 2/16 [00:01<00:15,  1.10s/it, est. speed input: 341.25 toks/s, output: 305.01 toks/s]Processed prompts:  12%|█▎        | 2/16 [00:01<00:13,  1.01it/s, est. speed input: 341.25 toks/s, output: 305.01 toks/s]
+[rank0]:[W427 20:41:37.787532305 ProcessGroupNCCL.cpp:1250] Warning: WARNING: process group has NOT been destroyed before we destruct ProcessGroupNCCL. On normal program exit, the application should call destroy_process_group to ensure that any pending NCCL operations have finished in this process. In rare cases this process can exit before this point and block the progress of another member of the process group. This constraint has always been present,  but this warning has only been added since PyTorch 2.4 (function operator())
+
+[W427 20:40:23.018847459 socket.cpp:752] [c10d] The client socket cannot be initialized to connect to [holygpu8a29203.rc.fas.harvard.edu]:47809 (errno: 97 - Address family not supported by protocol).
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:07<00:21,  7.18s/it]
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:13<00:13,  6.75s/it]
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:20<00:06,  6.64s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:21<00:00,  4.74s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:21<00:00,  5.49s/it]
+
+Capturing CUDA graph shapes:   0%|          | 0/35 [00:00<?, ?it/s]Capturing CUDA graph shapes:   3%|▎         | 1/35 [00:01<00:51,  1.52s/it]Capturing CUDA graph shapes:   6%|▌         | 2/35 [00:02<00:35,  1.07s/it]Capturing CUDA graph shapes:   9%|▊         | 3/35 [00:03<00:29,  1.08it/s]Capturing CUDA graph shapes:  11%|█▏        | 4/35 [00:03<00:26,  1.17it/s]Capturing CUDA graph shapes:  14%|█▍        | 5/35 [00:04<00:24,  1.22it/s]Capturing CUDA graph shapes:  17%|█▋        | 6/35 [00:05<00:23,  1.26it/s]Capturing CUDA graph shapes:  20%|██        | 7/35 [00:06<00:21,  1.28it/s]Capturing CUDA graph shapes:  23%|██▎       | 8/35 [00:06<00:20,  1.29it/s]Capturing CUDA graph shapes:  26%|██▌       | 9/35 [00:07<00:20,  1.26it/s]Capturing CUDA graph shapes:  29%|██▊       | 10/35 [00:08<00:19,  1.28it/s]Capturing CUDA graph shapes:  31%|███▏      | 11/35 [00:09<00:18,  1.30it/s]Capturing CUDA graph shapes:  34%|███▍      | 12/35 [00:09<00:17,  1.32it/s]Capturing CUDA graph shapes:  37%|███▋      | 13/35 [00:10<00:17,  1.28it/s]Capturing CUDA graph shapes:  40%|████      | 14/35 [00:11<00:16,  1.30it/s]Capturing CUDA graph shapes:  43%|████▎     | 15/35 [00:12<00:15,  1.31it/s]Capturing CUDA graph shapes:  46%|████▌     | 16/35 [00:12<00:14,  1.32it/s]Capturing CUDA graph shapes:  49%|████▊     | 17/35 [00:13<00:13,  1.32it/s]Capturing CUDA graph shapes:  51%|█████▏    | 18/35 [00:14<00:12,  1.33it/s]Capturing CUDA graph shapes:  54%|█████▍    | 19/35 [00:15<00:12,  1.33it/s]Capturing CUDA graph shapes:  57%|█████▋    | 20/35 [00:15<00:11,  1.32it/s]Capturing CUDA graph shapes:  60%|██████    | 21/35 [00:16<00:10,  1.35it/s]Capturing CUDA graph shapes:  63%|██████▎   | 22/35 [00:17<00:09,  1.33it/s]Capturing CUDA graph shapes:  66%|██████▌   | 23/35 [00:18<00:08,  1.33it/s]Capturing CUDA graph shapes:  69%|██████▊   | 24/35 [00:18<00:08,  1.34it/s]Capturing CUDA graph shapes:  71%|███████▏  | 25/35 [00:19<00:07,  1.35it/s]Capturing CUDA graph shapes:  74%|███████▍  | 26/35 [00:20<00:06,  1.34it/s]Capturing CUDA graph shapes:  77%|███████▋  | 27/35 [00:21<00:05,  1.33it/s]Capturing CUDA graph shapes:  80%|████████  | 28/35 [00:21<00:05,  1.35it/s]Capturing CUDA graph shapes:  83%|████████▎ | 29/35 [00:22<00:04,  1.35it/s]Capturing CUDA graph shapes:  86%|████████▌ | 30/35 [00:23<00:03,  1.33it/s]Capturing CUDA graph shapes:  89%|████████▊ | 31/35 [00:24<00:03,  1.30it/s]Capturing CUDA graph shapes:  91%|█████████▏| 32/35 [00:24<00:02,  1.31it/s]Capturing CUDA graph shapes:  94%|█████████▍| 33/35 [00:25<00:01,  1.33it/s]Capturing CUDA graph shapes:  97%|█████████▋| 34/35 [00:26<00:00,  1.34it/s]Capturing CUDA graph shapes: 100%|██████████| 35/35 [00:27<00:00,  1.30it/s]Capturing CUDA graph shapes: 100%|██████████| 35/35 [00:27<00:00,  1.29it/s]
+Map:   0%|          | 0/5 [00:00<?, ? examples/s]Map: 100%|██████████| 5/5 [00:00<00:00, 65.72 examples/s]
+Processed prompts:   0%|          | 0/16 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   6%|▋         | 1/16 [00:08<02:04,  8.33s/it, est. speed input: 10.09 toks/s, output: 111.07 toks/s]Processed prompts:  12%|█▎        | 2/16 [00:27<03:27, 14.80s/it, est. speed input: 6.36 toks/s, output: 268.61 toks/s] Processed prompts:  12%|█▎        | 2/16 [00:27<03:13, 13.83s/it, est. speed input: 6.36 toks/s, output: 268.61 toks/s]
+[rank0]:[W427 20:42:02.174609657 ProcessGroupNCCL.cpp:1250] Warning: WARNING: process group has NOT been destroyed before we destruct ProcessGroupNCCL. On normal program exit, the application should call destroy_process_group to ensure that any pending NCCL operations have finished in this process. In rare cases this process can exit before this point and block the progress of another member of the process group. This constraint has always been present,  but this warning has only been added since PyTorch 2.4 (function operator())
+
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 2 examples [00:00, 34.07 examples/s]
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 2 examples [00:00, 216.61 examples/s]
+
+The following values were not passed to `accelerate launch` and had defaults used instead:
+	`--num_processes` was set to a value of `1`
+	`--num_machines` was set to a value of `1`
+	`--mixed_precision` was set to a value of `'no'`
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  6.61it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  5.98it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  5.87it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  7.82it/s]
+Traceback (most recent call last):
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/annotate_data/get_pref_single.py", line 124, in <module>
+    ds = load_dataset("json", data_files=ds_dir, split="train", field="instances")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 2062, in load_dataset
+    builder_instance = load_dataset_builder(
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 1782, in load_dataset_builder
+    dataset_module = dataset_module_factory(
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 1497, in dataset_module_factory
+    ).get_module()
+      ^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 913, in get_module
+    data_files = DataFilesDict.from_patterns(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/data_files.py", line 690, in from_patterns
+    else DataFilesList.from_patterns(
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/data_files.py", line 583, in from_patterns
+    resolve_pattern(
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/data_files.py", line 384, in resolve_pattern
+    raise FileNotFoundError(error_msg)
+FileNotFoundError: Unable to find '/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/dataset_path/datasets/tdpo_iter1/data_2.json'
+Traceback (most recent call last):
+  File "/n/home08/xiaominli/.conda/envs/NPO/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1213, in launch_command
+    simple_launcher(args)
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/launch.py", line 795, in simple_launcher
+    raise subprocess.CalledProcessError(returncode=process.returncode, cmd=cmd)
+subprocess.CalledProcessError: Command '['/n/home08/xiaominli/.conda/envs/NPO/bin/python3.11', 'annotate_data/get_pref_single.py', '--use_tournament', 'True', '--dataset_name_or_path', 'dataset_path/datasets/tdpo_iter1/data_2.json', '--output_dir', 'dataset_path/datasets/tdpo_iter1/pref_2.json', '--K', '8']' returned non-zero exit status 1.
+
+ERROR conda.cli.main_run:execute(124): `conda run accelerate launch annotate_data/get_pref_single.py --use_tournament True --dataset_name_or_path dataset_path/datasets/tdpo_iter1/data_2.json --output_dir dataset_path/datasets/tdpo_iter1/pref_2.json --K 8` failed. (See above for error)
+The following values were not passed to `accelerate launch` and had defaults used instead:
+	`--num_processes` was set to a value of `1`
+	`--num_machines` was set to a value of `1`
+	`--mixed_precision` was set to a value of `'no'`
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  6.56it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  5.96it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  5.86it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  7.77it/s]
+Traceback (most recent call last):
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/annotate_data/get_pref_single.py", line 124, in <module>
+    ds = load_dataset("json", data_files=ds_dir, split="train", field="instances")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 2062, in load_dataset
+    builder_instance = load_dataset_builder(
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 1782, in load_dataset_builder
+    dataset_module = dataset_module_factory(
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 1497, in dataset_module_factory
+    ).get_module()
+      ^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 913, in get_module
+    data_files = DataFilesDict.from_patterns(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/data_files.py", line 690, in from_patterns
+    else DataFilesList.from_patterns(
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/data_files.py", line 583, in from_patterns
+    resolve_pattern(
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/data_files.py", line 384, in resolve_pattern
+    raise FileNotFoundError(error_msg)
+FileNotFoundError: Unable to find '/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/dataset_path/datasets/tdpo_iter1/data_3.json'
+Traceback (most recent call last):
+  File "/n/home08/xiaominli/.conda/envs/NPO/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1213, in launch_command
+    simple_launcher(args)
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/launch.py", line 795, in simple_launcher
+    raise subprocess.CalledProcessError(returncode=process.returncode, cmd=cmd)
+subprocess.CalledProcessError: Command '['/n/home08/xiaominli/.conda/envs/NPO/bin/python3.11', 'annotate_data/get_pref_single.py', '--use_tournament', 'True', '--dataset_name_or_path', 'dataset_path/datasets/tdpo_iter1/data_3.json', '--output_dir', 'dataset_path/datasets/tdpo_iter1/pref_3.json', '--K', '8']' returned non-zero exit status 1.
+
+ERROR conda.cli.main_run:execute(124): `conda run accelerate launch annotate_data/get_pref_single.py --use_tournament True --dataset_name_or_path dataset_path/datasets/tdpo_iter1/data_3.json --output_dir dataset_path/datasets/tdpo_iter1/pref_3.json --K 8` failed. (See above for error)
+Traceback (most recent call last):
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./annotate_data/merge.py", line 42, in <module>
+    ds = load_dataset("json", data_files=my_dir, split="train", field="instances")
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/load.py", line 2129, in load_dataset
+    builder_instance = load_dataset_builder(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/load.py", line 1849, in load_dataset_builder
+    dataset_module = dataset_module_factory(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/load.py", line 1564, in dataset_module_factory
+    ).get_module()
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/load.py", line 944, in get_module
+    data_files = DataFilesDict.from_patterns(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/data_files.py", line 721, in from_patterns
+    else DataFilesList.from_patterns(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/data_files.py", line 624, in from_patterns
+    resolve_pattern(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/data_files.py", line 411, in resolve_pattern
+    raise FileNotFoundError(error_msg)
+FileNotFoundError: Unable to find '/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/dataset_path/datasets/tdpo_iter1/pref_0.json'
+
+ERROR conda.cli.main_run:execute(124): `conda run python ./annotate_data/merge.py --base_path dataset_path/datasets/tdpo_iter1/pref --output_dir dataset_path/datasets/tdpo_iter1/pref_data.json --num_datasets 2` failed. (See above for error)
+[W427 20:47:09.904815821 socket.cpp:759] [c10d] The client socket cannot be initialized to connect to [localhost]:29500 (errno: 97 - Address family not supported by protocol).
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00, 27.46it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 36.01it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 34.57it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 34.53it/s]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 50.49it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 47.40it/s]
+Traceback (most recent call last):
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./tdpo/precompute.py", line 139, in <module>
+Traceback (most recent call last):
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./tdpo/precompute.py", line 139, in <module>
+    main()
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./tdpo/precompute.py", line 77, in main
+    main()
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./tdpo/precompute.py", line 77, in main
+    train_dataset = prepare_data(args.data_path, args.eot_token)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./tdpo/precompute.py", line 38, in prepare_data
+    train_dataset = prepare_data(args.data_path, args.eot_token)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./tdpo/precompute.py", line 38, in prepare_data
+    ds = load_dataset("json", data_files=data_dir, split="train", field="instances")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 2062, in load_dataset
+    ds = load_dataset("json", data_files=data_dir, split="train", field="instances")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 2062, in load_dataset
+    builder_instance = load_dataset_builder(
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 1782, in load_dataset_builder
+    builder_instance = load_dataset_builder(
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 1782, in load_dataset_builder
+    dataset_module = dataset_module_factory(
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 1497, in dataset_module_factory
+    dataset_module = dataset_module_factory(
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 1497, in dataset_module_factory
+    ).get_module()
+      ^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 913, in get_module
+    ).get_module()
+      ^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 913, in get_module
+    data_files = DataFilesDict.from_patterns(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/data_files.py", line 690, in from_patterns
+    data_files = DataFilesDict.from_patterns(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/data_files.py", line 690, in from_patterns
+    else DataFilesList.from_patterns(
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/data_files.py", line 583, in from_patterns
+    else DataFilesList.from_patterns(
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/data_files.py", line 583, in from_patterns
+    resolve_pattern(
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/data_files.py", line 384, in resolve_pattern
+    resolve_pattern(
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/data_files.py", line 384, in resolve_pattern
+    raise FileNotFoundError(error_msg)
+FileNotFoundError: Unable to find '/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/dataset_path/datasets/tdpo_iter1/pref_data.json'
+    raise FileNotFoundError(error_msg)
+FileNotFoundError: Unable to find '/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/dataset_path/datasets/tdpo_iter1/pref_data.json'
+W0427 20:48:03.678000 1298775 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 1298822 closing signal SIGTERM
+E0427 20:48:03.729000 1298775 site-packages/torch/distributed/elastic/multiprocessing/api.py:869] failed (exitcode: 1) local_rank: 1 (pid: 1298823) of binary: /n/home08/xiaominli/.conda/envs/NPO/bin/python3.11
+Traceback (most recent call last):
+  File "/n/home08/xiaominli/.conda/envs/NPO/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1196, in launch_command
+    deepspeed_launcher(args)
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/launch.py", line 878, in deepspeed_launcher
+    distrib_run.run(args)
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/torch/distributed/run.py", line 909, in run
+    elastic_launch(
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+./tdpo/precompute.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-04-27_20:48:03
+  host      : holygpu8a29203.rc.fas.harvard.edu
+  rank      : 1 (local_rank: 1)
+  exitcode  : 1 (pid: 1298823)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+
+ERROR conda.cli.main_run:execute(124): `conda run accelerate launch --config_file ./configs/zero2.yaml ./tdpo/precompute.py --base_model_path RLHFlow/LLaMA3-SFT --reference_model_path RLHFlow/LLaMA3-SFT --output_dir dataset_path/datasets/tdpo_iter1/data_pref_prob --data_path dataset_path/datasets/tdpo_iter1/pref_data.json --max_history_t 2 --beta 0.01` failed. (See above for error)
+[W427 20:48:40.380599825 socket.cpp:759] [c10d] The client socket cannot be initialized to connect to [localhost]:29500 (errno: 97 - Address family not supported by protocol).
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 49.17it/s]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 48.30it/s]
+Traceback (most recent call last):
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./tdpo/tdpo_train.py", line 69, in <module>
+Traceback (most recent call last):
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./tdpo/tdpo_train.py", line 69, in <module>
+    main()
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./tdpo/tdpo_train.py", line 34, in main
+    main()
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./tdpo/tdpo_train.py", line 34, in main
+    train_dataset = load_from_disk(args.precomputed_dir)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 2148, in load_from_disk
+    train_dataset = load_from_disk(args.precomputed_dir)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 2148, in load_from_disk
+    raise FileNotFoundError(
+FileNotFoundError: Directory dataset_path/datasets/tdpo_iter1/data_pref_prob is neither a `Dataset` directory nor a `DatasetDict` directory.
+    raise FileNotFoundError(
+FileNotFoundError: Directory dataset_path/datasets/tdpo_iter1/data_pref_prob is neither a `Dataset` directory nor a `DatasetDict` directory.
+W0427 20:49:15.374000 1298962 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 1299004 closing signal SIGTERM
+E0427 20:49:15.433000 1298962 site-packages/torch/distributed/elastic/multiprocessing/api.py:869] failed (exitcode: 1) local_rank: 0 (pid: 1299003) of binary: /n/home08/xiaominli/.conda/envs/NPO/bin/python3.11
+Traceback (most recent call last):
+  File "/n/home08/xiaominli/.conda/envs/NPO/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1196, in launch_command
+    deepspeed_launcher(args)
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/launch.py", line 878, in deepspeed_launcher
+    distrib_run.run(args)
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/torch/distributed/run.py", line 909, in run
+    elastic_launch(
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+./tdpo/tdpo_train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-04-27_20:49:15
+  host      : holygpu8a29203.rc.fas.harvard.edu
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 1299003)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+
+ERROR conda.cli.main_run:execute(124): `conda run accelerate launch --config_file ./configs/zero3.yaml ./tdpo/tdpo_train.py --base_model_path RLHFlow/LLaMA3-SFT --precomputed_dir dataset_path/datasets/tdpo_iter1/data_pref_prob --output_dir model_path/models/tdpo_iter1 --learning_rate 5e-7 --ratio .3333333333 --eta 0.005 --beta 0.01 --lr_scheduler_type cosine --report_to wandb` failed. (See above for error)
+python: can't open file '/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/model_path/models/tdpo_iter1/zero_to_fp32.py': [Errno 2] No such file or directory
+
+ERROR conda.cli.main_run:execute(124): `conda run python model_path/models/tdpo_iter1/zero_to_fp32.py model_path/models/tdpo_iter1 model_path/models/tdpo_iter1` failed. (See above for error)
+Traceback (most recent call last):
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./generation/get_hf2.py", line 86, in <module>
+    llm = LLM(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/vllm/utils.py", line 1022, in inner
+    return fn(*args, **kwargs)
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/vllm/entrypoints/llm.py", line 242, in __init__
+    self.llm_engine = self.engine_class.from_engine_args(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/vllm/engine/llm_engine.py", line 486, in from_engine_args
+    engine_config = engine_args.create_engine_config(usage_context)
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/vllm/engine/arg_utils.py", line 1127, in create_engine_config
+    model_config = self.create_model_config()
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/vllm/engine/arg_utils.py", line 1047, in create_model_config
+    return ModelConfig(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/vllm/config.py", line 304, in __init__
+    hf_config = get_config(self.model, trust_remote_code, revision,
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/vllm/transformers_utils/config.py", line 263, in get_config
+    raise ValueError(f"No supported config format found in {model}.")
+ValueError: No supported config format found in model_path/models/tdpo_iter1.
+
+ERROR conda.cli.main_run:execute(124): `conda run python ./generation/get_hf2.py --model_name_or_path model_path/models/tdpo_iter1 --dataset_name_or_path RLHFlow/iterative-prompt-v1-iter2-20K --output_dir dataset_path/datasets/tdpo_iter2/data --sanity_check True --K 8 --temperature 1.0 --local_index 1 --my_world_size 2 --eos_ids 128009` failed. (See above for error)
+Traceback (most recent call last):
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./generation/get_hf2.py", line 86, in <module>
+    llm = LLM(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/vllm/utils.py", line 1022, in inner
+    return fn(*args, **kwargs)
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/vllm/entrypoints/llm.py", line 242, in __init__
+    self.llm_engine = self.engine_class.from_engine_args(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/vllm/engine/llm_engine.py", line 486, in from_engine_args
+    engine_config = engine_args.create_engine_config(usage_context)
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/vllm/engine/arg_utils.py", line 1127, in create_engine_config
+    model_config = self.create_model_config()
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/vllm/engine/arg_utils.py", line 1047, in create_model_config
+    return ModelConfig(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/vllm/config.py", line 304, in __init__
+    hf_config = get_config(self.model, trust_remote_code, revision,
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/vllm/transformers_utils/config.py", line 263, in get_config
+    raise ValueError(f"No supported config format found in {model}.")
+ValueError: No supported config format found in model_path/models/tdpo_iter1.
+
+ERROR conda.cli.main_run:execute(124): `conda run python ./generation/get_hf2.py --model_name_or_path model_path/models/tdpo_iter1 --dataset_name_or_path RLHFlow/iterative-prompt-v1-iter2-20K --output_dir dataset_path/datasets/tdpo_iter2/data --sanity_check True --K 8 --temperature 1.0 --local_index 0 --my_world_size 2 --eos_ids 128009` failed. (See above for error)
+Traceback (most recent call last):
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./generation/merge_data.py", line 42, in <module>
+    ds = load_dataset("json", data_files=my_dir, split="train", field="instances")
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/load.py", line 2129, in load_dataset
+    builder_instance = load_dataset_builder(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/load.py", line 1849, in load_dataset_builder
+    dataset_module = dataset_module_factory(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/load.py", line 1564, in dataset_module_factory
+    ).get_module()
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/load.py", line 944, in get_module
+    data_files = DataFilesDict.from_patterns(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/data_files.py", line 721, in from_patterns
+    else DataFilesList.from_patterns(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/data_files.py", line 624, in from_patterns
+    resolve_pattern(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/data_files.py", line 411, in resolve_pattern
+    raise FileNotFoundError(error_msg)
+FileNotFoundError: Unable to find '/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/dataset_path/datasets/tdpo_iter2/data_0.json'
+
+ERROR conda.cli.main_run:execute(124): `conda run python ./generation/merge_data.py --base_path dataset_path/datasets/tdpo_iter2/data --output_dir dataset_path/datasets/tdpo_iter2/data.json --num_datasets 2` failed. (See above for error)
+The following values were not passed to `accelerate launch` and had defaults used instead:
+	`--num_processes` was set to a value of `1`
+	`--num_machines` was set to a value of `1`
+	`--mixed_precision` was set to a value of `'no'`
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 48.34it/s]
+Traceback (most recent call last):
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/annotate_data/get_pref_single.py", line 124, in <module>
+    ds = load_dataset("json", data_files=ds_dir, split="train", field="instances")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 2062, in load_dataset
+    builder_instance = load_dataset_builder(
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 1782, in load_dataset_builder
+    dataset_module = dataset_module_factory(
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 1497, in dataset_module_factory
+    ).get_module()
+      ^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 913, in get_module
+    data_files = DataFilesDict.from_patterns(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/data_files.py", line 690, in from_patterns
+    else DataFilesList.from_patterns(
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/data_files.py", line 583, in from_patterns
+    resolve_pattern(
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/data_files.py", line 384, in resolve_pattern
+    raise FileNotFoundError(error_msg)
+FileNotFoundError: Unable to find '/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/dataset_path/datasets/tdpo_iter2/data_3.json'
+Traceback (most recent call last):
+  File "/n/home08/xiaominli/.conda/envs/NPO/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1213, in launch_command
+    simple_launcher(args)
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/launch.py", line 795, in simple_launcher
+    raise subprocess.CalledProcessError(returncode=process.returncode, cmd=cmd)
+subprocess.CalledProcessError: Command '['/n/home08/xiaominli/.conda/envs/NPO/bin/python3.11', 'annotate_data/get_pref_single.py', '--use_tournament', 'True', '--dataset_name_or_path', 'dataset_path/datasets/tdpo_iter2/data_3.json', '--output_dir', 'dataset_path/datasets/tdpo_iter2/pref_3.json', '--K', '8']' returned non-zero exit status 1.
+
+ERROR conda.cli.main_run:execute(124): `conda run accelerate launch annotate_data/get_pref_single.py --use_tournament True --dataset_name_or_path dataset_path/datasets/tdpo_iter2/data_3.json --output_dir dataset_path/datasets/tdpo_iter2/pref_3.json --K 8` failed. (See above for error)
+The following values were not passed to `accelerate launch` and had defaults used instead:
+	`--num_processes` was set to a value of `1`
+	`--num_machines` was set to a value of `1`
+	`--mixed_precision` was set to a value of `'no'`
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 49.17it/s]
+Traceback (most recent call last):
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/annotate_data/get_pref_single.py", line 124, in <module>
+    ds = load_dataset("json", data_files=ds_dir, split="train", field="instances")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 2062, in load_dataset
+    builder_instance = load_dataset_builder(
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 1782, in load_dataset_builder
+    dataset_module = dataset_module_factory(
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 1497, in dataset_module_factory
+    ).get_module()
+      ^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 913, in get_module
+    data_files = DataFilesDict.from_patterns(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/data_files.py", line 690, in from_patterns
+    else DataFilesList.from_patterns(
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/data_files.py", line 583, in from_patterns
+    resolve_pattern(
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/data_files.py", line 384, in resolve_pattern
+    raise FileNotFoundError(error_msg)
+FileNotFoundError: Unable to find '/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/dataset_path/datasets/tdpo_iter2/data_2.json'
+Traceback (most recent call last):
+  File "/n/home08/xiaominli/.conda/envs/NPO/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1213, in launch_command
+    simple_launcher(args)
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/launch.py", line 795, in simple_launcher
+    raise subprocess.CalledProcessError(returncode=process.returncode, cmd=cmd)
+subprocess.CalledProcessError: Command '['/n/home08/xiaominli/.conda/envs/NPO/bin/python3.11', 'annotate_data/get_pref_single.py', '--use_tournament', 'True', '--dataset_name_or_path', 'dataset_path/datasets/tdpo_iter2/data_2.json', '--output_dir', 'dataset_path/datasets/tdpo_iter2/pref_2.json', '--K', '8']' returned non-zero exit status 1.
+
+ERROR conda.cli.main_run:execute(124): `conda run accelerate launch annotate_data/get_pref_single.py --use_tournament True --dataset_name_or_path dataset_path/datasets/tdpo_iter2/data_2.json --output_dir dataset_path/datasets/tdpo_iter2/pref_2.json --K 8` failed. (See above for error)
+Traceback (most recent call last):
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./annotate_data/merge.py", line 42, in <module>
+    ds = load_dataset("json", data_files=my_dir, split="train", field="instances")
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/load.py", line 2129, in load_dataset
+    builder_instance = load_dataset_builder(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/load.py", line 1849, in load_dataset_builder
+    dataset_module = dataset_module_factory(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/load.py", line 1564, in dataset_module_factory
+    ).get_module()
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/load.py", line 944, in get_module
+    data_files = DataFilesDict.from_patterns(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/data_files.py", line 721, in from_patterns
+    else DataFilesList.from_patterns(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/data_files.py", line 624, in from_patterns
+    resolve_pattern(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/data_files.py", line 411, in resolve_pattern
+    raise FileNotFoundError(error_msg)
+FileNotFoundError: Unable to find '/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/dataset_path/datasets/tdpo_iter2/pref_0.json'
+
+ERROR conda.cli.main_run:execute(124): `conda run python ./annotate_data/merge.py --base_path dataset_path/datasets/tdpo_iter2/pref --output_dir dataset_path/datasets/tdpo_iter2/pref_data.json --num_datasets 2` failed. (See above for error)
+[W427 20:52:07.214915852 socket.cpp:759] [c10d] The client socket cannot be initialized to connect to [localhost]:29500 (errno: 97 - Address family not supported by protocol).
+Traceback (most recent call last):
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./tdpo/precompute.py", line 139, in <module>
+Traceback (most recent call last):
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./tdpo/precompute.py", line 139, in <module>
+    main()
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./tdpo/precompute.py", line 74, in main
+    main()
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./tdpo/precompute.py", line 74, in main
+    random_model = AutoModelForCausalLM.from_pretrained(args.base_model_path, torch_dtype=torch.bfloat16)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/transformers/models/auto/auto_factory.py", line 531, in from_pretrained
+    random_model = AutoModelForCausalLM.from_pretrained(args.base_model_path, torch_dtype=torch.bfloat16)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/transformers/models/auto/auto_factory.py", line 531, in from_pretrained
+    config, kwargs = AutoConfig.from_pretrained(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 1151, in from_pretrained
+    config, kwargs = AutoConfig.from_pretrained(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 1151, in from_pretrained
+    raise ValueError(
+ValueError: Unrecognized model in model_path/models/tdpo_iter1. Should have a `model_type` key in its config.json, or contain one of the following strings in its name: albert, align, altclip, aria, aria_text, audio-spectrogram-transformer, autoformer, aya_vision, bamba, bark, bart, beit, bert, bert-generation, big_bird, bigbird_pegasus, biogpt, bit, blenderbot, blenderbot-small, blip, blip-2, bloom, bridgetower, bros, camembert, canine, chameleon, chinese_clip, chinese_clip_vision_model, clap, clip, clip_text_model, clip_vision_model, clipseg, clvp, code_llama, codegen, cohere, cohere2, colpali, conditional_detr, convbert, convnext, convnextv2, cpmant, ctrl, cvt, dab-detr, dac, data2vec-audio, data2vec-text, data2vec-vision, dbrx, deberta, deberta-v2, decision_transformer, deepseek_v3, deformable_detr, deit, depth_anything, depth_pro, deta, detr, diffllama, dinat, dinov2, dinov2_with_registers, distilbert, donut-swin, dpr, dpt, efficientformer, efficientnet, electra, emu3, encodec, encoder-decoder, ernie, ernie_m, esm, falcon, falcon_mamba, fastspeech2_conformer, flaubert, flava, fnet, focalnet, fsmt, funnel, fuyu, gemma, gemma2, gemma3, gemma3_text, git, glm, glm4, glpn, got_ocr2, gpt-sw3, gpt2, gpt_bigcode, gpt_neo, gpt_neox, gpt_neox_japanese, gptj, gptsan-japanese, granite, granitemoe, granitemoeshared, granitevision, graphormer, grounding-dino, groupvit, helium, hiera, hubert, ibert, idefics, idefics2, idefics3, idefics3_vision, ijepa, imagegpt, informer, instructblip, instructblipvideo, jamba, jetmoe, jukebox, kosmos-2, layoutlm, layoutlmv2, layoutlmv3, led, levit, lilt, llama, llama4, llama4_text, llava, llava_next, llava_next_video, llava_onevision, longformer, longt5, luke, lxmert, m2m_100, mamba, mamba2, marian, markuplm, mask2former, maskformer, maskformer-swin, mbart, mctct, mega, megatron-bert, mgp-str, mimi, mistral, mistral3, mixtral, mllama, mobilebert, mobilenet_v1, mobilenet_v2, mobilevit, mobilevitv2, modernbert, moonshine, moshi, mpnet, mpt, mra, mt5, musicgen, musicgen_melody, mvp, nat, nemotron, nezha, nllb-moe, nougat, nystromformer, olmo, olmo2, olmoe, omdet-turbo, oneformer, open-llama, openai-gpt, opt, owlv2, owlvit, paligemma, patchtsmixer, patchtst, pegasus, pegasus_x, perceiver, persimmon, phi, phi3, phi4_multimodal, phimoe, pix2struct, pixtral, plbart, poolformer, pop2piano, prompt_depth_anything, prophetnet, pvt, pvt_v2, qdqbert, qwen2, qwen2_5_vl, qwen2_audio, qwen2_audio_encoder, qwen2_moe, qwen2_vl, qwen3, qwen3_moe, rag, realm, recurrent_gemma, reformer, regnet, rembert, resnet, retribert, roberta, roberta-prelayernorm, roc_bert, roformer, rt_detr, rt_detr_resnet, rt_detr_v2, rwkv, sam, sam_vision_model, seamless_m4t, seamless_m4t_v2, segformer, seggpt, sew, sew-d, shieldgemma2, siglip, siglip2, siglip_vision_model, smolvlm, smolvlm_vision, speech-encoder-decoder, speech_to_text, speech_to_text_2, speecht5, splinter, squeezebert, stablelm, starcoder2, superglue, superpoint, swiftformer, swin, swin2sr, swinv2, switch_transformers, t5, table-transformer, tapas, textnet, time_series_transformer, timesformer, timm_backbone, timm_wrapper, trajectory_transformer, transfo-xl, trocr, tvlt, tvp, udop, umt5, unispeech, unispeech-sat, univnet, upernet, van, video_llava, videomae, vilt, vipllava, vision-encoder-decoder, vision-text-dual-encoder, visual_bert, vit, vit_hybrid, vit_mae, vit_msn, vitdet, vitmatte, vitpose, vitpose_backbone, vits, vivit, wav2vec2, wav2vec2-bert, wav2vec2-conformer, wavlm, whisper, xclip, xglm, xlm, xlm-prophetnet, xlm-roberta, xlm-roberta-xl, xlnet, xmod, yolos, yoso, zamba, zamba2, zoedepth
+    raise ValueError(
+ValueError: Unrecognized model in model_path/models/tdpo_iter1. Should have a `model_type` key in its config.json, or contain one of the following strings in its name: albert, align, altclip, aria, aria_text, audio-spectrogram-transformer, autoformer, aya_vision, bamba, bark, bart, beit, bert, bert-generation, big_bird, bigbird_pegasus, biogpt, bit, blenderbot, blenderbot-small, blip, blip-2, bloom, bridgetower, bros, camembert, canine, chameleon, chinese_clip, chinese_clip_vision_model, clap, clip, clip_text_model, clip_vision_model, clipseg, clvp, code_llama, codegen, cohere, cohere2, colpali, conditional_detr, convbert, convnext, convnextv2, cpmant, ctrl, cvt, dab-detr, dac, data2vec-audio, data2vec-text, data2vec-vision, dbrx, deberta, deberta-v2, decision_transformer, deepseek_v3, deformable_detr, deit, depth_anything, depth_pro, deta, detr, diffllama, dinat, dinov2, dinov2_with_registers, distilbert, donut-swin, dpr, dpt, efficientformer, efficientnet, electra, emu3, encodec, encoder-decoder, ernie, ernie_m, esm, falcon, falcon_mamba, fastspeech2_conformer, flaubert, flava, fnet, focalnet, fsmt, funnel, fuyu, gemma, gemma2, gemma3, gemma3_text, git, glm, glm4, glpn, got_ocr2, gpt-sw3, gpt2, gpt_bigcode, gpt_neo, gpt_neox, gpt_neox_japanese, gptj, gptsan-japanese, granite, granitemoe, granitemoeshared, granitevision, graphormer, grounding-dino, groupvit, helium, hiera, hubert, ibert, idefics, idefics2, idefics3, idefics3_vision, ijepa, imagegpt, informer, instructblip, instructblipvideo, jamba, jetmoe, jukebox, kosmos-2, layoutlm, layoutlmv2, layoutlmv3, led, levit, lilt, llama, llama4, llama4_text, llava, llava_next, llava_next_video, llava_onevision, longformer, longt5, luke, lxmert, m2m_100, mamba, mamba2, marian, markuplm, mask2former, maskformer, maskformer-swin, mbart, mctct, mega, megatron-bert, mgp-str, mimi, mistral, mistral3, mixtral, mllama, mobilebert, mobilenet_v1, mobilenet_v2, mobilevit, mobilevitv2, modernbert, moonshine, moshi, mpnet, mpt, mra, mt5, musicgen, musicgen_melody, mvp, nat, nemotron, nezha, nllb-moe, nougat, nystromformer, olmo, olmo2, olmoe, omdet-turbo, oneformer, open-llama, openai-gpt, opt, owlv2, owlvit, paligemma, patchtsmixer, patchtst, pegasus, pegasus_x, perceiver, persimmon, phi, phi3, phi4_multimodal, phimoe, pix2struct, pixtral, plbart, poolformer, pop2piano, prompt_depth_anything, prophetnet, pvt, pvt_v2, qdqbert, qwen2, qwen2_5_vl, qwen2_audio, qwen2_audio_encoder, qwen2_moe, qwen2_vl, qwen3, qwen3_moe, rag, realm, recurrent_gemma, reformer, regnet, rembert, resnet, retribert, roberta, roberta-prelayernorm, roc_bert, roformer, rt_detr, rt_detr_resnet, rt_detr_v2, rwkv, sam, sam_vision_model, seamless_m4t, seamless_m4t_v2, segformer, seggpt, sew, sew-d, shieldgemma2, siglip, siglip2, siglip_vision_model, smolvlm, smolvlm_vision, speech-encoder-decoder, speech_to_text, speech_to_text_2, speecht5, splinter, squeezebert, stablelm, starcoder2, superglue, superpoint, swiftformer, swin, swin2sr, swinv2, switch_transformers, t5, table-transformer, tapas, textnet, time_series_transformer, timesformer, timm_backbone, timm_wrapper, trajectory_transformer, transfo-xl, trocr, tvlt, tvp, udop, umt5, unispeech, unispeech-sat, univnet, upernet, van, video_llava, videomae, vilt, vipllava, vision-encoder-decoder, vision-text-dual-encoder, visual_bert, vit, vit_hybrid, vit_mae, vit_msn, vitdet, vitmatte, vitpose, vitpose_backbone, vits, vivit, wav2vec2, wav2vec2-bert, wav2vec2-conformer, wavlm, whisper, xclip, xglm, xlm, xlm-prophetnet, xlm-roberta, xlm-roberta-xl, xlnet, xmod, yolos, yoso, zamba, zamba2, zoedepth
+W0427 20:52:42.193000 1299554 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 1299606 closing signal SIGTERM
+E0427 20:52:42.243000 1299554 site-packages/torch/distributed/elastic/multiprocessing/api.py:869] failed (exitcode: 1) local_rank: 1 (pid: 1299607) of binary: /n/home08/xiaominli/.conda/envs/NPO/bin/python3.11
+Traceback (most recent call last):
+  File "/n/home08/xiaominli/.conda/envs/NPO/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1196, in launch_command
+    deepspeed_launcher(args)
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/launch.py", line 878, in deepspeed_launcher
+    distrib_run.run(args)
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/torch/distributed/run.py", line 909, in run
+    elastic_launch(
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+./tdpo/precompute.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-04-27_20:52:42
+  host      : holygpu8a29203.rc.fas.harvard.edu
+  rank      : 1 (local_rank: 1)
+  exitcode  : 1 (pid: 1299607)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+
+ERROR conda.cli.main_run:execute(124): `conda run accelerate launch --config_file ./configs/zero2.yaml ./tdpo/precompute.py --base_model_path model_path/models/tdpo_iter1 --reference_model_path RLHFlow/LLaMA3-SFT --output_dir dataset_path/datasets/tdpo_iter2/data_pref_prob --data_path dataset_path/datasets/tdpo_iter2/pref_data.json --max_history_t 2 --history_paths model_path/models/tdpo_iter1 --beta 0.01` failed. (See above for error)
+[W427 20:53:14.511295744 socket.cpp:759] [c10d] The client socket cannot be initialized to connect to [localhost]:29500 (errno: 97 - Address family not supported by protocol).
+Traceback (most recent call last):
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./tdpo/tdpo_train.py", line 69, in <module>
+Traceback (most recent call last):
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./tdpo/tdpo_train.py", line 69, in <module>
+    main()
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./tdpo/tdpo_train.py", line 29, in main
+    main()
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./tdpo/tdpo_train.py", line 29, in main
+    tokenizer = AutoTokenizer.from_pretrained(args.base_model_path)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/transformers/models/auto/tokenization_auto.py", line 966, in from_pretrained
+    tokenizer = AutoTokenizer.from_pretrained(args.base_model_path)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/transformers/models/auto/tokenization_auto.py", line 966, in from_pretrained
+    config = AutoConfig.from_pretrained(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 1151, in from_pretrained
+    config = AutoConfig.from_pretrained(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 1151, in from_pretrained
+    raise ValueError(
+ValueError: Unrecognized model in model_path/models/tdpo_iter1. Should have a `model_type` key in its config.json, or contain one of the following strings in its name: albert, align, altclip, aria, aria_text, audio-spectrogram-transformer, autoformer, aya_vision, bamba, bark, bart, beit, bert, bert-generation, big_bird, bigbird_pegasus, biogpt, bit, blenderbot, blenderbot-small, blip, blip-2, bloom, bridgetower, bros, camembert, canine, chameleon, chinese_clip, chinese_clip_vision_model, clap, clip, clip_text_model, clip_vision_model, clipseg, clvp, code_llama, codegen, cohere, cohere2, colpali, conditional_detr, convbert, convnext, convnextv2, cpmant, ctrl, cvt, dab-detr, dac, data2vec-audio, data2vec-text, data2vec-vision, dbrx, deberta, deberta-v2, decision_transformer, deepseek_v3, deformable_detr, deit, depth_anything, depth_pro, deta, detr, diffllama, dinat, dinov2, dinov2_with_registers, distilbert, donut-swin, dpr, dpt, efficientformer, efficientnet, electra, emu3, encodec, encoder-decoder, ernie, ernie_m, esm, falcon, falcon_mamba, fastspeech2_conformer, flaubert, flava, fnet, focalnet, fsmt, funnel, fuyu, gemma, gemma2, gemma3, gemma3_text, git, glm, glm4, glpn, got_ocr2, gpt-sw3, gpt2, gpt_bigcode, gpt_neo, gpt_neox, gpt_neox_japanese, gptj, gptsan-japanese, granite, granitemoe, granitemoeshared, granitevision, graphormer, grounding-dino, groupvit, helium, hiera, hubert, ibert, idefics, idefics2, idefics3, idefics3_vision, ijepa, imagegpt, informer, instructblip, instructblipvideo, jamba, jetmoe, jukebox, kosmos-2, layoutlm, layoutlmv2, layoutlmv3, led, levit, lilt, llama, llama4, llama4_text, llava, llava_next, llava_next_video, llava_onevision, longformer, longt5, luke, lxmert, m2m_100, mamba, mamba2, marian, markuplm, mask2former, maskformer, maskformer-swin, mbart, mctct, mega, megatron-bert, mgp-str, mimi, mistral, mistral3, mixtral, mllama, mobilebert, mobilenet_v1, mobilenet_v2, mobilevit, mobilevitv2, modernbert, moonshine, moshi, mpnet, mpt, mra, mt5, musicgen, musicgen_melody, mvp, nat, nemotron, nezha, nllb-moe, nougat, nystromformer, olmo, olmo2, olmoe, omdet-turbo, oneformer, open-llama, openai-gpt, opt, owlv2, owlvit, paligemma, patchtsmixer, patchtst, pegasus, pegasus_x, perceiver, persimmon, phi, phi3, phi4_multimodal, phimoe, pix2struct, pixtral, plbart, poolformer, pop2piano, prompt_depth_anything, prophetnet, pvt, pvt_v2, qdqbert, qwen2, qwen2_5_vl, qwen2_audio, qwen2_audio_encoder, qwen2_moe, qwen2_vl, qwen3, qwen3_moe, rag, realm, recurrent_gemma, reformer, regnet, rembert, resnet, retribert, roberta, roberta-prelayernorm, roc_bert, roformer, rt_detr, rt_detr_resnet, rt_detr_v2, rwkv, sam, sam_vision_model, seamless_m4t, seamless_m4t_v2, segformer, seggpt, sew, sew-d, shieldgemma2, siglip, siglip2, siglip_vision_model, smolvlm, smolvlm_vision, speech-encoder-decoder, speech_to_text, speech_to_text_2, speecht5, splinter, squeezebert, stablelm, starcoder2, superglue, superpoint, swiftformer, swin, swin2sr, swinv2, switch_transformers, t5, table-transformer, tapas, textnet, time_series_transformer, timesformer, timm_backbone, timm_wrapper, trajectory_transformer, transfo-xl, trocr, tvlt, tvp, udop, umt5, unispeech, unispeech-sat, univnet, upernet, van, video_llava, videomae, vilt, vipllava, vision-encoder-decoder, vision-text-dual-encoder, visual_bert, vit, vit_hybrid, vit_mae, vit_msn, vitdet, vitmatte, vitpose, vitpose_backbone, vits, vivit, wav2vec2, wav2vec2-bert, wav2vec2-conformer, wavlm, whisper, xclip, xglm, xlm, xlm-prophetnet, xlm-roberta, xlm-roberta-xl, xlnet, xmod, yolos, yoso, zamba, zamba2, zoedepth
+    raise ValueError(
+ValueError: Unrecognized model in model_path/models/tdpo_iter1. Should have a `model_type` key in its config.json, or contain one of the following strings in its name: albert, align, altclip, aria, aria_text, audio-spectrogram-transformer, autoformer, aya_vision, bamba, bark, bart, beit, bert, bert-generation, big_bird, bigbird_pegasus, biogpt, bit, blenderbot, blenderbot-small, blip, blip-2, bloom, bridgetower, bros, camembert, canine, chameleon, chinese_clip, chinese_clip_vision_model, clap, clip, clip_text_model, clip_vision_model, clipseg, clvp, code_llama, codegen, cohere, cohere2, colpali, conditional_detr, convbert, convnext, convnextv2, cpmant, ctrl, cvt, dab-detr, dac, data2vec-audio, data2vec-text, data2vec-vision, dbrx, deberta, deberta-v2, decision_transformer, deepseek_v3, deformable_detr, deit, depth_anything, depth_pro, deta, detr, diffllama, dinat, dinov2, dinov2_with_registers, distilbert, donut-swin, dpr, dpt, efficientformer, efficientnet, electra, emu3, encodec, encoder-decoder, ernie, ernie_m, esm, falcon, falcon_mamba, fastspeech2_conformer, flaubert, flava, fnet, focalnet, fsmt, funnel, fuyu, gemma, gemma2, gemma3, gemma3_text, git, glm, glm4, glpn, got_ocr2, gpt-sw3, gpt2, gpt_bigcode, gpt_neo, gpt_neox, gpt_neox_japanese, gptj, gptsan-japanese, granite, granitemoe, granitemoeshared, granitevision, graphormer, grounding-dino, groupvit, helium, hiera, hubert, ibert, idefics, idefics2, idefics3, idefics3_vision, ijepa, imagegpt, informer, instructblip, instructblipvideo, jamba, jetmoe, jukebox, kosmos-2, layoutlm, layoutlmv2, layoutlmv3, led, levit, lilt, llama, llama4, llama4_text, llava, llava_next, llava_next_video, llava_onevision, longformer, longt5, luke, lxmert, m2m_100, mamba, mamba2, marian, markuplm, mask2former, maskformer, maskformer-swin, mbart, mctct, mega, megatron-bert, mgp-str, mimi, mistral, mistral3, mixtral, mllama, mobilebert, mobilenet_v1, mobilenet_v2, mobilevit, mobilevitv2, modernbert, moonshine, moshi, mpnet, mpt, mra, mt5, musicgen, musicgen_melody, mvp, nat, nemotron, nezha, nllb-moe, nougat, nystromformer, olmo, olmo2, olmoe, omdet-turbo, oneformer, open-llama, openai-gpt, opt, owlv2, owlvit, paligemma, patchtsmixer, patchtst, pegasus, pegasus_x, perceiver, persimmon, phi, phi3, phi4_multimodal, phimoe, pix2struct, pixtral, plbart, poolformer, pop2piano, prompt_depth_anything, prophetnet, pvt, pvt_v2, qdqbert, qwen2, qwen2_5_vl, qwen2_audio, qwen2_audio_encoder, qwen2_moe, qwen2_vl, qwen3, qwen3_moe, rag, realm, recurrent_gemma, reformer, regnet, rembert, resnet, retribert, roberta, roberta-prelayernorm, roc_bert, roformer, rt_detr, rt_detr_resnet, rt_detr_v2, rwkv, sam, sam_vision_model, seamless_m4t, seamless_m4t_v2, segformer, seggpt, sew, sew-d, shieldgemma2, siglip, siglip2, siglip_vision_model, smolvlm, smolvlm_vision, speech-encoder-decoder, speech_to_text, speech_to_text_2, speecht5, splinter, squeezebert, stablelm, starcoder2, superglue, superpoint, swiftformer, swin, swin2sr, swinv2, switch_transformers, t5, table-transformer, tapas, textnet, time_series_transformer, timesformer, timm_backbone, timm_wrapper, trajectory_transformer, transfo-xl, trocr, tvlt, tvp, udop, umt5, unispeech, unispeech-sat, univnet, upernet, van, video_llava, videomae, vilt, vipllava, vision-encoder-decoder, vision-text-dual-encoder, visual_bert, vit, vit_hybrid, vit_mae, vit_msn, vitdet, vitmatte, vitpose, vitpose_backbone, vits, vivit, wav2vec2, wav2vec2-bert, wav2vec2-conformer, wavlm, whisper, xclip, xglm, xlm, xlm-prophetnet, xlm-roberta, xlm-roberta-xl, xlnet, xmod, yolos, yoso, zamba, zamba2, zoedepth
+W0427 20:53:48.273000 1299684 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 1299727 closing signal SIGTERM
+E0427 20:53:48.324000 1299684 site-packages/torch/distributed/elastic/multiprocessing/api.py:869] failed (exitcode: 1) local_rank: 1 (pid: 1299728) of binary: /n/home08/xiaominli/.conda/envs/NPO/bin/python3.11
+Traceback (most recent call last):
+  File "/n/home08/xiaominli/.conda/envs/NPO/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1196, in launch_command
+    deepspeed_launcher(args)
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/launch.py", line 878, in deepspeed_launcher
+    distrib_run.run(args)
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/torch/distributed/run.py", line 909, in run
+    elastic_launch(
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+./tdpo/tdpo_train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-04-27_20:53:48
+  host      : holygpu8a29203.rc.fas.harvard.edu
+  rank      : 1 (local_rank: 1)
+  exitcode  : 1 (pid: 1299728)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+
+ERROR conda.cli.main_run:execute(124): `conda run accelerate launch --config_file ./configs/zero3.yaml ./tdpo/tdpo_train.py --base_model_path model_path/models/tdpo_iter1 --precomputed_dir dataset_path/datasets/tdpo_iter2/data_pref_prob --output_dir model_path/models/tdpo_iter2 --learning_rate 5e-7 --ratio .3333333333 --eta 0.005 --beta 0.01 --lr_scheduler_type cosine --report_to wandb` failed. (See above for error)
+python: can't open file '/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/model_path/models/tdpo_iter2/zero_to_fp32.py': [Errno 2] No such file or directory
+
+ERROR conda.cli.main_run:execute(124): `conda run python model_path/models/tdpo_iter2/zero_to_fp32.py model_path/models/tdpo_iter2 model_path/models/tdpo_iter2` failed. (See above for error)
+Traceback (most recent call last):
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./generation/get_hf2.py", line 86, in <module>
+    llm = LLM(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/vllm/utils.py", line 1022, in inner
+    return fn(*args, **kwargs)
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/vllm/entrypoints/llm.py", line 242, in __init__
+    self.llm_engine = self.engine_class.from_engine_args(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/vllm/engine/llm_engine.py", line 486, in from_engine_args
+    engine_config = engine_args.create_engine_config(usage_context)
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/vllm/engine/arg_utils.py", line 1127, in create_engine_config
+    model_config = self.create_model_config()
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/vllm/engine/arg_utils.py", line 1047, in create_model_config
+    return ModelConfig(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/vllm/config.py", line 304, in __init__
+    hf_config = get_config(self.model, trust_remote_code, revision,
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/vllm/transformers_utils/config.py", line 263, in get_config
+    raise ValueError(f"No supported config format found in {model}.")
+ValueError: No supported config format found in model_path/models/tdpo_iter2.
+
+ERROR conda.cli.main_run:execute(124): `conda run python ./generation/get_hf2.py --model_name_or_path model_path/models/tdpo_iter2 --dataset_name_or_path RLHFlow/iterative-prompt-v1-iter3-20K --output_dir dataset_path/datasets/tdpo_iter3/data --sanity_check True --K 8 --temperature 1.0 --local_index 1 --my_world_size 2 --eos_ids 128009` failed. (See above for error)
+Traceback (most recent call last):
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./generation/get_hf2.py", line 86, in <module>
+    llm = LLM(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/vllm/utils.py", line 1022, in inner
+    return fn(*args, **kwargs)
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/vllm/entrypoints/llm.py", line 242, in __init__
+    self.llm_engine = self.engine_class.from_engine_args(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/vllm/engine/llm_engine.py", line 486, in from_engine_args
+    engine_config = engine_args.create_engine_config(usage_context)
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/vllm/engine/arg_utils.py", line 1127, in create_engine_config
+    model_config = self.create_model_config()
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/vllm/engine/arg_utils.py", line 1047, in create_model_config
+    return ModelConfig(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/vllm/config.py", line 304, in __init__
+    hf_config = get_config(self.model, trust_remote_code, revision,
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/vllm/transformers_utils/config.py", line 263, in get_config
+    raise ValueError(f"No supported config format found in {model}.")
+ValueError: No supported config format found in model_path/models/tdpo_iter2.
+
+ERROR conda.cli.main_run:execute(124): `conda run python ./generation/get_hf2.py --model_name_or_path model_path/models/tdpo_iter2 --dataset_name_or_path RLHFlow/iterative-prompt-v1-iter3-20K --output_dir dataset_path/datasets/tdpo_iter3/data --sanity_check True --K 8 --temperature 1.0 --local_index 0 --my_world_size 2 --eos_ids 128009` failed. (See above for error)
+Traceback (most recent call last):
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./generation/merge_data.py", line 42, in <module>
+    ds = load_dataset("json", data_files=my_dir, split="train", field="instances")
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/load.py", line 2129, in load_dataset
+    builder_instance = load_dataset_builder(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/load.py", line 1849, in load_dataset_builder
+    dataset_module = dataset_module_factory(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/load.py", line 1564, in dataset_module_factory
+    ).get_module()
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/load.py", line 944, in get_module
+    data_files = DataFilesDict.from_patterns(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/data_files.py", line 721, in from_patterns
+    else DataFilesList.from_patterns(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/data_files.py", line 624, in from_patterns
+    resolve_pattern(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/data_files.py", line 411, in resolve_pattern
+    raise FileNotFoundError(error_msg)
+FileNotFoundError: Unable to find '/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/dataset_path/datasets/tdpo_iter3/data_0.json'
+
+ERROR conda.cli.main_run:execute(124): `conda run python ./generation/merge_data.py --base_path dataset_path/datasets/tdpo_iter3/data --output_dir dataset_path/datasets/tdpo_iter3/data.json --num_datasets 2` failed. (See above for error)
+The following values were not passed to `accelerate launch` and had defaults used instead:
+	`--num_processes` was set to a value of `1`
+	`--num_machines` was set to a value of `1`
+	`--mixed_precision` was set to a value of `'no'`
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 49.49it/s]
+Traceback (most recent call last):
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/annotate_data/get_pref_single.py", line 124, in <module>
+    ds = load_dataset("json", data_files=ds_dir, split="train", field="instances")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 2062, in load_dataset
+    builder_instance = load_dataset_builder(
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 1782, in load_dataset_builder
+    dataset_module = dataset_module_factory(
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 1497, in dataset_module_factory
+    ).get_module()
+      ^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 913, in get_module
+    data_files = DataFilesDict.from_patterns(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/data_files.py", line 690, in from_patterns
+    else DataFilesList.from_patterns(
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/data_files.py", line 583, in from_patterns
+    resolve_pattern(
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/data_files.py", line 384, in resolve_pattern
+    raise FileNotFoundError(error_msg)
+FileNotFoundError: Unable to find '/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/dataset_path/datasets/tdpo_iter3/data_3.json'
+Traceback (most recent call last):
+  File "/n/home08/xiaominli/.conda/envs/NPO/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1213, in launch_command
+    simple_launcher(args)
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/launch.py", line 795, in simple_launcher
+    raise subprocess.CalledProcessError(returncode=process.returncode, cmd=cmd)
+subprocess.CalledProcessError: Command '['/n/home08/xiaominli/.conda/envs/NPO/bin/python3.11', 'annotate_data/get_pref_single.py', '--use_tournament', 'True', '--dataset_name_or_path', 'dataset_path/datasets/tdpo_iter3/data_3.json', '--output_dir', 'dataset_path/datasets/tdpo_iter3/pref_3.json', '--K', '8']' returned non-zero exit status 1.
+
+ERROR conda.cli.main_run:execute(124): `conda run accelerate launch annotate_data/get_pref_single.py --use_tournament True --dataset_name_or_path dataset_path/datasets/tdpo_iter3/data_3.json --output_dir dataset_path/datasets/tdpo_iter3/pref_3.json --K 8` failed. (See above for error)
+The following values were not passed to `accelerate launch` and had defaults used instead:
+	`--num_processes` was set to a value of `1`
+	`--num_machines` was set to a value of `1`
+	`--mixed_precision` was set to a value of `'no'`
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 48.55it/s]
+Traceback (most recent call last):
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/annotate_data/get_pref_single.py", line 124, in <module>
+    ds = load_dataset("json", data_files=ds_dir, split="train", field="instances")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 2062, in load_dataset
+    builder_instance = load_dataset_builder(
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 1782, in load_dataset_builder
+    dataset_module = dataset_module_factory(
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 1497, in dataset_module_factory
+    ).get_module()
+      ^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/load.py", line 913, in get_module
+    data_files = DataFilesDict.from_patterns(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/data_files.py", line 690, in from_patterns
+    else DataFilesList.from_patterns(
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/data_files.py", line 583, in from_patterns
+    resolve_pattern(
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/datasets/data_files.py", line 384, in resolve_pattern
+    raise FileNotFoundError(error_msg)
+FileNotFoundError: Unable to find '/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/dataset_path/datasets/tdpo_iter3/data_2.json'
+Traceback (most recent call last):
+  File "/n/home08/xiaominli/.conda/envs/NPO/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1213, in launch_command
+    simple_launcher(args)
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/launch.py", line 795, in simple_launcher
+    raise subprocess.CalledProcessError(returncode=process.returncode, cmd=cmd)
+subprocess.CalledProcessError: Command '['/n/home08/xiaominli/.conda/envs/NPO/bin/python3.11', 'annotate_data/get_pref_single.py', '--use_tournament', 'True', '--dataset_name_or_path', 'dataset_path/datasets/tdpo_iter3/data_2.json', '--output_dir', 'dataset_path/datasets/tdpo_iter3/pref_2.json', '--K', '8']' returned non-zero exit status 1.
+
+ERROR conda.cli.main_run:execute(124): `conda run accelerate launch annotate_data/get_pref_single.py --use_tournament True --dataset_name_or_path dataset_path/datasets/tdpo_iter3/data_2.json --output_dir dataset_path/datasets/tdpo_iter3/pref_2.json --K 8` failed. (See above for error)
+Traceback (most recent call last):
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./annotate_data/merge.py", line 42, in <module>
+    ds = load_dataset("json", data_files=my_dir, split="train", field="instances")
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/load.py", line 2129, in load_dataset
+    builder_instance = load_dataset_builder(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/load.py", line 1849, in load_dataset_builder
+    dataset_module = dataset_module_factory(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/load.py", line 1564, in dataset_module_factory
+    ).get_module()
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/load.py", line 944, in get_module
+    data_files = DataFilesDict.from_patterns(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/data_files.py", line 721, in from_patterns
+    else DataFilesList.from_patterns(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/data_files.py", line 624, in from_patterns
+    resolve_pattern(
+  File "/n/home08/xiaominli/.local/lib/python3.10/site-packages/datasets/data_files.py", line 411, in resolve_pattern
+    raise FileNotFoundError(error_msg)
+FileNotFoundError: Unable to find '/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/dataset_path/datasets/tdpo_iter3/pref_0.json'
+
+ERROR conda.cli.main_run:execute(124): `conda run python ./annotate_data/merge.py --base_path dataset_path/datasets/tdpo_iter3/pref --output_dir dataset_path/datasets/tdpo_iter3/pref_data.json --num_datasets 2` failed. (See above for error)
+[W427 20:56:33.040936423 socket.cpp:759] [c10d] The client socket cannot be initialized to connect to [localhost]:29500 (errno: 97 - Address family not supported by protocol).
+Traceback (most recent call last):
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./tdpo/precompute.py", line 139, in <module>
+    main()
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./tdpo/precompute.py", line 74, in main
+    random_model = AutoModelForCausalLM.from_pretrained(args.base_model_path, torch_dtype=torch.bfloat16)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/transformers/models/auto/auto_factory.py", line 531, in from_pretrained
+    config, kwargs = AutoConfig.from_pretrained(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 1151, in from_pretrained
+    raise ValueError(
+ValueError: Unrecognized model in model_path/models/tdpo_iter2. Should have a `model_type` key in its config.json, or contain one of the following strings in its name: albert, align, altclip, aria, aria_text, audio-spectrogram-transformer, autoformer, aya_vision, bamba, bark, bart, beit, bert, bert-generation, big_bird, bigbird_pegasus, biogpt, bit, blenderbot, blenderbot-small, blip, blip-2, bloom, bridgetower, bros, camembert, canine, chameleon, chinese_clip, chinese_clip_vision_model, clap, clip, clip_text_model, clip_vision_model, clipseg, clvp, code_llama, codegen, cohere, cohere2, colpali, conditional_detr, convbert, convnext, convnextv2, cpmant, ctrl, cvt, dab-detr, dac, data2vec-audio, data2vec-text, data2vec-vision, dbrx, deberta, deberta-v2, decision_transformer, deepseek_v3, deformable_detr, deit, depth_anything, depth_pro, deta, detr, diffllama, dinat, dinov2, dinov2_with_registers, distilbert, donut-swin, dpr, dpt, efficientformer, efficientnet, electra, emu3, encodec, encoder-decoder, ernie, ernie_m, esm, falcon, falcon_mamba, fastspeech2_conformer, flaubert, flava, fnet, focalnet, fsmt, funnel, fuyu, gemma, gemma2, gemma3, gemma3_text, git, glm, glm4, glpn, got_ocr2, gpt-sw3, gpt2, gpt_bigcode, gpt_neo, gpt_neox, gpt_neox_japanese, gptj, gptsan-japanese, granite, granitemoe, granitemoeshared, granitevision, graphormer, grounding-dino, groupvit, helium, hiera, hubert, ibert, idefics, idefics2, idefics3, idefics3_vision, ijepa, imagegpt, informer, instructblip, instructblipvideo, jamba, jetmoe, jukebox, kosmos-2, layoutlm, layoutlmv2, layoutlmv3, led, levit, lilt, llama, llama4, llama4_text, llava, llava_next, llava_next_video, llava_onevision, longformer, longt5, luke, lxmert, m2m_100, mamba, mamba2, marian, markuplm, mask2former, maskformer, maskformer-swin, mbart, mctct, mega, megatron-bert, mgp-str, mimi, mistral, mistral3, mixtral, mllama, mobilebert, mobilenet_v1, mobilenet_v2, mobilevit, mobilevitv2, modernbert, moonshine, moshi, mpnet, mpt, mra, mt5, musicgen, musicgen_melody, mvp, nat, nemotron, nezha, nllb-moe, nougat, nystromformer, olmo, olmo2, olmoe, omdet-turbo, oneformer, open-llama, openai-gpt, opt, owlv2, owlvit, paligemma, patchtsmixer, patchtst, pegasus, pegasus_x, perceiver, persimmon, phi, phi3, phi4_multimodal, phimoe, pix2struct, pixtral, plbart, poolformer, pop2piano, prompt_depth_anything, prophetnet, pvt, pvt_v2, qdqbert, qwen2, qwen2_5_vl, qwen2_audio, qwen2_audio_encoder, qwen2_moe, qwen2_vl, qwen3, qwen3_moe, rag, realm, recurrent_gemma, reformer, regnet, rembert, resnet, retribert, roberta, roberta-prelayernorm, roc_bert, roformer, rt_detr, rt_detr_resnet, rt_detr_v2, rwkv, sam, sam_vision_model, seamless_m4t, seamless_m4t_v2, segformer, seggpt, sew, sew-d, shieldgemma2, siglip, siglip2, siglip_vision_model, smolvlm, smolvlm_vision, speech-encoder-decoder, speech_to_text, speech_to_text_2, speecht5, splinter, squeezebert, stablelm, starcoder2, superglue, superpoint, swiftformer, swin, swin2sr, swinv2, switch_transformers, t5, table-transformer, tapas, textnet, time_series_transformer, timesformer, timm_backbone, timm_wrapper, trajectory_transformer, transfo-xl, trocr, tvlt, tvp, udop, umt5, unispeech, unispeech-sat, univnet, upernet, van, video_llava, videomae, vilt, vipllava, vision-encoder-decoder, vision-text-dual-encoder, visual_bert, vit, vit_hybrid, vit_mae, vit_msn, vitdet, vitmatte, vitpose, vitpose_backbone, vits, vivit, wav2vec2, wav2vec2-bert, wav2vec2-conformer, wavlm, whisper, xclip, xglm, xlm, xlm-prophetnet, xlm-roberta, xlm-roberta-xl, xlnet, xmod, yolos, yoso, zamba, zamba2, zoedepth
+Traceback (most recent call last):
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./tdpo/precompute.py", line 139, in <module>
+    main()
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./tdpo/precompute.py", line 74, in main
+    random_model = AutoModelForCausalLM.from_pretrained(args.base_model_path, torch_dtype=torch.bfloat16)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/transformers/models/auto/auto_factory.py", line 531, in from_pretrained
+    config, kwargs = AutoConfig.from_pretrained(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 1151, in from_pretrained
+    raise ValueError(
+ValueError: Unrecognized model in model_path/models/tdpo_iter2. Should have a `model_type` key in its config.json, or contain one of the following strings in its name: albert, align, altclip, aria, aria_text, audio-spectrogram-transformer, autoformer, aya_vision, bamba, bark, bart, beit, bert, bert-generation, big_bird, bigbird_pegasus, biogpt, bit, blenderbot, blenderbot-small, blip, blip-2, bloom, bridgetower, bros, camembert, canine, chameleon, chinese_clip, chinese_clip_vision_model, clap, clip, clip_text_model, clip_vision_model, clipseg, clvp, code_llama, codegen, cohere, cohere2, colpali, conditional_detr, convbert, convnext, convnextv2, cpmant, ctrl, cvt, dab-detr, dac, data2vec-audio, data2vec-text, data2vec-vision, dbrx, deberta, deberta-v2, decision_transformer, deepseek_v3, deformable_detr, deit, depth_anything, depth_pro, deta, detr, diffllama, dinat, dinov2, dinov2_with_registers, distilbert, donut-swin, dpr, dpt, efficientformer, efficientnet, electra, emu3, encodec, encoder-decoder, ernie, ernie_m, esm, falcon, falcon_mamba, fastspeech2_conformer, flaubert, flava, fnet, focalnet, fsmt, funnel, fuyu, gemma, gemma2, gemma3, gemma3_text, git, glm, glm4, glpn, got_ocr2, gpt-sw3, gpt2, gpt_bigcode, gpt_neo, gpt_neox, gpt_neox_japanese, gptj, gptsan-japanese, granite, granitemoe, granitemoeshared, granitevision, graphormer, grounding-dino, groupvit, helium, hiera, hubert, ibert, idefics, idefics2, idefics3, idefics3_vision, ijepa, imagegpt, informer, instructblip, instructblipvideo, jamba, jetmoe, jukebox, kosmos-2, layoutlm, layoutlmv2, layoutlmv3, led, levit, lilt, llama, llama4, llama4_text, llava, llava_next, llava_next_video, llava_onevision, longformer, longt5, luke, lxmert, m2m_100, mamba, mamba2, marian, markuplm, mask2former, maskformer, maskformer-swin, mbart, mctct, mega, megatron-bert, mgp-str, mimi, mistral, mistral3, mixtral, mllama, mobilebert, mobilenet_v1, mobilenet_v2, mobilevit, mobilevitv2, modernbert, moonshine, moshi, mpnet, mpt, mra, mt5, musicgen, musicgen_melody, mvp, nat, nemotron, nezha, nllb-moe, nougat, nystromformer, olmo, olmo2, olmoe, omdet-turbo, oneformer, open-llama, openai-gpt, opt, owlv2, owlvit, paligemma, patchtsmixer, patchtst, pegasus, pegasus_x, perceiver, persimmon, phi, phi3, phi4_multimodal, phimoe, pix2struct, pixtral, plbart, poolformer, pop2piano, prompt_depth_anything, prophetnet, pvt, pvt_v2, qdqbert, qwen2, qwen2_5_vl, qwen2_audio, qwen2_audio_encoder, qwen2_moe, qwen2_vl, qwen3, qwen3_moe, rag, realm, recurrent_gemma, reformer, regnet, rembert, resnet, retribert, roberta, roberta-prelayernorm, roc_bert, roformer, rt_detr, rt_detr_resnet, rt_detr_v2, rwkv, sam, sam_vision_model, seamless_m4t, seamless_m4t_v2, segformer, seggpt, sew, sew-d, shieldgemma2, siglip, siglip2, siglip_vision_model, smolvlm, smolvlm_vision, speech-encoder-decoder, speech_to_text, speech_to_text_2, speecht5, splinter, squeezebert, stablelm, starcoder2, superglue, superpoint, swiftformer, swin, swin2sr, swinv2, switch_transformers, t5, table-transformer, tapas, textnet, time_series_transformer, timesformer, timm_backbone, timm_wrapper, trajectory_transformer, transfo-xl, trocr, tvlt, tvp, udop, umt5, unispeech, unispeech-sat, univnet, upernet, van, video_llava, videomae, vilt, vipllava, vision-encoder-decoder, vision-text-dual-encoder, visual_bert, vit, vit_hybrid, vit_mae, vit_msn, vitdet, vitmatte, vitpose, vitpose_backbone, vits, vivit, wav2vec2, wav2vec2-bert, wav2vec2-conformer, wavlm, whisper, xclip, xglm, xlm, xlm-prophetnet, xlm-roberta, xlm-roberta-xl, xlnet, xmod, yolos, yoso, zamba, zamba2, zoedepth
+E0427 20:57:09.368000 1300637 site-packages/torch/distributed/elastic/multiprocessing/api.py:869] failed (exitcode: 1) local_rank: 0 (pid: 1300928) of binary: /n/home08/xiaominli/.conda/envs/NPO/bin/python3.11
+Traceback (most recent call last):
+  File "/n/home08/xiaominli/.conda/envs/NPO/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1196, in launch_command
+    deepspeed_launcher(args)
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/launch.py", line 878, in deepspeed_launcher
+    distrib_run.run(args)
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/torch/distributed/run.py", line 909, in run
+    elastic_launch(
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+./tdpo/precompute.py FAILED
+------------------------------------------------------------
+Failures:
+[1]:
+  time      : 2025-04-27_20:57:09
+  host      : holygpu8a29203.rc.fas.harvard.edu
+  rank      : 1 (local_rank: 1)
+  exitcode  : 1 (pid: 1300929)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-04-27_20:57:09
+  host      : holygpu8a29203.rc.fas.harvard.edu
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 1300928)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+
+ERROR conda.cli.main_run:execute(124): `conda run accelerate launch --config_file ./configs/zero2.yaml ./tdpo/precompute.py --base_model_path model_path/models/tdpo_iter2 --reference_model_path RLHFlow/LLaMA3-SFT --output_dir dataset_path/datasets/tdpo_iter3/data_pref_prob --data_path dataset_path/datasets/tdpo_iter3/pref_data.json --max_history_t 2 --history_paths model_path/models/tdpo_iter1 model_path/models/tdpo_iter2 --beta 0.01` failed. (See above for error)
+[W427 20:57:41.417011293 socket.cpp:759] [c10d] The client socket cannot be initialized to connect to [localhost]:29500 (errno: 97 - Address family not supported by protocol).
+Traceback (most recent call last):
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./tdpo/tdpo_train.py", line 69, in <module>
+Traceback (most recent call last):
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./tdpo/tdpo_train.py", line 69, in <module>
+    main()
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./tdpo/tdpo_train.py", line 29, in main
+    main()
+  File "/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/./tdpo/tdpo_train.py", line 29, in main
+    tokenizer = AutoTokenizer.from_pretrained(args.base_model_path)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/transformers/models/auto/tokenization_auto.py", line 966, in from_pretrained
+    tokenizer = AutoTokenizer.from_pretrained(args.base_model_path)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/transformers/models/auto/tokenization_auto.py", line 966, in from_pretrained
+    config = AutoConfig.from_pretrained(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 1151, in from_pretrained
+    config = AutoConfig.from_pretrained(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 1151, in from_pretrained
+    raise ValueError(
+ValueError: Unrecognized model in model_path/models/tdpo_iter2. Should have a `model_type` key in its config.json, or contain one of the following strings in its name: albert, align, altclip, aria, aria_text, audio-spectrogram-transformer, autoformer, aya_vision, bamba, bark, bart, beit, bert, bert-generation, big_bird, bigbird_pegasus, biogpt, bit, blenderbot, blenderbot-small, blip, blip-2, bloom, bridgetower, bros, camembert, canine, chameleon, chinese_clip, chinese_clip_vision_model, clap, clip, clip_text_model, clip_vision_model, clipseg, clvp, code_llama, codegen, cohere, cohere2, colpali, conditional_detr, convbert, convnext, convnextv2, cpmant, ctrl, cvt, dab-detr, dac, data2vec-audio, data2vec-text, data2vec-vision, dbrx, deberta, deberta-v2, decision_transformer, deepseek_v3, deformable_detr, deit, depth_anything, depth_pro, deta, detr, diffllama, dinat, dinov2, dinov2_with_registers, distilbert, donut-swin, dpr, dpt, efficientformer, efficientnet, electra, emu3, encodec, encoder-decoder, ernie, ernie_m, esm, falcon, falcon_mamba, fastspeech2_conformer, flaubert, flava, fnet, focalnet, fsmt, funnel, fuyu, gemma, gemma2, gemma3, gemma3_text, git, glm, glm4, glpn, got_ocr2, gpt-sw3, gpt2, gpt_bigcode, gpt_neo, gpt_neox, gpt_neox_japanese, gptj, gptsan-japanese, granite, granitemoe, granitemoeshared, granitevision, graphormer, grounding-dino, groupvit, helium, hiera, hubert, ibert, idefics, idefics2, idefics3, idefics3_vision, ijepa, imagegpt, informer, instructblip, instructblipvideo, jamba, jetmoe, jukebox, kosmos-2, layoutlm, layoutlmv2, layoutlmv3, led, levit, lilt, llama, llama4, llama4_text, llava, llava_next, llava_next_video, llava_onevision, longformer, longt5, luke, lxmert, m2m_100, mamba, mamba2, marian, markuplm, mask2former, maskformer, maskformer-swin, mbart, mctct, mega, megatron-bert, mgp-str, mimi, mistral, mistral3, mixtral, mllama, mobilebert, mobilenet_v1, mobilenet_v2, mobilevit, mobilevitv2, modernbert, moonshine, moshi, mpnet, mpt, mra, mt5, musicgen, musicgen_melody, mvp, nat, nemotron, nezha, nllb-moe, nougat, nystromformer, olmo, olmo2, olmoe, omdet-turbo, oneformer, open-llama, openai-gpt, opt, owlv2, owlvit, paligemma, patchtsmixer, patchtst, pegasus, pegasus_x, perceiver, persimmon, phi, phi3, phi4_multimodal, phimoe, pix2struct, pixtral, plbart, poolformer, pop2piano, prompt_depth_anything, prophetnet, pvt, pvt_v2, qdqbert, qwen2, qwen2_5_vl, qwen2_audio, qwen2_audio_encoder, qwen2_moe, qwen2_vl, qwen3, qwen3_moe, rag, realm, recurrent_gemma, reformer, regnet, rembert, resnet, retribert, roberta, roberta-prelayernorm, roc_bert, roformer, rt_detr, rt_detr_resnet, rt_detr_v2, rwkv, sam, sam_vision_model, seamless_m4t, seamless_m4t_v2, segformer, seggpt, sew, sew-d, shieldgemma2, siglip, siglip2, siglip_vision_model, smolvlm, smolvlm_vision, speech-encoder-decoder, speech_to_text, speech_to_text_2, speecht5, splinter, squeezebert, stablelm, starcoder2, superglue, superpoint, swiftformer, swin, swin2sr, swinv2, switch_transformers, t5, table-transformer, tapas, textnet, time_series_transformer, timesformer, timm_backbone, timm_wrapper, trajectory_transformer, transfo-xl, trocr, tvlt, tvp, udop, umt5, unispeech, unispeech-sat, univnet, upernet, van, video_llava, videomae, vilt, vipllava, vision-encoder-decoder, vision-text-dual-encoder, visual_bert, vit, vit_hybrid, vit_mae, vit_msn, vitdet, vitmatte, vitpose, vitpose_backbone, vits, vivit, wav2vec2, wav2vec2-bert, wav2vec2-conformer, wavlm, whisper, xclip, xglm, xlm, xlm-prophetnet, xlm-roberta, xlm-roberta-xl, xlnet, xmod, yolos, yoso, zamba, zamba2, zoedepth
+    raise ValueError(
+ValueError: Unrecognized model in model_path/models/tdpo_iter2. Should have a `model_type` key in its config.json, or contain one of the following strings in its name: albert, align, altclip, aria, aria_text, audio-spectrogram-transformer, autoformer, aya_vision, bamba, bark, bart, beit, bert, bert-generation, big_bird, bigbird_pegasus, biogpt, bit, blenderbot, blenderbot-small, blip, blip-2, bloom, bridgetower, bros, camembert, canine, chameleon, chinese_clip, chinese_clip_vision_model, clap, clip, clip_text_model, clip_vision_model, clipseg, clvp, code_llama, codegen, cohere, cohere2, colpali, conditional_detr, convbert, convnext, convnextv2, cpmant, ctrl, cvt, dab-detr, dac, data2vec-audio, data2vec-text, data2vec-vision, dbrx, deberta, deberta-v2, decision_transformer, deepseek_v3, deformable_detr, deit, depth_anything, depth_pro, deta, detr, diffllama, dinat, dinov2, dinov2_with_registers, distilbert, donut-swin, dpr, dpt, efficientformer, efficientnet, electra, emu3, encodec, encoder-decoder, ernie, ernie_m, esm, falcon, falcon_mamba, fastspeech2_conformer, flaubert, flava, fnet, focalnet, fsmt, funnel, fuyu, gemma, gemma2, gemma3, gemma3_text, git, glm, glm4, glpn, got_ocr2, gpt-sw3, gpt2, gpt_bigcode, gpt_neo, gpt_neox, gpt_neox_japanese, gptj, gptsan-japanese, granite, granitemoe, granitemoeshared, granitevision, graphormer, grounding-dino, groupvit, helium, hiera, hubert, ibert, idefics, idefics2, idefics3, idefics3_vision, ijepa, imagegpt, informer, instructblip, instructblipvideo, jamba, jetmoe, jukebox, kosmos-2, layoutlm, layoutlmv2, layoutlmv3, led, levit, lilt, llama, llama4, llama4_text, llava, llava_next, llava_next_video, llava_onevision, longformer, longt5, luke, lxmert, m2m_100, mamba, mamba2, marian, markuplm, mask2former, maskformer, maskformer-swin, mbart, mctct, mega, megatron-bert, mgp-str, mimi, mistral, mistral3, mixtral, mllama, mobilebert, mobilenet_v1, mobilenet_v2, mobilevit, mobilevitv2, modernbert, moonshine, moshi, mpnet, mpt, mra, mt5, musicgen, musicgen_melody, mvp, nat, nemotron, nezha, nllb-moe, nougat, nystromformer, olmo, olmo2, olmoe, omdet-turbo, oneformer, open-llama, openai-gpt, opt, owlv2, owlvit, paligemma, patchtsmixer, patchtst, pegasus, pegasus_x, perceiver, persimmon, phi, phi3, phi4_multimodal, phimoe, pix2struct, pixtral, plbart, poolformer, pop2piano, prompt_depth_anything, prophetnet, pvt, pvt_v2, qdqbert, qwen2, qwen2_5_vl, qwen2_audio, qwen2_audio_encoder, qwen2_moe, qwen2_vl, qwen3, qwen3_moe, rag, realm, recurrent_gemma, reformer, regnet, rembert, resnet, retribert, roberta, roberta-prelayernorm, roc_bert, roformer, rt_detr, rt_detr_resnet, rt_detr_v2, rwkv, sam, sam_vision_model, seamless_m4t, seamless_m4t_v2, segformer, seggpt, sew, sew-d, shieldgemma2, siglip, siglip2, siglip_vision_model, smolvlm, smolvlm_vision, speech-encoder-decoder, speech_to_text, speech_to_text_2, speecht5, splinter, squeezebert, stablelm, starcoder2, superglue, superpoint, swiftformer, swin, swin2sr, swinv2, switch_transformers, t5, table-transformer, tapas, textnet, time_series_transformer, timesformer, timm_backbone, timm_wrapper, trajectory_transformer, transfo-xl, trocr, tvlt, tvp, udop, umt5, unispeech, unispeech-sat, univnet, upernet, van, video_llava, videomae, vilt, vipllava, vision-encoder-decoder, vision-text-dual-encoder, visual_bert, vit, vit_hybrid, vit_mae, vit_msn, vitdet, vitmatte, vitpose, vitpose_backbone, vits, vivit, wav2vec2, wav2vec2-bert, wav2vec2-conformer, wavlm, whisper, xclip, xglm, xlm, xlm-prophetnet, xlm-roberta, xlm-roberta-xl, xlnet, xmod, yolos, yoso, zamba, zamba2, zoedepth
+W0427 20:58:15.210000 1301005 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 1301045 closing signal SIGTERM
+E0427 20:58:15.259000 1301005 site-packages/torch/distributed/elastic/multiprocessing/api.py:869] failed (exitcode: 1) local_rank: 1 (pid: 1301046) of binary: /n/home08/xiaominli/.conda/envs/NPO/bin/python3.11
+Traceback (most recent call last):
+  File "/n/home08/xiaominli/.conda/envs/NPO/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1196, in launch_command
+    deepspeed_launcher(args)
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/accelerate/commands/launch.py", line 878, in deepspeed_launcher
+    distrib_run.run(args)
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/torch/distributed/run.py", line 909, in run
+    elastic_launch(
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home08/xiaominli/.conda/envs/NPO/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+./tdpo/tdpo_train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-04-27_20:58:15
+  host      : holygpu8a29203.rc.fas.harvard.edu
+  rank      : 1 (local_rank: 1)
+  exitcode  : 1 (pid: 1301046)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+
+ERROR conda.cli.main_run:execute(124): `conda run accelerate launch --config_file ./configs/zero3.yaml ./tdpo/tdpo_train.py --base_model_path model_path/models/tdpo_iter2 --precomputed_dir dataset_path/datasets/tdpo_iter3/data_pref_prob --output_dir model_path/models/tdpo_iter3 --learning_rate 5e-7 --ratio .3333333333 --eta 0.005 --beta 0.01 --lr_scheduler_type cosine --report_to wandb` failed. (See above for error)
+python: can't open file '/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/model_path/models/tdpo_iter3/zero_to_fp32.py': [Errno 2] No such file or directory
+
+ERROR conda.cli.main_run:execute(124): `conda run python model_path/models/tdpo_iter3/zero_to_fp32.py model_path/models/tdpo_iter3 model_path/models/tdpo_iter3` failed. (See above for error)
