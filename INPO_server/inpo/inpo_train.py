@@ -7,7 +7,7 @@ import torch
 from datasets import Dataset, load_dataset, load_from_disk
 from trl import DPOConfig
 
-from trainer import MyPreferenceTrainer, INPOTrainer, PrecomputeDataCollator
+from trainer import MyPreferenceTrainer, INPOTrainer, PrecomputeDataCollator, INPOTrainer_v2
 from transformers import (
     AutoModelForCausalLM,
     AutoTokenizer,
@@ -116,12 +116,14 @@ if __name__ == "__main__":
     train_dataset = load_from_disk(script_args.train_dir)
     if script_args.sanity_check:
         train_dataset = train_dataset.select(range(min(len(train_dataset), 100)))
-   
-    local_rank = int(os.environ.get("LOCAL_RANK", 0))
-    device = f"cuda:{local_rank}"
 
-    # Initialize accelerator
-    # accelerator = Accelerator()
+    # Load evaluation dataset if provided
+    eval_dataset = None
+    if script_args.eval_dir is not None:
+        eval_dataset = load_from_disk(script_args.eval_dir)
+        if script_args.sanity_check:
+            eval_dataset = eval_dataset.select(range(min(len(eval_dataset), 100)))
+
 
     # 1. load a pretrained model
     model = AutoModelForCausalLM.from_pretrained(
@@ -158,6 +160,14 @@ if __name__ == "__main__":
         model.resize_token_embeddings(len(tokenizer))
         model_ref.resize_token_embeddings(len(tokenizer))
 
+    # Create the data collator
+    data_collator = PrecomputeDataCollator(
+        tokenizer,
+        max_length=script_args.max_length,
+        max_prompt_length=script_args.max_prompt_length,
+        mask_prompt=script_args.mask_prompt,
+    )
+
     # 4. initialize training arguments:
 
     training_args = DPOConfig(
@@ -175,21 +185,37 @@ if __name__ == "__main__":
         remove_unused_columns=False,
         run_name=script_args.run_name,
         report_to=script_args.report_to,
+        beta=0.1,  # Set the default beta for DPO directly in the config
     )
     # print(training_args)
 
     # 5. initialize the DPO trainer
 
-    trainer = INPOTrainer(
+    # trainer = INPOTrainer(
+    #     model=model,
+    #     args=training_args,  # transformers.TrainingArguments
+    #     tokenizer=tokenizer,
+    #     train_dataset=train_dataset,
+    #     data_collator=PrecomputeDataCollator(tokenizer),
+    #     ratio=script_args.ratio,
+    #     eta=script_args.eta,
+    #     beta=0.01,
+    #     len_penalty=0.0,
+    # )
+
+    trainer = INPOTrainer_v2(
         model=model,
-        args=training_args,  # transformers.TrainingArguments
+        ref_model=model_ref,
+        args=training_args,
         tokenizer=tokenizer,
         train_dataset=train_dataset,
-        data_collator=PrecomputeDataCollator(tokenizer),
+        eval_dataset=eval_dataset,
+        data_collator=data_collator,
         ratio=script_args.ratio,
         eta=script_args.eta,
-        beta=0.01,
-        len_penalty=0.0,
+        len_penalty=script_args.len_penalty,
+        max_length=script_args.max_length,
+        max_prompt_length=script_args.max_prompt_length,
     )
     print("begin to train")
     # print(dpo_trainer._precomputed_train_ref_log_probs, dpo_trainer.precompute_ref_log_probs)
