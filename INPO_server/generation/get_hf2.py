@@ -89,7 +89,7 @@ llm = LLM(
     dtype="bfloat16",
     # max_model_len=script_args.max_new_tokens,
     load_format="auto",
-    swap_space=2, # todo was 16
+    swap_space=8, # todo was 16
     seed=42,
 )
 # eos_token_id: 128009
@@ -135,12 +135,32 @@ one_num_share = int(data_size / script_args.my_world_size)
 ds = ds.select(np.arange(script_args.local_index * one_num_share, (script_args.local_index + 1) * one_num_share))
 
 prompts = ds["prompt"]
-outputs = llm.generate(prompts, sampling_params=sampling_params, use_tqdm=True)
 
 gathered_data = []
-for i, output in enumerate(outputs):
-    tmp_data = {"context_messages": ds[i]["context_messages"], "prompt": prompts[i], "responses": [out.text for out in output.outputs]}
-    gathered_data.append(tmp_data)
+
+
+# outputs = llm.generate(prompts, sampling_params=sampling_params, use_tqdm=True)
+# for i, output in enumerate(outputs):
+    # tmp_data = {"context_messages": ds[i]["context_messages"], "prompt": prompts[i], "responses": [out.text for out in output.outputs]}
+    # gathered_data.append(tmp_data)
+
+# XM: break into chunks to avoid OOM:
+batch_size = 512   # tune to fit GPU
+for start in range(0, len(prompts), batch_size):
+    sub_prompts = prompts[start : start + batch_size]
+    sub_outputs = llm.generate(sub_prompts, sampling_params=sampling_params)
+    for idx, output in enumerate(sub_outputs):
+        real_i = start + idx
+        tmp = {
+          "context_messages": ds[real_i]["context_messages"],
+          "prompt": sub_prompts[idx],
+          "responses": [o.text for o in output.outputs],
+        }
+        gathered_data.append(tmp)
+
+
+
+
 
 # for sample in tqdm(ds):
 #     prompt = sample["prompt"]

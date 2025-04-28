@@ -1,5 +1,5 @@
 #!/bin/bash
-source ~/.bashrc
+# source ~/.bashrc
 
 # Initialize Conda environment
 eval "$(conda shell.bash hook)"
@@ -31,26 +31,28 @@ run_iteration() {
     use_tour=True
     K=8
 
-    source ~/anaconda3/etc/profile.d/conda.sh
-    conda activate /home/zbz5349/anaconda3/envs/mypo
+    # source ~/anaconda3/etc/profile.d/conda.sh
+    conda activate /n/home08/xiaominli/.conda/envs/NPO
+    cd /n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/ #XM
+
 
     echo "Starting generation for iteration ${iteration}..."
 
     # Run parallel generation
-    CUDA_VISIBLE_DEVICES=2 conda run -n mypo python ./generation/get_hf2.py --model_name_or_path ${previous_model} --dataset_name_or_path ${input_path} --output_dir ${json_output} --sanity_check $sanity_check --K $K --temperature 1.0 --local_index 0 --my_world_size ${my_world_size} --eos_ids 128009 &
-    CUDA_VISIBLE_DEVICES=3 conda run -n mypo python ./generation/get_hf2.py --model_name_or_path ${previous_model} --dataset_name_or_path ${input_path} --output_dir ${json_output} --sanity_check $sanity_check --K $K --temperature 1.0 --local_index 1 --my_world_size ${my_world_size} --eos_ids 128009 &
+    CUDA_VISIBLE_DEVICES=2 conda run -n NPO python ./generation/get_hf2.py --model_name_or_path ${previous_model} --dataset_name_or_path ${input_path} --output_dir ${json_output} --sanity_check $sanity_check --K $K --temperature 1.0 --local_index 0 --my_world_size ${my_world_size} --eos_ids 128009 &
+    CUDA_VISIBLE_DEVICES=3 conda run -n NPO python ./generation/get_hf2.py --model_name_or_path ${previous_model} --dataset_name_or_path ${input_path} --output_dir ${json_output} --sanity_check $sanity_check --K $K --temperature 1.0 --local_index 1 --my_world_size ${my_world_size} --eos_ids 128009 &
     wait
 
     echo "Merging generation data..."
-    conda run -n mypo python ./generation/merge_data.py --base_path $json_output --output_dir "${json_output}.json" --num_datasets $my_world_size
+    conda run -n NPO python ./generation/merge_data.py --base_path $json_output --output_dir "${json_output}.json" --num_datasets $my_world_size
 
     echo "Starting preference modeling..."
-    CUDA_VISIBLE_DEVICES=2 conda run -n mypo accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_2.json" --output_dir "${pref_output}_2.json" --K $K &
-    CUDA_VISIBLE_DEVICES=3 conda run -n mypo accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_3.json" --output_dir "${pref_output}_3.json" --K $K &
+    CUDA_VISIBLE_DEVICES=2 conda run -n NPO accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_2.json" --output_dir "${pref_output}_2.json" --K $K &
+    CUDA_VISIBLE_DEVICES=3 conda run -n NPO accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_3.json" --output_dir "${pref_output}_3.json" --K $K &
     wait
 
     echo "Merging preference data..."
-    conda run -n mypo python ./annotate_data/merge.py --base_path $pref_output --output_dir "${pref_output}_data.json" --num_datasets $my_world_size
+    conda run -n NPO python ./annotate_data/merge.py --base_path $pref_output --output_dir "${pref_output}_data.json" --num_datasets $my_world_size
 
     # Create directories for precomputed data and output model
     pref_prob_path="${base_dataset_path}/${iteration_prefix}_${iteration_name}/data_pref_prob"
@@ -65,7 +67,7 @@ run_iteration() {
         history_args="--history_paths ${history_paths[@]}"
     fi
 
-    conda run -n mypo accelerate launch --config_file ./configs/zero2.yaml ./tdpo/precompute.py \
+    conda run -n NPO accelerate launch --config_file ./configs/zero2.yaml ./tdpo/precompute.py \
     --base_model_path $previous_model \
     --reference_model_path $initial_model \
     --output_dir $pref_prob_path \
@@ -76,7 +78,7 @@ run_iteration() {
 
     echo "Starting TDPO training for iteration ${iteration}..."
     # Run TDPO for a single iteration
-    CUDA_VISIBLE_DEVICES=2,3 conda run -n mypo accelerate launch --config_file ./configs/zero3.yaml ./tdpo/tdpo_train.py \
+    CUDA_VISIBLE_DEVICES=2,3 conda run -n NPO accelerate launch --config_file ./configs/zero3.yaml ./tdpo/tdpo_train.py \
     --base_model_path $previous_model \
     --precomputed_dir $pref_prob_path \
     --output_dir $output_model_path \
@@ -89,7 +91,7 @@ run_iteration() {
 
     # merge deepspeed checkpoints
     echo "Merging deepspeed checkpoints..."
-    conda run -n mypo python $output_model_path/zero_to_fp32.py $output_model_path $output_model_path 
+    conda run -n NPO python $output_model_path/zero_to_fp32.py $output_model_path $output_model_path 
 
     # Add this model to history paths
     history_paths+=("$output_model_path")
