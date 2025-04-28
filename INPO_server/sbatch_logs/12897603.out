@@ -1,0 +1,799 @@
+no change     /n/sw/Mambaforge-23.11.0-0/condabin/conda
+no change     /n/sw/Mambaforge-23.11.0-0/bin/conda
+no change     /n/sw/Mambaforge-23.11.0-0/bin/conda-env
+no change     /n/sw/Mambaforge-23.11.0-0/bin/activate
+no change     /n/sw/Mambaforge-23.11.0-0/bin/deactivate
+no change     /n/sw/Mambaforge-23.11.0-0/etc/profile.d/conda.sh
+no change     /n/sw/Mambaforge-23.11.0-0/etc/fish/conf.d/conda.fish
+no change     /n/sw/Mambaforge-23.11.0-0/shell/condabin/Conda.psm1
+no change     /n/sw/Mambaforge-23.11.0-0/shell/condabin/conda-hook.ps1
+no change     /n/sw/Mambaforge-23.11.0-0/lib/python3.10/site-packages/xontrib/conda.xsh
+no change     /n/sw/Mambaforge-23.11.0-0/etc/profile.d/conda.csh
+modified      /n/home08/xiaominli/.bashrc
+
+==> For changes to take effect, close and re-open your current shell. <==
+
+Added mamba to /n/home08/xiaominli/.bashrc
+
+==> For changes to take effect, close and re-open your current shell. <==
+
+model_path RLHFlow/LLaMA3-SFT
+Dataset_path RLHFlow/iterative-prompt-v1-iter1-20K
+INFO 04-28 03:33:10 __init__.py:207] Automatically detected platform cuda.
+model_path RLHFlow/LLaMA3-SFT
+Dataset_path RLHFlow/iterative-prompt-v1-iter1-20K
+INFO 04-28 03:33:10 __init__.py:207] Automatically detected platform cuda.
+model_path RLHFlow/LLaMA3-SFT
+Dataset_path RLHFlow/iterative-prompt-v1-iter1-20K
+INFO 04-28 03:33:10 __init__.py:207] Automatically detected platform cuda.
+model_path RLHFlow/LLaMA3-SFT
+Dataset_path RLHFlow/iterative-prompt-v1-iter1-20K
+INFO 04-28 03:33:10 __init__.py:207] Automatically detected platform cuda.
+INFO 04-28 03:34:14 config.py:549] This model supports multiple tasks: {'score', 'generate', 'embed', 'reward', 'classify'}. Defaulting to 'generate'.
+INFO 04-28 03:34:14 config.py:549] This model supports multiple tasks: {'score', 'embed', 'classify', 'generate', 'reward'}. Defaulting to 'generate'.
+INFO 04-28 03:34:14 config.py:549] This model supports multiple tasks: {'generate', 'score', 'embed', 'reward', 'classify'}. Defaulting to 'generate'.
+INFO 04-28 03:34:14 llm_engine.py:234] Initializing a V0 LLM engine (v0.7.3) with config: model='RLHFlow/LLaMA3-SFT', speculative_config=None, tokenizer='RLHFlow/LLaMA3-SFT', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=8192, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto,  device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='xgrammar'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=42, served_model_name=RLHFlow/LLaMA3-SFT, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=False, chunked_prefill_enabled=False, use_async_output_proc=True, disable_mm_preprocessor_cache=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"splitting_ops":[],"compile_sizes":[],"cudagraph_capture_sizes":[256,248,240,232,224,216,208,200,192,184,176,168,160,152,144,136,128,120,112,104,96,88,80,72,64,56,48,40,32,24,16,8,4,2,1],"max_capture_size":256}, use_cached_outputs=False, 
+INFO 04-28 03:34:14 llm_engine.py:234] Initializing a V0 LLM engine (v0.7.3) with config: model='RLHFlow/LLaMA3-SFT', speculative_config=None, tokenizer='RLHFlow/LLaMA3-SFT', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=8192, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto,  device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='xgrammar'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=42, served_model_name=RLHFlow/LLaMA3-SFT, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=False, chunked_prefill_enabled=False, use_async_output_proc=True, disable_mm_preprocessor_cache=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"splitting_ops":[],"compile_sizes":[],"cudagraph_capture_sizes":[256,248,240,232,224,216,208,200,192,184,176,168,160,152,144,136,128,120,112,104,96,88,80,72,64,56,48,40,32,24,16,8,4,2,1],"max_capture_size":256}, use_cached_outputs=False, 
+INFO 04-28 03:34:14 llm_engine.py:234] Initializing a V0 LLM engine (v0.7.3) with config: model='RLHFlow/LLaMA3-SFT', speculative_config=None, tokenizer='RLHFlow/LLaMA3-SFT', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=8192, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto,  device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='xgrammar'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=42, served_model_name=RLHFlow/LLaMA3-SFT, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=False, chunked_prefill_enabled=False, use_async_output_proc=True, disable_mm_preprocessor_cache=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"splitting_ops":[],"compile_sizes":[],"cudagraph_capture_sizes":[256,248,240,232,224,216,208,200,192,184,176,168,160,152,144,136,128,120,112,104,96,88,80,72,64,56,48,40,32,24,16,8,4,2,1],"max_capture_size":256}, use_cached_outputs=False, 
+INFO 04-28 03:34:14 config.py:549] This model supports multiple tasks: {'embed', 'generate', 'score', 'reward', 'classify'}. Defaulting to 'generate'.
+INFO 04-28 03:34:14 llm_engine.py:234] Initializing a V0 LLM engine (v0.7.3) with config: model='RLHFlow/LLaMA3-SFT', speculative_config=None, tokenizer='RLHFlow/LLaMA3-SFT', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=8192, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto,  device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='xgrammar'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=42, served_model_name=RLHFlow/LLaMA3-SFT, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=False, chunked_prefill_enabled=False, use_async_output_proc=True, disable_mm_preprocessor_cache=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"splitting_ops":[],"compile_sizes":[],"cudagraph_capture_sizes":[256,248,240,232,224,216,208,200,192,184,176,168,160,152,144,136,128,120,112,104,96,88,80,72,64,56,48,40,32,24,16,8,4,2,1],"max_capture_size":256}, use_cached_outputs=False, 
+INFO 04-28 03:34:24 cuda.py:229] Using Flash Attention backend.
+INFO 04-28 03:34:24 cuda.py:229] Using Flash Attention backend.
+INFO 04-28 03:34:24 cuda.py:229] Using Flash Attention backend.
+INFO 04-28 03:34:24 cuda.py:229] Using Flash Attention backend.
+INFO 04-28 03:34:31 model_runner.py:1110] Starting to load model RLHFlow/LLaMA3-SFT...
+INFO 04-28 03:34:31 model_runner.py:1110] Starting to load model RLHFlow/LLaMA3-SFT...
+INFO 04-28 03:34:31 model_runner.py:1110] Starting to load model RLHFlow/LLaMA3-SFT...
+INFO 04-28 03:34:31 model_runner.py:1110] Starting to load model RLHFlow/LLaMA3-SFT...
+INFO 04-28 03:34:34 weight_utils.py:254] Using model weights format ['*.safetensors']
+INFO 04-28 03:34:34 weight_utils.py:254] Using model weights format ['*.safetensors']
+INFO 04-28 03:34:34 weight_utils.py:254] Using model weights format ['*.safetensors']
+INFO 04-28 03:34:34 weight_utils.py:254] Using model weights format ['*.safetensors']
+INFO 04-28 03:35:02 model_runner.py:1115] Loading model weights took 14.9595 GB
+INFO 04-28 03:35:02 model_runner.py:1115] Loading model weights took 14.9595 GB
+INFO 04-28 03:35:02 model_runner.py:1115] Loading model weights took 14.9595 GB
+INFO 04-28 03:35:02 model_runner.py:1115] Loading model weights took 14.9595 GB
+INFO 04-28 03:35:08 worker.py:267] Memory profiling takes 4.98 seconds
+INFO 04-28 03:35:08 worker.py:267] the current vLLM instance can use total_gpu_memory (79.21GiB) x gpu_memory_utilization (0.90) = 71.29GiB
+INFO 04-28 03:35:08 worker.py:267] model weights take 14.96GiB; non_torch_memory takes 0.16GiB; PyTorch activation peak memory takes 1.26GiB; the rest of the memory reserved for KV Cache is 54.92GiB.
+INFO 04-28 03:35:08 worker.py:267] Memory profiling takes 4.99 seconds
+INFO 04-28 03:35:08 worker.py:267] the current vLLM instance can use total_gpu_memory (79.21GiB) x gpu_memory_utilization (0.90) = 71.29GiB
+INFO 04-28 03:35:08 worker.py:267] model weights take 14.96GiB; non_torch_memory takes 0.16GiB; PyTorch activation peak memory takes 1.26GiB; the rest of the memory reserved for KV Cache is 54.92GiB.
+INFO 04-28 03:35:08 worker.py:267] Memory profiling takes 4.97 seconds
+INFO 04-28 03:35:08 worker.py:267] the current vLLM instance can use total_gpu_memory (79.21GiB) x gpu_memory_utilization (0.90) = 71.29GiB
+INFO 04-28 03:35:08 worker.py:267] model weights take 14.96GiB; non_torch_memory takes 0.16GiB; PyTorch activation peak memory takes 1.26GiB; the rest of the memory reserved for KV Cache is 54.92GiB.
+INFO 04-28 03:35:08 worker.py:267] Memory profiling takes 4.93 seconds
+INFO 04-28 03:35:08 worker.py:267] the current vLLM instance can use total_gpu_memory (79.21GiB) x gpu_memory_utilization (0.90) = 71.29GiB
+INFO 04-28 03:35:08 worker.py:267] model weights take 14.96GiB; non_torch_memory takes 0.16GiB; PyTorch activation peak memory takes 1.26GiB; the rest of the memory reserved for KV Cache is 54.92GiB.
+INFO 04-28 03:35:09 executor_base.py:111] # cuda blocks: 28116, # CPU blocks: 8192
+INFO 04-28 03:35:09 executor_base.py:116] Maximum concurrency for 8192 tokens per request: 54.91x
+INFO 04-28 03:35:09 executor_base.py:111] # cuda blocks: 28116, # CPU blocks: 8192
+INFO 04-28 03:35:09 executor_base.py:116] Maximum concurrency for 8192 tokens per request: 54.91x
+INFO 04-28 03:35:09 executor_base.py:111] # cuda blocks: 28116, # CPU blocks: 8192
+INFO 04-28 03:35:09 executor_base.py:116] Maximum concurrency for 8192 tokens per request: 54.91x
+INFO 04-28 03:35:09 executor_base.py:111] # cuda blocks: 28116, # CPU blocks: 8192
+INFO 04-28 03:35:09 executor_base.py:116] Maximum concurrency for 8192 tokens per request: 54.91x
+dataset_path/datasets/inpo_iter1/data_0.json
+5000
+dataset_path/datasets/inpo_iter1/data_1.json
+5000
+dataset_path/datasets/inpo_iter1/data_2.json
+5000
+dataset_path/datasets/inpo_iter1/data_3.json
+5000
+I collect  20000 samples
+dataset_path/datasets/inpo_iter1/data.json
+[2025-04-28 03:39:18,510] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-28 03:39:18,511] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-28 03:39:18,511] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-28 03:39:18,512] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+5000
+5000
+5000
+5000
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+we don't know which one is better
+dataset_path/datasets/inpo_iter1/pref_0.json
+4871
+dataset_path/datasets/inpo_iter1/pref_1.json
+4847
+dataset_path/datasets/inpo_iter1/pref_2.json
+4846
+dataset_path/datasets/inpo_iter1/pref_3.json
+4852
+I collect  19416 samples
+dataset_path/datasets/inpo_iter1/pref_data.json
+[2025-04-28 06:33:20,679] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-28 06:33:20,680] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-28 06:33:20,680] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-28 06:33:20,681] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Tie 0 samples
+Tie 0 samples
+Tie 0 samples
+Tie 0 samples
+begin to precompute
+begin to precompute
+begin to precompute
+begin to precompute
+(19416,) (19416,)
+(19416,) (19416,)
+(19416,) (19416,)
+(19416,) (19416,)
+(19416,) (19416,)
+(19416,) (19416,)
+(19416,) (19416,)
+(19416,) (19416,)
+[2025-04-28 07:12:49,904] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-28 07:12:49,904] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-28 07:12:49,905] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-28 07:12:49,906] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+model_path model_path/models/inpo_iter1
+Dataset_path RLHFlow/iterative-prompt-v1-iter2-20K
+INFO 04-28 07:16:11 __init__.py:207] Automatically detected platform cuda.
+model_path model_path/models/inpo_iter1
+Dataset_path RLHFlow/iterative-prompt-v1-iter2-20K
+INFO 04-28 07:16:11 __init__.py:207] Automatically detected platform cuda.
+model_path model_path/models/inpo_iter1
+Dataset_path RLHFlow/iterative-prompt-v1-iter2-20K
+INFO 04-28 07:16:11 __init__.py:207] Automatically detected platform cuda.
+model_path model_path/models/inpo_iter1
+Dataset_path RLHFlow/iterative-prompt-v1-iter2-20K
+INFO 04-28 07:16:11 __init__.py:207] Automatically detected platform cuda.
+dataset_path/datasets/inpo_iter2/data_0.json
+[2025-04-28 07:18:49,661] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-28 07:18:49,662] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-28 07:18:49,663] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-28 07:18:49,663] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+dataset_path/datasets/inpo_iter2/pref_0.json
+[2025-04-28 07:20:50,888] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-28 07:20:50,889] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-28 07:20:50,890] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-28 07:20:50,893] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+[2025-04-28 07:22:24,234] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-28 07:22:24,235] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-28 07:22:24,235] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-28 07:22:24,236] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+model_path model_path/models/inpo_iter2
+Dataset_path RLHFlow/iterative-prompt-v1-iter3-20K
+INFO 04-28 07:23:38 __init__.py:207] Automatically detected platform cuda.
+model_path model_path/models/inpo_iter2
+Dataset_path RLHFlow/iterative-prompt-v1-iter3-20K
+INFO 04-28 07:23:38 __init__.py:207] Automatically detected platform cuda.
+model_path model_path/models/inpo_iter2
+Dataset_path RLHFlow/iterative-prompt-v1-iter3-20K
+INFO 04-28 07:23:38 __init__.py:207] Automatically detected platform cuda.
+model_path model_path/models/inpo_iter2
+Dataset_path RLHFlow/iterative-prompt-v1-iter3-20K
+INFO 04-28 07:23:38 __init__.py:207] Automatically detected platform cuda.
+dataset_path/datasets/inpo_iter3/data_0.json
+[2025-04-28 07:24:50,182] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-28 07:24:50,183] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-28 07:24:50,184] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-28 07:24:50,187] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+dataset_path/datasets/inpo_iter3/pref_0.json
+[2025-04-28 07:26:20,094] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-28 07:26:20,094] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-28 07:26:20,095] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-28 07:26:20,096] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+[2025-04-28 07:27:36,950] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-28 07:27:36,950] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-28 07:27:36,951] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-28 07:27:36,952] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.

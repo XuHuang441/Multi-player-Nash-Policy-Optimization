@@ -1,0 +1,1 @@
+{"train/epoch":0,"_timestamp":1.7458157034837525e+09,"train/rewards/accuracies":0,"_runtime":6.682231837,"_step":0,"train/logps/rejected":-688,"_wandb":{"runtime":11},"train/logps/chosen":-976,"train/global_step":0,"train/rewards/rejected":-6.875,"train/rewards/margins":-2.875,"train/rewards/chosen":-9.75}

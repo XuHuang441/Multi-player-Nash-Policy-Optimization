@@ -1,0 +1,15 @@
+{"time":"2025-04-28T00:48:16.813728332-04:00","level":"INFO","msg":"stream: starting","core version":"0.19.10","symlink path":"/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/wandb/run-20250428_004816-u5tjf2fp/logs/debug-core.log"}
+{"time":"2025-04-28T00:48:17.251768606-04:00","level":"INFO","msg":"created new stream","id":"u5tjf2fp"}
+{"time":"2025-04-28T00:48:17.251785203-04:00","level":"INFO","msg":"stream: started","id":"u5tjf2fp"}
+{"time":"2025-04-28T00:48:17.251942624-04:00","level":"INFO","msg":"handler: started","stream_id":"u5tjf2fp"}
+{"time":"2025-04-28T00:48:17.251954272-04:00","level":"INFO","msg":"writer: Do: started","stream_id":"u5tjf2fp"}
+{"time":"2025-04-28T00:48:17.254942645-04:00","level":"INFO","msg":"sender: started","stream_id":"u5tjf2fp"}
+{"time":"2025-04-28T00:48:17.398162272-04:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-28T00:48:27.944489748-04:00","level":"INFO","msg":"stream: closing","id":"u5tjf2fp"}
+{"time":"2025-04-28T00:48:27.955432256-04:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-28T00:48:27.95553012-04:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-28T00:48:28.441505617-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-04-28T00:48:28.607554035-04:00","level":"INFO","msg":"handler: closed","stream_id":"u5tjf2fp"}
+{"time":"2025-04-28T00:48:28.607571077-04:00","level":"INFO","msg":"writer: Close: closed","stream_id":"u5tjf2fp"}
+{"time":"2025-04-28T00:48:28.618435382-04:00","level":"INFO","msg":"sender: closed","stream_id":"u5tjf2fp"}
+{"time":"2025-04-28T00:48:28.61844345-04:00","level":"INFO","msg":"stream: closed","id":"u5tjf2fp"}

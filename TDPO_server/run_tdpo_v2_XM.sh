@@ -90,7 +90,7 @@ run_iteration() {
         history_args="--history_paths ${history_paths[@]}"
     fi
 
-    export CUDA_VISIBLE_DEVICES=0,1,2,3 
+    # export CUDA_VISIBLE_DEVICES=0,1,2,3 
     accelerate launch --config_file ./configs/zero2.yaml ./tdpo/precompute.py \
     --base_model_path $previous_model \
     --reference_model_path $initial_model \
@@ -102,7 +102,7 @@ run_iteration() {
 
     echo "Starting TDPO training for iteration ${iteration}..."
     # Run TDPO for a single iteration
-    export CUDA_VISIBLE_DEVICES=0,1,2,3
+    # export CUDA_VISIBLE_DEVICES=0,1,2,3
     accelerate launch --config_file ./configs/zero3.yaml ./tdpo/tdpo_train.py \
     --base_model_path $previous_model \
     --precomputed_dir $pref_prob_path \

@@ -89,7 +89,7 @@ llm = LLM(
     dtype="bfloat16",
     # max_model_len=script_args.max_new_tokens,
     load_format="auto",
-    swap_space=8, # todo was 16
+    swap_space=16, # todo was 16
     seed=42,
 )
 # eos_token_id: 128009
@@ -143,7 +143,7 @@ gathered_data = []
     # gathered_data.append(tmp_data)
 
 # XM: break into chunks to avoid OOM:
-batch_size = 512   # tune to fit GPU
+batch_size = 8   # tune to fit GPU
 for start in range(0, len(prompts), batch_size):
     sub_prompts = prompts[start : start + batch_size]
     sub_outputs = llm.generate(sub_prompts, sampling_params=sampling_params)
