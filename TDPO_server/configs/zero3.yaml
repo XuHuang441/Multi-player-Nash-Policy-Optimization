@@ -1,27 +1,21 @@
 compute_environment: LOCAL_MACHINE
 distributed_type: DEEPSPEED
-num_processes: 2  # 2 GPUs
-
-deepspeed_config:
-  zero_stage: 3
-  stage3_max_live_parameters: 1e9
-  stage3_max_reuse_distance: 1e9
-  stage3_param_persistence_threshold: 1e5
-  stage3_prefetch_bucket_size: 5e7
-  reduce_bucket_size: 5e7
-  param_persistence_threshold: 1e5
-  offload_optimizer_device: none   # 'cpu' or 'none'
-  offload_param_device: none
-  overlap_comm: true
-  contiguous_gradients: true
-  stage3_gather_16bit_weights_on_model_save: true
-  zero3_save_16bit_model: false
-  bf16: false
-  fp16: true
-  gradient_clipping: 1.0
-  gradient_accumulation_steps: 1
-
-mixed_precision: fp16
+debug: true
+num_processes: 2
 use_cpu: false
 machine_rank: 0
 main_training_function: main
+mixed_precision: bf16  
+
+deepspeed_config:
+  zero_stage: 3
+  zero3_init_flag: true
+  zero3_save_16bit_model: true
+  offload_optimizer_device: none
+  offload_param_device: none
+  bf16: true
+  fp16: false
+  gradient_clipping: 1.0
+  gradient_accumulation_steps: 1
+  overlap_comm: true
+  contiguous_gradients: true
