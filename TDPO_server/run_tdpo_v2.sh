@@ -45,8 +45,8 @@ run_iteration() {
     conda run -n mypo python ./generation/merge_data.py --base_path $json_output --output_dir "${json_output}.json" --num_datasets $my_world_size
 
     echo "Starting preference modeling..."
-    CUDA_VISIBLE_DEVICES=2 conda run -n mypo accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_2.json" --output_dir "${pref_output}_2.json" --K $K &
-    CUDA_VISIBLE_DEVICES=3 conda run -n mypo accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_3.json" --output_dir "${pref_output}_3.json" --K $K &
+    CUDA_VISIBLE_DEVICES=2 conda run -n mypo python annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_2.json" --output_dir "${pref_output}_2.json" --K $K &
+    CUDA_VISIBLE_DEVICES=3 conda run -n mypo python annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_3.json" --output_dir "${pref_output}_3.json" --K $K &
     wait
 
     echo "Merging preference data..."
