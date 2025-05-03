@@ -24,46 +24,30 @@ tqdm.pandas()
 
 @dataclass
 class ScriptArguments:
-    """
-    The arguments for the DPO training script.
-    """
-
-    dataset_name_or_path: Optional[str] = field(
-        default="iter2_K64.json",
-        metadata={"help": "the location of the dataset name or path"},
-    )
-    output_dir: Optional[str] = field(
-        default="iter2_K64_Mreward.json",
-        metadata={"help": "the location of the output file"},
-    )
-    record_dir: Optional[str] = field(
-        default=None,
-        metadata={"help": "the location of the recording file"},
-    )
-    # RLHFlow/pair-preference-model-LLaMA3-8B
-    preference_name_or_path: Optional[str] = field(
-        default="RLHFlow/pair-preference-model-LLaMA3-8B",
-        metadata={"help": "the name of the preference model"},
-    )
-    input_output_delimiter: Optional[str] = field(
-        default="",
-        metadata={"help": "the delimiter between input and output"},
-    )
-    K: Optional[int] = field(
-        default=2,
-        metadata={"help": "the number of responses per prompt"},
-    )
-    sanity_check: Optional[bool] = field(default=False, metadata={"help": "only train on 100 samples"})
-    use_tournament: Optional[bool] = field(default=False, metadata={"help": "only train on 100 samples"})
+    dataset_name_or_path: Optional[str] = field(default="iter2_K64.json")
+    output_dir: Optional[str] = field(default="iter2_K64_Mreward.json")
+    preference_name_or_path: Optional[str] = field(default="RLHFlow/pair-preference-model-LLaMA3-8B")
+    input_output_delimiter: Optional[str] = field(default="")
+    K: Optional[int] = field(default=2)
+    sanity_check: Optional[bool] = field(default=False)
+    use_tournament: Optional[bool] = field(default=False)
 
 parser = HfArgumentParser(ScriptArguments)
 script_args = parser.parse_args_into_dataclasses()[0]
 accelerator = Accelerator()
 device = accelerator.device
+world_size = accelerator.num_processes
+local_rank = accelerator.process_index
 
-model = AutoModelForCausalLM.from_pretrained(script_args.preference_name_or_path,
-                                             torch_dtype=torch.bfloat16, attn_implementation="flash_attention_2").to(device)
+# Load model & tokenizer
+model = AutoModelForCausalLM.from_pretrained(
+    script_args.preference_name_or_path,
+    torch_dtype=torch.bfloat16,
+    attn_implementation="flash_attention_2"
+)
 tokenizer = AutoTokenizer.from_pretrained(script_args.preference_name_or_path, use_fast=True)
+
+
 if tokenizer.chat_template is None:  # fix: INPO didn't include chat template
     tokenizer.chat_template = (
         "{% for message in messages %}"
@@ -84,6 +68,8 @@ token_id_B = tokenizer.encode("B", add_special_tokens=False)
 assert len(token_id_A) == 1 and len(token_id_B) == 1
 token_id_A = token_id_A[0]
 token_id_B = token_id_B[0]
+
+model = accelerator.prepare(model)
 model.eval()
 temperature = 1.0
 
@@ -122,26 +108,23 @@ def get_match_res(context, responses, id_0, id_1):
 ds_dir = script_args.dataset_name_or_path
 # "prompt", "responses"
 ds = load_dataset("json", data_files=ds_dir, split="train", field="instances")
-accelerator = Accelerator()
 
+# Slice for distributed processing
 if script_args.sanity_check:
     ds = ds.select(range(min(len(ds), 100)))
+else:
+    total_size = len(ds)
+    share = total_size // world_size + 1
+    ds = ds.select(range(local_rank * share, min((local_rank + 1) * share, total_size)))
 
-# world_size = int(os.getenv("WORLD_SIZE", "1"))
-# local_rank = Accelerator().local_process_index
-
-# data_size = len(ds["prompt"])
-
-# share = int(data_size / world_size) + 1
-# ds = ds.select(np.arange(local_rank * share, min((local_rank + 1) * share, len(ds))))
-print(len(ds))
+accelerator.print(f"[Rank {local_rank}] Processing {len(ds)} samples...")
 
 data = []
 
 # tqdm is used to show the progress bar
 with torch.no_grad():
     cnt = 0
-    for sample in tqdm(ds):
+    for sample in tqdm(ds, desc="Processing samples"):
         # The VLLM may not generate responses for some prompts because it is too long, we skip them
         responses = sample["responses"]
         n = len(responses)
@@ -182,7 +165,6 @@ with torch.no_grad():
             
             for i in range(n):
                 if i == win_id or i == lose_id:
-                    print("we don't know which one is better")
                     continue
                 response_pair = [responses[lose_id], responses[i]]
                 chosen_A = get_pref(context, response_pair)
@@ -194,6 +176,7 @@ with torch.no_grad():
         response_pair = [responses[win_id], responses[lose_id]]
         chosen_A = get_pref(context, response_pair)
         if n > 2 and chosen_A <= 0.5:
+            print("we don't know which one is better")
             continue
         
         if chosen_A > 0.5:
@@ -209,4 +192,4 @@ output_eval_dataset["instances"] = data
 with open(script_args.output_dir, "w", encoding="utf8") as f:
     json.dump(output_eval_dataset, f, ensure_ascii=False)
 
-   
+accelerator.print(f"[Rank {local_rank}] ✅ Finished and saved to {script_args.output_dir}")
