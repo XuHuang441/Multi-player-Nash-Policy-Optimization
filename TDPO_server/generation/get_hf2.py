@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import os
 from dataclasses import dataclass, field
 from typing import List, Optional
 import numpy as np
@@ -11,7 +12,7 @@ from transformers import (
 from vllm import LLM, SamplingParams
 from tqdm import tqdm
 import json
-import os
+
 
 @dataclass
 class ScriptArguments:
@@ -82,16 +83,16 @@ seed = script_args.seed
 torch.manual_seed(seed)
 np.random.seed(seed)
 
-# previous swap space is 8
+# Initialize LLM with multi-GPU support (vLLM will use all available GPUs)
 llm = LLM(
-    model=model_path,
-    tokenizer=model_path,
+    model=script_args.model_name_or_path,
+    tokenizer=script_args.model_name_or_path,
     dtype="bfloat16",
-    # max_model_len=script_args.max_new_tokens,
-    load_format="auto",
-    swap_space=16, # todo was 16
-    seed=42,
+    tensor_parallel_size=torch.cuda.device_count(),  # use all visible GPUs
+    swap_space=8,
+    seed=script_args.seed,
 )
+
 # eos_token_id: 128009
 tokenizer = AutoTokenizer.from_pretrained(model_path)
 if tokenizer.chat_template is None:  # fix: INPO didn't include chat template
@@ -109,7 +110,7 @@ if tokenizer.chat_template is None:  # fix: INPO didn't include chat template
 sampling_params = SamplingParams(
     temperature=script_args.temperature,
     top_p=1.0,
-    max_tokens=script_args.max_new_tokens,
+    # max_tokens=script_args.max_new_tokens,
     n=script_args.K,
     stop_token_ids=[tokenizer.eos_token_id] + script_args.eos_ids,
     #stop=["<|user|>"],
@@ -129,56 +130,22 @@ ds = ds.map(
 data_size = len(ds["prompt"])
 print("Data Size:{}".format(data_size))
 
-
-
-one_num_share = int(data_size / script_args.my_world_size)
-ds = ds.select(np.arange(script_args.local_index * one_num_share, (script_args.local_index + 1) * one_num_share))
-
 prompts = ds["prompt"]
+outputs = llm.generate(prompts, sampling_params=sampling_params, use_tqdm=True)
+
 gathered_data = []
-
-# outputs = llm.generate(prompts, sampling_params=sampling_params, use_tqdm=True)
-# for i, output in enumerate(outputs):
-    # tmp_data = {"context_messages": ds[i]["context_messages"], "prompt": prompts[i], "responses": [out.text for out in output.outputs]}
-    # gathered_data.append(tmp_data)
-
-# XM: break into chunks to avoid OOM:
-batch_size = 8   # tune to fit GPU
-for start in range(0, len(prompts), batch_size):
-    sub_prompts = prompts[start : start + batch_size]
-    sub_outputs = llm.generate(sub_prompts, sampling_params=sampling_params)
-    for idx, output in enumerate(sub_outputs):
-        real_i = start + idx
-        tmp = {
-          "context_messages": ds[real_i]["context_messages"],
-          "prompt": sub_prompts[idx],
-          "responses": [o.text for o in output.outputs],
-        }
-        gathered_data.append(tmp)
-
-
-
-# for sample in tqdm(ds):
-#     prompt = sample["prompt"]
-#     output = llm.generate(prompt, sampling_params=sampling_params, use_tqdm=False)[0]
-#     responses = [out.text for out in output.outputs]
-#     print(responses)
-#     tmp_data = {"context": sample, "prompt": prompt, "responses": responses}
-#     gathered_data.append(tmp_data)
-#     exit()
+for i, output in enumerate(outputs):
+    tmp_data = {"context_messages": ds[i]["context_messages"], "prompt": prompts[i], "responses": [out.text for out in output.outputs]}
+    gathered_data.append(tmp_data)
 
 output_eval_dataset = {}
 output_eval_dataset["type"] = "text_only"
 output_eval_dataset["instances"] = gathered_data
 print("I collect ", len(gathered_data), "samples")
 
-# make sure the output directory exists
-output_dir = script_args.output_dir
-os.makedirs(output_dir, exist_ok=True)
-
-# save the output to a file
-output_path = f"{script_args.output_dir}_{script_args.local_index}.json"
-print("Saving output to:", output_path)
-
-with open(output_path, "w", encoding="utf-8") as f:
+# Save results
+os.makedirs(os.path.dirname(script_args.output_dir) or ".", exist_ok=True)
+with open(script_args.output_dir, "w", encoding="utf-8") as f:
     json.dump(output_eval_dataset, f, ensure_ascii=False, indent=2)
+
+print(f"✅ Saved {len(gathered_data)} samples to {script_args.output_dir}")
