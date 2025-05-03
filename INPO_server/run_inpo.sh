@@ -3,6 +3,8 @@ source ~/.bashrc
 # Initialize Conda environment
 eval "$(conda shell.bash hook)"
 
+set -e # Exit immediately if a command exits with a non-zero status
+
 # Base paths and settings
 initial_model="RLHFlow/LLaMA3-SFT" # "initial_model_path/LLaMA3-SFT"
 base_dataset_path="dataset_path/datasets"
@@ -21,7 +23,6 @@ run_iteration() {
     local json_output=$4
     local pref_output=$5
 
-    my_world_size=2
     sanity_check=False
     use_tour=True
     K=8
@@ -29,18 +30,27 @@ run_iteration() {
     source ~/anaconda3/etc/profile.d/conda.sh
     conda activate /home/zbz5349/anaconda3/envs/mypo # change to your conda path
     
-    CUDA_VISIBLE_DEVICES=1 python ./generation/get_hf2.py --model_name_or_path ${previous_model} --dataset_name_or_path ${input_path} --output_dir ${json_output} --sanity_check $sanity_check --K $K --temperature 1.0 --local_index 0 --my_world_size ${my_world_size} --eos_ids 128009 &
-    CUDA_VISIBLE_DEVICES=2 python ./generation/get_hf2.py --model_name_or_path ${previous_model} --dataset_name_or_path ${input_path} --output_dir ${json_output} --sanity_check $sanity_check --K $K --temperature 1.0 --local_index 1 --my_world_size ${my_world_size} --eos_ids 128009 &
-    wait
+    echo "Starting generation for iteration ${iteration}..."
+
+    CUDA_VISIBLE_DEVICES=2,3 conda run -n mypo python generation/get_hf2.py \
+    --model_name_or_path ${previous_model} \
+    --dataset_name_or_path ${input_path} \
+    --output_dir ${json_output}.json \
+    --sanity_check $sanity_check \
+    --K $K \
+    --temperature 1.0 \
+    --eos_ids 128009
+
+    echo "Starting preference modeling..."
+
+    CUDA_VISIBLE_DEVICES=2,3 conda run -n mypo accelerate launch \
+    --main_process_port 29601 \
+    annotate_data/get_pref_single.py \
+    --use_tournament $use_tour \
+    --dataset_name_or_path "${json_output}.json" \
+    --output_dir "${pref_output}.json" \
+    --K $K
     
-    conda run -n mypo python ./generation/merge_data.py --base_path $json_output --output_dir "${json_output}.json" --num_datasets $my_world_size
-
-    CUDA_VISIBLE_DEVICES=1 python annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_0.json" --output_dir "${pref_output}_0.json" --K $K &
-    CUDA_VISIBLE_DEVICES=2 python annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_1.json" --output_dir "${pref_output}_1.json" --K $K &
-    wait
-
-    conda run -n mypo python ./annotate_data/merge.py --base_path $pref_output --output_dir "${pref_output}_data.json" --num_datasets $my_world_size
-
     pref_prob_path="${base_dataset_path}/${iteration_prefix}_${iteration_name}/data_pref_prob"
     mkdir -p $pref_prob_path
 
