@@ -41,7 +41,7 @@ run_iteration() {
 
     echo "Starting generation for iteration ${iteration}..."
 
-    CUDA_VISIBLE_DEVICES=2,3 python generation/get_hf2.py \
+    CUDA_VISIBLE_DEVICES=2,3 conda run -n mypo python generation/get_hf2.py \
     --model_name_or_path ${previous_model} \
     --dataset_name_or_path ${input_path} \
     --output_dir ${json_output}.json \
