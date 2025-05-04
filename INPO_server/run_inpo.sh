@@ -57,7 +57,7 @@ run_iteration() {
     # Make sure to change the number of GPUs both here and in the `zero2/3.yaml` config file 
 
     conda run -n mypo accelerate launch --config_file ./configs/zero2.yaml ./inpo/precompute.py \
-    --run_name "${iteration_prefix}_${iteration}" --train_dir "${pref_output}_data.json" \
+    --run_name "${iteration_prefix}_${iteration}" --train_dir "${pref_output}.json" \
     --output_dir $pref_prob_path --ref_model $initial_model --last_model $previous_model \
     --loss_type inpo --lr_scheduler_type cosine \
 
