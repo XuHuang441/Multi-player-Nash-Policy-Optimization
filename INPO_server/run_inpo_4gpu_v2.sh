@@ -10,6 +10,7 @@ ratio=$(echo "scale=10; 1/3" | bc)
 eta=0.005
 iteration_prefix="inpo"
 
+set -e # Exit immediately if a command exits with a non-zero status
 
 # Function to run a set of operations for a model iteration
 run_iteration() {
