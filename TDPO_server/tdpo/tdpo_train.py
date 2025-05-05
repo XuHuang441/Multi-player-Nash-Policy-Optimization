@@ -3,8 +3,8 @@ import argparse
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from datasets import load_from_disk
 from trl import DPOConfig
-from trainer import TDPOTrainer, PrecomputeDataCollator
-import torch
+from trainer import TDPOTrainer, PrecomputeDataCollator, TDPOTrainer_v2
+import torch 
 
 def parse_args():
     parser = argparse.ArgumentParser(description="TDPO training script")
@@ -20,6 +20,7 @@ def parse_args():
     parser.add_argument("--gradient_accumulation_steps", type=int, default=1)
     parser.add_argument("--per_device_train_batch_size", type=int, default=1)
     parser.add_argument("--num_train_epochs", type=int, default=1)
+    parser.add_argument("--ref_model", type=str, default=None)
     return parser.parse_args()
 
 
@@ -30,6 +31,16 @@ def main():
     tokenizer.pad_token = tokenizer.eos_token
 
     model = AutoModelForCausalLM.from_pretrained(args.base_model_path, torch_dtype=torch.bfloat16)
+
+
+    if args.ref_model:
+        ref_name = args.ref_model
+    else:
+        ref_name = args.base_model_path
+
+    model_ref = AutoModelForCausalLM.from_pretrained(
+        ref_name,
+        )
 
     train_dataset = load_from_disk(args.precomputed_dir)
 
@@ -47,8 +58,9 @@ def main():
         lr_scheduler_type=args.lr_scheduler_type,
     )
 
-    trainer = TDPOTrainer(
+    trainer = TDPOTrainer_v2(
         model=model,
+        ref_model=model_ref,
         args=training_args,
         tokenizer=tokenizer,
         train_dataset=train_dataset,
