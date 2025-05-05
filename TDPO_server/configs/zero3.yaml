@@ -10,7 +10,7 @@ mixed_precision: bf16
 deepspeed_config:
   zero_stage: 3
   zero3_init_flag: true
-  zero3_save_16bit_model: true
+  zero3_save_16bit_model: false
   offload_optimizer_device: none
   offload_param_device: none
   bf16: true
