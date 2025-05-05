@@ -12,5 +12,5 @@ deepspeed_config:
   overlap_comm: true
   contiguous_gradients: true
 machine_rank: 0
-num_processes: 2
+num_processes: 4
 use_cpu: false

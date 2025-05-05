@@ -1,0 +1,7 @@
+{"time":"2025-05-04T03:19:07.691650759-04:00","level":"INFO","msg":"stream: starting","core version":"0.19.10","symlink path":"/n/netscratch/lu_lab/Lab/xiaominli/LLMResearch/Multi-player-Nash-Policy-Optimization/TDPO_server/wandb/run-20250504_031907-1nof0iib/logs/debug-core.log"}
+{"time":"2025-05-04T03:19:08.154271391-04:00","level":"INFO","msg":"created new stream","id":"1nof0iib"}
+{"time":"2025-05-04T03:19:08.15428725-04:00","level":"INFO","msg":"stream: started","id":"1nof0iib"}
+{"time":"2025-05-04T03:19:08.154447627-04:00","level":"INFO","msg":"handler: started","stream_id":"1nof0iib"}
+{"time":"2025-05-04T03:19:08.154458849-04:00","level":"INFO","msg":"writer: Do: started","stream_id":"1nof0iib"}
+{"time":"2025-05-04T03:19:08.157525559-04:00","level":"INFO","msg":"sender: started","stream_id":"1nof0iib"}
+{"time":"2025-05-04T03:19:08.517089061-04:00","level":"INFO","msg":"Starting system monitor"}

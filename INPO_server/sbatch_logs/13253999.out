@@ -1,0 +1,145 @@
+no change     /n/sw/Mambaforge-23.11.0-0/condabin/conda
+no change     /n/sw/Mambaforge-23.11.0-0/bin/conda
+no change     /n/sw/Mambaforge-23.11.0-0/bin/conda-env
+no change     /n/sw/Mambaforge-23.11.0-0/bin/activate
+no change     /n/sw/Mambaforge-23.11.0-0/bin/deactivate
+no change     /n/sw/Mambaforge-23.11.0-0/etc/profile.d/conda.sh
+no change     /n/sw/Mambaforge-23.11.0-0/etc/fish/conf.d/conda.fish
+no change     /n/sw/Mambaforge-23.11.0-0/shell/condabin/Conda.psm1
+no change     /n/sw/Mambaforge-23.11.0-0/shell/condabin/conda-hook.ps1
+no change     /n/sw/Mambaforge-23.11.0-0/lib/python3.10/site-packages/xontrib/conda.xsh
+no change     /n/sw/Mambaforge-23.11.0-0/etc/profile.d/conda.csh
+modified      /n/home08/xiaominli/.bashrc
+
+==> For changes to take effect, close and re-open your current shell. <==
+
+Added mamba to /n/home08/xiaominli/.bashrc
+
+==> For changes to take effect, close and re-open your current shell. <==
+
+INFO 04-30 17:27:46 [__init__.py:239] Automatically detected platform cuda.
+INFO 04-30 17:27:46 [__init__.py:239] Automatically detected platform cuda.
+INFO 04-30 17:27:46 [__init__.py:239] Automatically detected platform cuda.
+INFO 04-30 17:27:46 [__init__.py:239] Automatically detected platform cuda.
+model_path RLHFlow/LLaMA3-SFT
+Dataset_path RLHFlow/iterative-prompt-v1-iter1-20K
+INFO 04-30 17:29:03 [config.py:689] This model supports multiple tasks: {'reward', 'generate', 'score', 'embed', 'classify'}. Defaulting to 'generate'.
+model_path RLHFlow/LLaMA3-SFT
+Dataset_path RLHFlow/iterative-prompt-v1-iter1-20K
+INFO 04-30 17:29:03 [config.py:689] This model supports multiple tasks: {'generate', 'reward', 'classify', 'embed', 'score'}. Defaulting to 'generate'.
+model_path RLHFlow/LLaMA3-SFT
+Dataset_path RLHFlow/iterative-prompt-v1-iter1-20K
+INFO 04-30 17:29:03 [config.py:689] This model supports multiple tasks: {'embed', 'score', 'generate', 'classify', 'reward'}. Defaulting to 'generate'.
+model_path RLHFlow/LLaMA3-SFT
+Dataset_path RLHFlow/iterative-prompt-v1-iter1-20K
+INFO 04-30 17:29:03 [config.py:689] This model supports multiple tasks: {'embed', 'generate', 'classify', 'reward', 'score'}. Defaulting to 'generate'.
+INFO 04-30 17:29:04 [config.py:1901] Chunked prefill is enabled with max_num_batched_tokens=8192.
+INFO 04-30 17:29:04 [config.py:1901] Chunked prefill is enabled with max_num_batched_tokens=8192.
+INFO 04-30 17:29:04 [config.py:1901] Chunked prefill is enabled with max_num_batched_tokens=8192.
+INFO 04-30 17:29:04 [config.py:1901] Chunked prefill is enabled with max_num_batched_tokens=8192.
+INFO 04-30 17:29:10 [core.py:61] Initializing a V1 LLM engine (v0.8.4) with config: model='RLHFlow/LLaMA3-SFT', speculative_config=None, tokenizer='RLHFlow/LLaMA3-SFT', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=8192, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto,  device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='auto', reasoning_backend=None), observability_config=ObservabilityConfig(show_hidden_metrics=False, otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=42, served_model_name=RLHFlow/LLaMA3-SFT, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=True, chunked_prefill_enabled=True, use_async_output_proc=True, disable_mm_preprocessor_cache=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"level":3,"custom_ops":["none"],"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output"],"use_inductor":true,"compile_sizes":[],"use_cudagraph":true,"cudagraph_num_of_warmups":1,"cudagraph_capture_sizes":[512,504,496,488,480,472,464,456,448,440,432,424,416,408,400,392,384,376,368,360,352,344,336,328,320,312,304,296,288,280,272,264,256,248,240,232,224,216,208,200,192,184,176,168,160,152,144,136,128,120,112,104,96,88,80,72,64,56,48,40,32,24,16,8,4,2,1],"max_capture_size":512}
+INFO 04-30 17:29:10 [core.py:61] Initializing a V1 LLM engine (v0.8.4) with config: model='RLHFlow/LLaMA3-SFT', speculative_config=None, tokenizer='RLHFlow/LLaMA3-SFT', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=8192, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto,  device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='auto', reasoning_backend=None), observability_config=ObservabilityConfig(show_hidden_metrics=False, otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=42, served_model_name=RLHFlow/LLaMA3-SFT, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=True, chunked_prefill_enabled=True, use_async_output_proc=True, disable_mm_preprocessor_cache=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"level":3,"custom_ops":["none"],"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output"],"use_inductor":true,"compile_sizes":[],"use_cudagraph":true,"cudagraph_num_of_warmups":1,"cudagraph_capture_sizes":[512,504,496,488,480,472,464,456,448,440,432,424,416,408,400,392,384,376,368,360,352,344,336,328,320,312,304,296,288,280,272,264,256,248,240,232,224,216,208,200,192,184,176,168,160,152,144,136,128,120,112,104,96,88,80,72,64,56,48,40,32,24,16,8,4,2,1],"max_capture_size":512}
+INFO 04-30 17:29:10 [core.py:61] Initializing a V1 LLM engine (v0.8.4) with config: model='RLHFlow/LLaMA3-SFT', speculative_config=None, tokenizer='RLHFlow/LLaMA3-SFT', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=8192, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto,  device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='auto', reasoning_backend=None), observability_config=ObservabilityConfig(show_hidden_metrics=False, otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=42, served_model_name=RLHFlow/LLaMA3-SFT, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=True, chunked_prefill_enabled=True, use_async_output_proc=True, disable_mm_preprocessor_cache=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"level":3,"custom_ops":["none"],"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output"],"use_inductor":true,"compile_sizes":[],"use_cudagraph":true,"cudagraph_num_of_warmups":1,"cudagraph_capture_sizes":[512,504,496,488,480,472,464,456,448,440,432,424,416,408,400,392,384,376,368,360,352,344,336,328,320,312,304,296,288,280,272,264,256,248,240,232,224,216,208,200,192,184,176,168,160,152,144,136,128,120,112,104,96,88,80,72,64,56,48,40,32,24,16,8,4,2,1],"max_capture_size":512}
+INFO 04-30 17:29:10 [core.py:61] Initializing a V1 LLM engine (v0.8.4) with config: model='RLHFlow/LLaMA3-SFT', speculative_config=None, tokenizer='RLHFlow/LLaMA3-SFT', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=8192, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto,  device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='auto', reasoning_backend=None), observability_config=ObservabilityConfig(show_hidden_metrics=False, otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=42, served_model_name=RLHFlow/LLaMA3-SFT, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=True, chunked_prefill_enabled=True, use_async_output_proc=True, disable_mm_preprocessor_cache=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"level":3,"custom_ops":["none"],"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output"],"use_inductor":true,"compile_sizes":[],"use_cudagraph":true,"cudagraph_num_of_warmups":1,"cudagraph_capture_sizes":[512,504,496,488,480,472,464,456,448,440,432,424,416,408,400,392,384,376,368,360,352,344,336,328,320,312,304,296,288,280,272,264,256,248,240,232,224,216,208,200,192,184,176,168,160,152,144,136,128,120,112,104,96,88,80,72,64,56,48,40,32,24,16,8,4,2,1],"max_capture_size":512}
+WARNING 04-30 17:29:24 [utils.py:2444] Methods determine_num_available_blocks,device_config,get_cache_block_size_bytes,initialize_cache not implemented in <vllm.v1.worker.gpu_worker.Worker object at 0x14e7890b4610>
+WARNING 04-30 17:29:24 [utils.py:2444] Methods determine_num_available_blocks,device_config,get_cache_block_size_bytes,initialize_cache not implemented in <vllm.v1.worker.gpu_worker.Worker object at 0x15113687fad0>
+WARNING 04-30 17:29:24 [utils.py:2444] Methods determine_num_available_blocks,device_config,get_cache_block_size_bytes,initialize_cache not implemented in <vllm.v1.worker.gpu_worker.Worker object at 0x14e3610aba90>
+WARNING 04-30 17:29:24 [utils.py:2444] Methods determine_num_available_blocks,device_config,get_cache_block_size_bytes,initialize_cache not implemented in <vllm.v1.worker.gpu_worker.Worker object at 0x145aea75aa50>
+INFO 04-30 17:29:27 [parallel_state.py:959] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, TP rank 0
+INFO 04-30 17:29:27 [parallel_state.py:959] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, TP rank 0
+INFO 04-30 17:29:27 [parallel_state.py:959] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, TP rank 0
+INFO 04-30 17:29:27 [parallel_state.py:959] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, TP rank 0
+INFO 04-30 17:29:27 [cuda.py:221] Using Flash Attention backend on V1 engine.
+INFO 04-30 17:29:27 [cuda.py:221] Using Flash Attention backend on V1 engine.
+INFO 04-30 17:29:27 [cuda.py:221] Using Flash Attention backend on V1 engine.
+INFO 04-30 17:29:27 [cuda.py:221] Using Flash Attention backend on V1 engine.
+INFO 04-30 17:29:27 [gpu_model_runner.py:1276] Starting to load model RLHFlow/LLaMA3-SFT...
+INFO 04-30 17:29:27 [gpu_model_runner.py:1276] Starting to load model RLHFlow/LLaMA3-SFT...
+INFO 04-30 17:29:27 [gpu_model_runner.py:1276] Starting to load model RLHFlow/LLaMA3-SFT...
+INFO 04-30 17:29:27 [gpu_model_runner.py:1276] Starting to load model RLHFlow/LLaMA3-SFT...
+WARNING 04-30 17:29:29 [topk_topp_sampler.py:69] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+WARNING 04-30 17:29:29 [topk_topp_sampler.py:69] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+WARNING 04-30 17:29:29 [topk_topp_sampler.py:69] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+WARNING 04-30 17:29:29 [topk_topp_sampler.py:69] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+INFO 04-30 17:29:30 [weight_utils.py:265] Using model weights format ['*.safetensors']
+INFO 04-30 17:29:30 [weight_utils.py:265] Using model weights format ['*.safetensors']
+INFO 04-30 17:29:30 [weight_utils.py:265] Using model weights format ['*.safetensors']
+INFO 04-30 17:29:30 [weight_utils.py:265] Using model weights format ['*.safetensors']
+INFO 04-30 17:29:57 [loader.py:458] Loading weights took 27.20 seconds
+INFO 04-30 17:29:57 [loader.py:458] Loading weights took 27.48 seconds
+INFO 04-30 17:29:57 [loader.py:458] Loading weights took 27.42 seconds
+INFO 04-30 17:29:57 [loader.py:458] Loading weights took 27.62 seconds
+INFO 04-30 17:29:58 [gpu_model_runner.py:1291] Model loading took 14.9596 GiB and 29.851260 seconds
+INFO 04-30 17:29:58 [gpu_model_runner.py:1291] Model loading took 14.9596 GiB and 29.872423 seconds
+INFO 04-30 17:29:58 [gpu_model_runner.py:1291] Model loading took 14.9596 GiB and 29.908263 seconds
+INFO 04-30 17:29:58 [gpu_model_runner.py:1291] Model loading took 14.9596 GiB and 29.928442 seconds
+INFO 04-30 17:31:07 [backends.py:416] Using cache directory: /n/home08/xiaominli/.cache/vllm/torch_compile_cache/da22a90462/rank_0_0 for vLLM's torch.compile
+INFO 04-30 17:31:07 [backends.py:416] Using cache directory: /n/home08/xiaominli/.cache/vllm/torch_compile_cache/da22a90462/rank_0_0 for vLLM's torch.compile
+INFO 04-30 17:31:08 [backends.py:416] Using cache directory: /n/home08/xiaominli/.cache/vllm/torch_compile_cache/da22a90462/rank_0_0 for vLLM's torch.compile
+INFO 04-30 17:31:08 [backends.py:416] Using cache directory: /n/home08/xiaominli/.cache/vllm/torch_compile_cache/da22a90462/rank_0_0 for vLLM's torch.compile
+INFO 04-30 17:31:08 [backends.py:426] Dynamo bytecode transform time: 69.47 s
+INFO 04-30 17:31:08 [backends.py:426] Dynamo bytecode transform time: 69.46 s
+INFO 04-30 17:31:08 [backends.py:426] Dynamo bytecode transform time: 69.50 s
+INFO 04-30 17:31:08 [backends.py:426] Dynamo bytecode transform time: 69.50 s
+INFO 04-30 17:31:10 [backends.py:115] Directly load the compiled graph for shape None from the cache
+INFO 04-30 17:31:10 [backends.py:115] Directly load the compiled graph for shape None from the cache
+INFO 04-30 17:31:10 [backends.py:115] Directly load the compiled graph for shape None from the cache
+INFO 04-30 17:31:10 [backends.py:115] Directly load the compiled graph for shape None from the cache
+INFO 04-30 17:31:39 [monitor.py:33] torch.compile takes 69.50 s in total
+INFO 04-30 17:31:39 [monitor.py:33] torch.compile takes 69.47 s in total
+INFO 04-30 17:31:39 [monitor.py:33] torch.compile takes 69.50 s in total
+INFO 04-30 17:31:39 [monitor.py:33] torch.compile takes 69.46 s in total
+INFO 04-30 17:31:43 [kv_cache_utils.py:634] GPU KV cache size: 446,560 tokens
+INFO 04-30 17:31:43 [kv_cache_utils.py:637] Maximum concurrency for 8,192 tokens per request: 54.51x
+INFO 04-30 17:31:43 [kv_cache_utils.py:634] GPU KV cache size: 446,560 tokens
+INFO 04-30 17:31:43 [kv_cache_utils.py:637] Maximum concurrency for 8,192 tokens per request: 54.51x
+INFO 04-30 17:31:43 [kv_cache_utils.py:634] GPU KV cache size: 446,560 tokens
+INFO 04-30 17:31:43 [kv_cache_utils.py:637] Maximum concurrency for 8,192 tokens per request: 54.51x
+INFO 04-30 17:31:43 [kv_cache_utils.py:634] GPU KV cache size: 446,560 tokens
+INFO 04-30 17:31:43 [kv_cache_utils.py:637] Maximum concurrency for 8,192 tokens per request: 54.51x
+INFO 04-30 17:32:57 [gpu_model_runner.py:1626] Graph capturing finished in 74 secs, took 0.52 GiB
+INFO 04-30 17:32:57 [gpu_model_runner.py:1626] Graph capturing finished in 74 secs, took 0.52 GiB
+INFO 04-30 17:32:57 [gpu_model_runner.py:1626] Graph capturing finished in 74 secs, took 0.52 GiB
+INFO 04-30 17:32:57 [gpu_model_runner.py:1626] Graph capturing finished in 74 secs, took 0.52 GiB
+INFO 04-30 17:32:57 [core.py:163] init engine (profile, create kv cache, warmup model) took 178.85 seconds
+INFO 04-30 17:32:57 [core.py:163] init engine (profile, create kv cache, warmup model) took 178.87 seconds
+INFO 04-30 17:32:57 [core.py:163] init engine (profile, create kv cache, warmup model) took 178.86 seconds
+INFO 04-30 17:32:57 [core.py:163] init engine (profile, create kv cache, warmup model) took 178.92 seconds
+INFO 04-30 17:32:57 [core_client.py:435] Core engine process 0 ready.
+INFO 04-30 17:32:57 [core_client.py:435] Core engine process 0 ready.
+INFO 04-30 17:32:57 [core_client.py:435] Core engine process 0 ready.
+INFO 04-30 17:32:57 [core_client.py:435] Core engine process 0 ready.
+Data Size:20000
+Data Size:20000
+Data Size:20000
+Data Size:20000
+I collect  5000 samples
+Saving output to: dataset_path/datasets/inpo_iter1/data_2.json
+I collect  5000 samples
+Saving output to: dataset_path/datasets/inpo_iter1/data_1.json
+I collect  5000 samples
+Saving output to: dataset_path/datasets/inpo_iter1/data_0.json
+I collect  5000 samples
+Saving output to: dataset_path/datasets/inpo_iter1/data_3.json
+dataset_path/datasets/inpo_iter1/data_0.json
+5000
+dataset_path/datasets/inpo_iter1/data_1.json
+5000
+dataset_path/datasets/inpo_iter1/data_2.json
+5000
+dataset_path/datasets/inpo_iter1/data_3.json
+5000
+I collect  20000 samples
+dataset_path/datasets/inpo_iter1/data.json
+[2025-04-30 19:23:09,230] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-30 19:23:09,232] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-30 19:23:09,235] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-30 19:23:09,239] [INFO] [real_accelerator.py:239:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /n/netscratch/lu_lab/Lab/xiaominli/mycache/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+5000
+5000
+5000
+5000

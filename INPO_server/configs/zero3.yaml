@@ -1,7 +1,7 @@
 compute_environment: LOCAL_MACHINE
 distributed_type: DEEPSPEED
 debug: true
-num_processes: 2
+num_processes: 4
 use_cpu: false
 machine_rank: 0
 main_training_function: main
