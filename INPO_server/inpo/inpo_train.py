@@ -214,8 +214,8 @@ if __name__ == "__main__":
         ratio=script_args.ratio,
         eta=script_args.eta,
         len_penalty=script_args.len_penalty,
-        max_length=script_args.max_length,
-        max_prompt_length=script_args.max_prompt_length,
+        # max_length=script_args.max_length,
+        # max_prompt_length=script_args.max_prompt_length,
     )
     print("begin to train")
     # print(dpo_trainer._precomputed_train_ref_log_probs, dpo_trainer.precompute_ref_log_probs)
