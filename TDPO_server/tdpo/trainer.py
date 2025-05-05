@@ -779,3 +779,132 @@ class TDPOTrainer(Trainer):
         })
 
         return (losses.mean(), policy_chosen_logits) if return_outputs else losses.mean()
+
+class TDPOTrainer_v2(DPOTrainer):
+    def __init__(
+        self,
+        model: Union[PreTrainedModel, nn.Module] = None,
+        ref_model: Optional[Union[PreTrainedModel, nn.Module]] = None,
+        tokenizer: Optional[PreTrainedTokenizerBase] = None,
+        ratio: float = 1.0,
+        eta: float = 0.01,
+        beta: float = 0.01,
+        len_penalty: float = 0.0,
+        **kwargs
+    ):
+        super().__init__(
+            model=model,
+            ref_model=ref_model,
+            tokenizer=tokenizer,
+            **kwargs
+        )
+        self.ratio = ratio
+        self.denom = eta
+        self.beta = beta
+        self.len_penalty = len_penalty
+        self.tokenizer = tokenizer
+
+        print(f"[TDPO] Initialized with ratio={self.ratio}, eta={self.denom}, beta={self.beta}, len_penalty={self.len_penalty}")
+
+    def inpo_loss_extended(
+        self,
+        policy_chosen_logps,
+        policy_rejected_logps,
+        reference_chosen_logps,
+        reference_rejected_logps,
+        history_logps_list,  # List of (chosen_logps_j, rejected_logps_j)
+        t: int
+    ):
+        pi_logratios = policy_chosen_logps - policy_rejected_logps
+        ref_logratios = reference_chosen_logps - reference_rejected_logps
+
+        n = len(history_logps_list)
+        if n == 1:
+            weighted_logratios = history_logps_list[0][0] - history_logps_list[0][1]
+        elif n > 1:
+            weighted_logratios = 0.0
+            for j, (chosen_j, rejected_j) in enumerate(history_logps_list):
+                time_j = t - (n - 1 - j)
+                lambda_j = 2 * (t - time_j) / ((2 * t - n + 1) * (n - 1))
+                weighted_logratios += lambda_j * (chosen_j - rejected_j)
+        else:
+            weighted_logratios = 0.0
+
+        logits = pi_logratios - self.ratio * ref_logratios - (1 - self.ratio) * weighted_logratios
+        losses = (logits - 1 / (2 * self.denom)) ** 2
+
+        chosen_rewards = self.beta * (policy_chosen_logps - reference_chosen_logps).detach()
+        rejected_rewards = self.beta * (policy_rejected_logps - reference_rejected_logps).detach()
+
+        return losses, chosen_rewards, rejected_rewards
+
+    def concatenated_forward(self, model, batch):
+        def get_logps(input_ids):
+            attention_mask = (input_ids != self.tokenizer.pad_token_id).long()
+            output = model(input_ids=input_ids, attention_mask=attention_mask)
+            logits = output.logits
+
+            shift_logits = logits[..., :-1, :].contiguous()
+            shift_labels = input_ids[..., 1:].contiguous()
+
+            log_probs = torch.nn.functional.log_softmax(shift_logits, dim=-1)
+            shift_labels = shift_labels.unsqueeze(-1)
+            token_logps = torch.gather(log_probs, dim=-1, index=shift_labels).squeeze(-1)
+            mask = attention_mask[..., 1:]
+            sentence_logp = (token_logps * mask).sum(dim=-1)
+
+            return sentence_logp, logits
+
+        chosen_logps, chosen_logits = get_logps(batch["chosen_input_ids"])
+        rejected_logps, rejected_logits = get_logps(batch["rejected_input_ids"])
+        return chosen_logps, rejected_logps, chosen_logits, rejected_logits
+
+    def pack_history_logps_from_dataset(self, inputs, max_history_t):
+        history_logps_list = []
+        for j in range(max_history_t):
+            key_c = f"history{j}_chosen_logps"
+            key_r = f"history{j}_rejected_logps"
+            if key_c in inputs and key_r in inputs:
+                history_logps_list.append((inputs[key_c], inputs[key_r]))
+            else:
+                break
+        return history_logps_list
+    
+    def get_batch_loss_metrics(self, model, batch, train_eval: Literal["train", "eval"] = "train"):
+        return self.get_batch_metrics(model, batch, train_eval)
+
+    def get_batch_metrics(self, model, batch, train_eval="train"):
+        max_history_t = 2
+        t = max_history_t
+        history_logps_list = self.pack_history_logps_from_dataset(batch, max_history_t)
+        history_logps_list = [
+            (c.to(self.accelerator.device), r.to(self.accelerator.device))
+            for c, r in history_logps_list
+        ]
+
+        policy_chosen_logps, policy_rejected_logps, policy_chosen_logits, policy_rejected_logits = \
+            self.concatenated_forward(model, batch)
+
+        reference_chosen_logps = batch["reference_chosen_logps"].to(self.accelerator.device)
+        reference_rejected_logps = batch["reference_rejected_logps"].to(self.accelerator.device)
+
+        losses, chosen_rewards, rejected_rewards = self.inpo_loss_extended(
+            policy_chosen_logps,
+            policy_rejected_logps,
+            reference_chosen_logps,
+            reference_rejected_logps,
+            history_logps_list,
+            t
+        )
+
+        reward_accuracies = (chosen_rewards > rejected_rewards).float()
+        prefix = "eval_" if train_eval == "eval" else ""
+        metrics = {
+            f"{prefix}rewards/chosen": chosen_rewards.mean().cpu(),
+            f"{prefix}rewards/rejected": rejected_rewards.mean().cpu(),
+            f"{prefix}rewards/accuracies": reward_accuracies.mean().cpu(),
+            f"{prefix}rewards/margins": (chosen_rewards - rejected_rewards).mean().cpu(),
+            f"{prefix}logps/chosen": policy_chosen_logps.mean().cpu(),
+            f"{prefix}logps/rejected": policy_rejected_logps.mean().cpu(),
+        }
+        return losses.mean(), metrics
