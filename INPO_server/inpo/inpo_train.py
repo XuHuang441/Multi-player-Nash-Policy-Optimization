@@ -191,18 +191,6 @@ if __name__ == "__main__":
 
     # 5. initialize the DPO trainer
 
-    # trainer = INPOTrainer(
-    #     model=model,
-    #     args=training_args,  # transformers.TrainingArguments
-    #     tokenizer=tokenizer,
-    #     train_dataset=train_dataset,
-    #     data_collator=PrecomputeDataCollator(tokenizer),
-    #     ratio=script_args.ratio,
-    #     eta=script_args.eta,
-    #     beta=0.01,
-    #     len_penalty=0.0,
-    # )
-
     trainer = INPOTrainer_v2(
         model=model,
         ref_model=model_ref,
@@ -214,8 +202,6 @@ if __name__ == "__main__":
         ratio=script_args.ratio,
         eta=script_args.eta,
         len_penalty=script_args.len_penalty,
-        # max_length=script_args.max_length,
-        # max_prompt_length=script_args.max_prompt_length,
     )
     print("begin to train")
     # print(dpo_trainer._precomputed_train_ref_log_probs, dpo_trainer.precompute_ref_log_probs)
