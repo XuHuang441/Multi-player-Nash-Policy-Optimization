@@ -261,6 +261,25 @@ class PrecomputeDataCollator:
         return padded_batch
 
     def __call__(self, features: List[Dict[str, Any]]) -> Dict[str, Any]:
+        # truncation
+        for ex in features:
+            # truncate prompt
+            if self.max_prompt_length is not None:
+                ids = ex["prompt_input_ids"]
+                if len(ids) > self.max_prompt_length:
+                    if self.truncation_mode == "keep_end":
+                        ex["prompt_input_ids"] = ids[-self.max_prompt_length :]
+                    else:
+                        ex["prompt_input_ids"] = ids[: self.max_prompt_length]
+            # truncate chosen/rejected
+            if self.max_length is not None:
+                for key in ("chosen_input_ids", "rejected_input_ids"):
+                    ids = ex[key]
+                    if len(ids) > self.max_length:
+                        if self.truncation_mode == "keep_end":
+                            ex[key] = ids[-self.max_length :]
+                        else:
+                            ex[key] = ids[: self.max_length]
         batch = self.collate(features)
         return batch
 
