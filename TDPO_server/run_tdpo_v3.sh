@@ -12,6 +12,7 @@ eval "$(conda shell.bash hook)"
 
 # Base paths and settings
 initial_model="RLHFlow/LLaMA3-SFT"
+# initial_model="meta-llama/Llama-3.2-1B" # todo 
 base_dataset_path="dataset_path/datasets"
 base_model_path="model_path/models"
 ratio=$(echo "scale=10; 1/3" | bc)
@@ -32,16 +33,16 @@ run_iteration() {
     local json_output=$4
     local pref_output=$5
 
-    sanity_check=False
+    sanity_check=True # todo Set to True for debugging, False for production
     use_tour=True
-    K=8
+    K=2 # todo change to 8
 
     source ~/anaconda3/etc/profile.d/conda.sh
     conda activate /home/zbz5349/anaconda3/envs/mypo
 
     echo "Starting generation for iteration ${iteration}..."
 
-    CUDA_VISIBLE_DEVICES=2,3 conda run -n mypo python generation/get_hf2.py \
+    CUDA_VISIBLE_DEVICES=0,1,2,3 conda run -n mypo python generation/get_hf2.py \
     --model_name_or_path ${previous_model} \
     --dataset_name_or_path ${input_path} \
     --output_dir ${json_output}.json \
@@ -52,7 +53,7 @@ run_iteration() {
 
     echo "Starting preference modeling..."
 
-    CUDA_VISIBLE_DEVICES=2,3 conda run -n mypo accelerate launch \
+    CUDA_VISIBLE_DEVICES=0,1,2,3 conda run -n mypo accelerate launch \
     --main_process_port 29601 \
     annotate_data/get_pref_single.py \
     --use_tournament $use_tour \
@@ -77,14 +78,14 @@ run_iteration() {
     --base_model_path $previous_model \
     --reference_model_path $initial_model \
     --output_dir $pref_prob_path \
-    --data_path "${pref_output}_data.json" \
+    --data_path "${pref_output}.json" \
     --max_history_t $max_history_t \
     $history_args \
     --beta $beta
 
     echo "Starting TDPO training for iteration ${iteration}..."
     # Run TDPO for a single iteration
-    CUDA_VISIBLE_DEVICES=2,3 conda run -n mypo accelerate launch --config_file ./configs/zero3.yaml ./tdpo/tdpo_train.py \
+    CUDA_VISIBLE_DEVICES=0,1,2,3 conda run -n mypo accelerate launch --config_file ./configs/zero3.yaml ./tdpo/tdpo_train.py \
     --base_model_path $previous_model \
     --precomputed_dir $pref_prob_path \
     --output_dir $output_model_path \
