@@ -21,6 +21,9 @@ def parse_args():
     parser.add_argument("--per_device_train_batch_size", type=int, default=1)
     parser.add_argument("--num_train_epochs", type=int, default=1)
     parser.add_argument("--ref_model", type=str, default=None)
+    parser.add_argument("--max_length", type=int, default=2048)
+    parser.add_argument("--max_prompt_length", type=int, default=1000)
+    parser.add_argument("--mask_prompt", type=bool, default=False)
     return parser.parse_args()
 
 
@@ -58,6 +61,13 @@ def main():
         lr_scheduler_type=args.lr_scheduler_type,
     )
 
+    data_collator = PrecomputeDataCollator(
+    tokenizer,
+    max_length=args.max_length,
+    max_prompt_length=args.max_prompt_length,
+    mask_prompt=args.mask_prompt,
+    )
+
     trainer = TDPOTrainer_v2(
         model=model,
         ref_model=model_ref,
@@ -67,7 +77,7 @@ def main():
         ratio=args.ratio,
         eta=args.eta,
         beta=args.beta,
-        data_collator=PrecomputeDataCollator(tokenizer)
+        data_collator=data_collator,
     )
 
     trainer.train()
