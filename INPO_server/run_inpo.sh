@@ -79,7 +79,7 @@ run_iteration() {
 
     # merge deepspeed checkpoints
     echo "Merging deepspeed checkpoints..."
-    python $output_model_path/zero_to_fp32.py $output_model_path $output_model_path 
+    conda run -n mypo python $output_model_path/zero_to_fp32.py $output_model_path $output_model_path 
 
 }
 
