@@ -40,7 +40,37 @@ pip install accelerate==0.27.2
 **Evaluation**
 See ``get_alpaca_answer.sh`` for an example.
 
+## 📌 Additional Setup Notes
 
+### 🔗 PyTorch Wheel Download
+
+To install PyTorch 2.1.2 with CUDA 11.8 support for Python 3.10, use the following wheel:
+
+```
+https://download.pytorch.org/whl/cu118/torch-2.1.2%2Bcu118-cp310-cp310-linux_x86_64.whl#sha256=60396358193f238888540f4a38d78485f161e28ec17fa445f0373b5350ef21f0
+```
+
+Install it using:
+
+```bash
+pip install https://download.pytorch.org/whl/cu118/torch-2.1.2%2Bcu118-cp310-cp310-linux_x86_64.whl
+```
+
+### 🛠 `run_inpo.sh` Adjustment
+
+To avoid errors when creating directories that may already exist, update all `mkdir` commands in `run_inpo.sh` by adding the `-p` flag. For example:
+
+```bash
+mkdir -p your/path/here
+```
+
+### ⚠️ NumPy Version Compatibility
+
+In the training environment, make sure to downgrade NumPy to avoid potential compatibility issues:
+
+```bash
+pip install numpy==1.26.4
+```
 
 
 
