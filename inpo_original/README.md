@@ -72,5 +72,6 @@ In the training environment, make sure to downgrade NumPy to avoid potential com
 pip install numpy==1.26.4
 ```
 
+### Install wandb
 
 
