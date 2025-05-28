@@ -446,6 +446,199 @@ class MyPreferenceTrainer(DPOTrainer):
 
         return losses.mean(), metrics
 
+
+class TDPOTrainer(DPOTrainer):
+    def __init__(
+            self,
+            model: Union[PreTrainedModel, nn.Module] = None,
+            ref_model: Optional[Union[PreTrainedModel, nn.Module]] = None,
+            ratio: float = 0,
+            eta: float = 0.0075,
+            loss_type: Literal["sigmoid", "hinge", "cross_entropy", "kl", "rev_kl", "raft"] = "rev_kl",
+            args: TrainingArguments = None,
+            data_collator: Optional[DataCollator] = None,
+            label_pad_token_id: int = -100,
+            padding_value: int = 0,
+            truncation_mode: str = "keep_end",
+            train_dataset: Optional[Dataset] = None,
+            eval_dataset: Optional[Union[Dataset, Dict[str, Dataset]]] = None,
+            tokenizer: Optional[PreTrainedTokenizerBase] = None,
+            model_init: Optional[Callable[[], PreTrainedModel]] = None,
+            callbacks: Optional[List[TrainerCallback]] = None,
+            optimizers: Tuple[torch.optim.Optimizer, torch.optim.lr_scheduler.LambdaLR] = (
+                    None,
+                    None,
+            ),
+            preprocess_logits_for_metrics: Optional[Callable[[torch.Tensor, torch.Tensor], torch.Tensor]] = None,
+            max_length: Optional[int] = None,
+            max_prompt_length: Optional[int] = None,
+            max_target_length: Optional[int] = None,
+            peft_config: Optional[Dict] = None,
+            is_encoder_decoder: Optional[bool] = None,
+            disable_dropout: bool = True,
+            generate_during_eval: bool = False,
+            compute_metrics: Optional[Callable[[EvalLoopOutput], Dict]] = None,
+            mask_prompt: Optional[bool] = False,
+            len_penalty: float = 0,
+            max_history_t: Optional[int] = 2,
+    ):
+
+        if data_collator is None:
+            # 2048, 1000, -100, 0, keep_end, None, False
+            data_collator = PrecomputeDataCollator(
+                tokenizer,
+                max_length=max_length,
+                max_prompt_length=max_prompt_length,
+                label_pad_token_id=label_pad_token_id,
+                padding_value=padding_value,
+                truncation_mode=truncation_mode,
+                is_encoder_decoder=False,
+                max_target_length=max_target_length,
+                mask_prompt=mask_prompt,
+            )
+        super().__init__(
+            model=model,
+            ref_model=ref_model,
+            beta=eta,
+            loss_type=loss_type,
+            args=args,
+            data_collator=data_collator,
+            label_pad_token_id=label_pad_token_id,
+            padding_value=padding_value,
+            truncation_mode=truncation_mode,
+            train_dataset=train_dataset,
+            eval_dataset=eval_dataset,
+            tokenizer=tokenizer,
+            model_init=model_init,
+            callbacks=callbacks,
+            optimizers=optimizers,
+            preprocess_logits_for_metrics=preprocess_logits_for_metrics,
+            max_length=max_length,
+            max_prompt_length=max_prompt_length,
+            max_target_length=max_target_length,
+            peft_config=peft_config,
+            is_encoder_decoder=is_encoder_decoder,
+            generate_during_eval=generate_during_eval,
+            compute_metrics=compute_metrics,
+            disable_dropout=disable_dropout
+        )
+        self.use_dpo_data_collator = True
+        self.len_penalty = len_penalty
+        self.ref_model = None
+        self.denom = eta
+        self.ratio = ratio
+        print(self.ratio, self.denom)
+
+    def tdpo_loss(
+        self,
+        policy_chosen_logps,
+        policy_rejected_logps,
+        reference_chosen_logps,
+        reference_rejected_logps,
+        history_logps_list,  # List of (chosen_logps_j, rejected_logps_j)
+        t: int,
+        len_penalty: float = 0,
+    ):
+        pi_logratios = policy_chosen_logps - policy_rejected_logps
+        ref_logratios = reference_chosen_logps - reference_rejected_logps
+
+        n = len(history_logps_list)
+        if n == 1:
+            weighted_logratios = history_logps_list[0][0] - history_logps_list[0][1]
+        elif n > 1:
+            weighted_logratios = 0.0
+            for j, (chosen_j, rejected_j) in enumerate(history_logps_list):
+                time_j = t - (n - 1 - j)
+                lambda_j = 2 * (t - time_j) / ((2 * t - n + 1) * (n - 1))
+                weighted_logratios += lambda_j * (chosen_j - rejected_j)
+        else:
+            weighted_logratios = 0.0
+
+        logits = pi_logratios - self.ratio * ref_logratios - (1 - self.ratio) * weighted_logratios
+        losses = (logits - 1 / (2 * self.denom)) ** 2
+
+        chosen_rewards = self.beta * (policy_chosen_logps - reference_chosen_logps).detach()
+        rejected_rewards = self.beta * (policy_rejected_logps - reference_rejected_logps).detach()
+
+        return losses, chosen_rewards, rejected_rewards
+
+    def pack_history_logps_from_dataset(self, inputs):
+        history_logps_list = []
+        for j in range(self.max_history_t):
+            key_c = f"history{j}_chosen_logps"
+            key_r = f"history{j}_rejected_logps"
+            if key_c in inputs and key_r in inputs:
+                history_logps_list.append((inputs[key_c], inputs[key_r]))
+            else:
+                print(f"error: {key_c} or {key_r} not in dataset!")
+                break
+        return history_logps_list
+
+    def get_batch_loss_metrics(
+            self,
+            model,
+            batch: Dict[str, Union[List, torch.LongTensor]],
+            train_eval: Literal["train", "eval"] = "train",
+    ):
+        return self.get_batch_metrics(model, batch, train_eval)
+
+    def get_batch_metrics(
+            self,
+            model,
+            batch: Dict[str, Union[List, torch.Tensor]],
+            train_eval: Literal["train", "eval"] = "train",
+    ):
+        """Compute the DPO loss and other metrics for the given batch of inputs for train or test."""
+        history_logps_list = self.pack_history_logps_from_dataset(batch)
+        history_logps_list = [
+            (c.to(self.accelerator.device), r.to(self.accelerator.device))
+            for c, r in history_logps_list
+        ]
+
+        metrics = {}
+        (
+            policy_chosen_logps,
+            policy_rejected_logps,
+            policy_chosen_logits,
+            policy_rejected_logits,
+        ) = self.concatenated_forward(model, batch)
+
+        reference_chosen_logps = batch['reference_chosen_logps'].to(self.accelerator.device)
+        reference_rejected_logps = batch['reference_rejected_logps'].to(self.accelerator.device)
+
+        if self.len_penalty > 0:
+            chosen_len = batch["chosen_input_ids"].shape[1] * self.len_penalty
+            rejected_len = batch["rejected_input_ids"].shape[1] * self.len_penalty
+            len_penalty = chosen_len - rejected_len
+        else:
+            chosen_len = 1
+            rejected_len = 1
+            len_penalty = 0
+
+        losses, chosen_rewards, rejected_rewards = self.tdpo_loss(
+            policy_chosen_logps,
+            policy_rejected_logps,
+            reference_chosen_logps,
+            reference_rejected_logps,
+            history_logps_list,
+            self.max_history_t,
+            len_penalty=len_penalty,
+        )
+
+        reward_accuracies = (chosen_rewards > rejected_rewards).float()
+
+        prefix = "eval_" if train_eval == "eval" else ""
+        metrics[f"{prefix}rewards/chosen"] = chosen_rewards.cpu().mean()
+        metrics[f"{prefix}rewards/rejected"] = rejected_rewards.cpu().mean()
+        metrics[f"{prefix}rewards/accuracies"] = reward_accuracies.cpu().mean()
+        metrics[f"{prefix}rewards/margins"] = (chosen_rewards - rejected_rewards).cpu().mean()
+        metrics[f"{prefix}logps/rejected"] = policy_rejected_logps.detach().cpu().mean()
+        metrics[f"{prefix}logps/chosen"] = policy_chosen_logps.detach().cpu().mean()
+        metrics[f"{prefix}logits/rejected"] = policy_rejected_logits.detach().cpu().mean()
+        metrics[f"{prefix}logits/chosen"] = policy_chosen_logits.detach().cpu().mean()
+
+        return losses.mean(), metrics
+
 class PreComputer(DPOTrainer):
     def __init__(
         self,

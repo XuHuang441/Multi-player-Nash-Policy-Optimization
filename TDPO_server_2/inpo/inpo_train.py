@@ -5,7 +5,7 @@ from typing import Optional
 import numpy as np
 import torch
 from datasets import Dataset, load_dataset, load_from_disk
-from trainer import MyPreferenceTrainer
+from trainer import TDPOTrainer
 from transformers import (
     AutoModelForCausalLM,
     AutoTokenizer,
@@ -175,7 +175,7 @@ if __name__ == "__main__":
 
     # 5. initialize the DPO trainer
 
-    inpo_trainer = MyPreferenceTrainer(
+    tdpo_trainer = TDPOTrainer(
         model,
         model_ref,
         args=training_args,
@@ -199,8 +199,8 @@ if __name__ == "__main__":
     #     exit()
 
     # 6. train
-    inpo_trainer.train()
-    inpo_trainer.save_model(script_args.output_dir)
+    tdpo_trainer.train()
+    tdpo_trainer.save_model(script_args.output_dir)
 
     # # 7. save
     # output_dir = os.path.join(script_args.output_dir, "final_checkpoint")
