@@ -154,7 +154,6 @@ def prepare_data(
     return dataset
 
 def precompute_multi_history(
-    pre: PreComputer,
     history_model_paths: List[str],
 ):
     history_logps_list = []
@@ -290,7 +289,6 @@ if __name__ == "__main__":
     history_logps = []
     if history_paths:
         history_logps = precompute_multi_history(
-            pre=pre,
             history_model_paths=history_paths,
         )
 
