@@ -80,7 +80,7 @@ run_iteration() {
     fi
 
     accelerate launch --config_file ./configs/zero2.yaml ./inpo/precompute.py --run_name "${iteration_prefix}_${iteration}" --train_dir "${pref_output}_data.json" \
-    --output_dir $pref_prob_path --ref_model $initial_model --last_model $previous_model \
+    --output_dir $pref_prob_path --ref_model $initial_model \
     --loss_type inpo --lr_scheduler_type cosine \
     --max_history_t $max_history_t \
     $history_args
@@ -92,7 +92,8 @@ run_iteration() {
     
     accelerate launch --config_file ./configs/zero3.yaml ./inpo/inpo_train.py --run_name "${iteration_prefix}_${iteration}" \
         --output_dir $output_model_path --model_name_or_path $previous_model --learning_rate 5e-7 --ratio $ratio --eta $eta \
-        --train_dir $pref_prob_path --loss_type inpo --lr_scheduler_type cosine
+        --train_dir $pref_prob_path --loss_type inpo --lr_scheduler_type cosine \
+        --max_history_t $max_history_t
 
     # Add this model to history paths
     history_paths+=("$output_model_path")

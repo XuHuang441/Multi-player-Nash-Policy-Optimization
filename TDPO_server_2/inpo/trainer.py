@@ -528,6 +528,7 @@ class TDPOTrainer(DPOTrainer):
         self.denom = eta
         self.ratio = ratio
         print(self.ratio, self.denom)
+        self.max_history_t = max_history_t
 
     def tdpo_loss(
         self,

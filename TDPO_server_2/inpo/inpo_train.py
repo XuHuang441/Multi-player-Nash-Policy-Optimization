@@ -106,6 +106,7 @@ class ScriptArguments:
     eot_token: Optional[str] = field(default="", metadata={"help": "the end of text token"})
     mask_prompt: Optional[bool] = field(default=False, metadata={"help": "mask prompt"})
     len_penalty: Optional[float] = field(default=0, metadata={"help": "the length penalty"})
+    max_history_t: Optional[int] = field(default=2, metadata={"help": "the maximum history length"})
 
 
 if __name__ == "__main__":
@@ -188,6 +189,7 @@ if __name__ == "__main__":
         max_length=script_args.max_length,
         mask_prompt=script_args.mask_prompt,
         len_penalty=script_args.len_penalty,
+        max_history_t=script_args.max_history_t,
     )
     print("begin to train")
     # print(dpo_trainer._precomputed_train_ref_log_probs, dpo_trainer.precompute_ref_log_probs)
