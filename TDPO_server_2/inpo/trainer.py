@@ -543,17 +543,22 @@ class TDPOTrainer(DPOTrainer):
         pi_logratios = policy_chosen_logps - policy_rejected_logps
         ref_logratios = reference_chosen_logps - reference_rejected_logps
 
-        n = len(history_logps_list)
-        if n == 1:
-            weighted_logratios = history_logps_list[0][0] - history_logps_list[0][1]
-        elif n > 1:
-            weighted_logratios = 0.0
-            for j, (chosen_j, rejected_j) in enumerate(history_logps_list):
-                time_j = t - (n - 1 - j)
-                lambda_j = 2 * (t - time_j) / ((2 * t - n + 1) * (n - 1))
-                weighted_logratios += lambda_j * (chosen_j - rejected_j)
-        else:
-            weighted_logratios = 0.0
+        weighted_logratios = 0.0
+
+        if history_logps_list and t > 0:
+            recent_history = history_logps_list[-t:]
+            effective_t = len(recent_history)
+
+            if effective_t == 1:
+                chosen_j, rejected_j = recent_history[0]
+                weighted_logratios = chosen_j - rejected_j
+
+            elif effective_t > 1:
+                total_weight = (effective_t * (effective_t + 1)) / 2.0
+
+                for j, (chosen_j, rejected_j) in enumerate(recent_history):
+                    lambda_j = (j + 1) / total_weight
+                    weighted_logratios += lambda_j * (chosen_j - rejected_j)
 
         logits = pi_logratios - self.ratio * ref_logratios - (1 - self.ratio) * weighted_logratios
         losses = (logits - 1 / (2 * self.denom)) ** 2
