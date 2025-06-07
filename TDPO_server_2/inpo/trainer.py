@@ -538,6 +538,7 @@ class TDPOTrainer(DPOTrainer):
         reference_rejected_logps,
         history_logps_list,  # List of (chosen_logps_j, rejected_logps_j)
         t: int,
+        gamma: float = 9.0,
         len_penalty: float = 0,
     ):
         pi_logratios = policy_chosen_logps - policy_rejected_logps
@@ -554,10 +555,16 @@ class TDPOTrainer(DPOTrainer):
                 weighted_logratios = chosen_j - rejected_j
 
             elif effective_t > 1:
-                total_weight = (effective_t * (effective_t + 1)) / 2.0
+                raw_weights = [gamma ** j for j in range(effective_t)]
+                total_weight = sum(raw_weights)
+
+                if total_weight == 0:
+                    total_weight = effective_t
+
+                normalized_weights = [w / total_weight for w in raw_weights]
 
                 for j, (chosen_j, rejected_j) in enumerate(recent_history):
-                    lambda_j = (j + 1) / total_weight
+                    lambda_j = normalized_weights[j]
                     weighted_logratios += lambda_j * (chosen_j - rejected_j)
 
         logits = pi_logratios - self.ratio * ref_logratios - (1 - self.ratio) * weighted_logratios
