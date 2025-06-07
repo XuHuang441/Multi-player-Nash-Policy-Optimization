@@ -538,8 +538,8 @@ class TDPOTrainer(DPOTrainer):
         reference_rejected_logps,
         history_logps_list,  # List of (chosen_logps_j, rejected_logps_j)
         t: int,
-        gamma: float = 9.0,
-        ref_weight: float = 0.25, # 1/3 in INPO
+        gamma: float = 4.0,
+        ref_weight: float = 1/6, # 1/3 in INPO
         len_penalty: float = 0,
     ):
         pi_logratios = policy_chosen_logps - policy_rejected_logps
