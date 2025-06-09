@@ -538,7 +538,7 @@ class TDPOTrainer(DPOTrainer):
         reference_rejected_logps,
         history_logps_list,  # List of (chosen_logps_j, rejected_logps_j)
         t: int,
-        gamma: float = 4.0,
+        gamma: float = 24.0,
         ref_weight: float = 1/6, # 1/3 in INPO
         len_penalty: float = 0,
     ):
