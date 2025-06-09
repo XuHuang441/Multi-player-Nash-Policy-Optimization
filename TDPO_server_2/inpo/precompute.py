@@ -7,7 +7,7 @@ import numpy as np
 import torch
 
 from datasets import Dataset, load_dataset
-from trainer import PreComputer
+from trainer import PreComputer, PreComputer_length_controlled
 from transformers import (
     AutoModelForCausalLM,
     AutoModelForImageClassification,

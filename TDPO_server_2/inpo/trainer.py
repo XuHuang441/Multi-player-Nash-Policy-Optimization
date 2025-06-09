@@ -760,3 +760,174 @@ class PreComputer(DPOTrainer):
         return all_reference_chosen_logps, all_reference_rejected_logps
 
 
+class PreComputer_length_controlled(DPOTrainer):
+    def __init__(
+        self,
+        model: Union[PreTrainedModel, nn.Module] = None,
+        ref_model: Optional[Union[PreTrainedModel, nn.Module]] = None,
+        beta: float = 0.1,
+        loss_type: Literal["sigmoid", "hinge", "cross_entropy", "kl", "rev_kl", "raft"] = "rev_kl",
+        args: TrainingArguments = None,
+        data_collator: Optional[DataCollator] = None,
+        label_pad_token_id: int = -100,
+        padding_value: int = 0,
+        truncation_mode: str = "keep_end",
+        train_dataset: Optional[Dataset] = None,
+        eval_dataset: Optional[Union[Dataset, Dict[str, Dataset]]] = None,
+        tokenizer: Optional[PreTrainedTokenizerBase] = None,
+        model_init: Optional[Callable[[], PreTrainedModel]] = None,
+        callbacks: Optional[List[TrainerCallback]] = None,
+        optimizers: Tuple[torch.optim.Optimizer, torch.optim.lr_scheduler.LambdaLR] = (
+            None,
+            None,
+        ),
+        preprocess_logits_for_metrics: Optional[Callable[[torch.Tensor, torch.Tensor], torch.Tensor]] = None,
+        max_length: Optional[int] = None,
+        max_prompt_length: Optional[int] = None,
+        max_target_length: Optional[int] = None,
+        peft_config: Optional[Dict] = None,
+        is_encoder_decoder: Optional[bool] = None,
+        disable_dropout: bool = True,
+        generate_during_eval: bool = False,
+        compute_metrics: Optional[Callable[[EvalLoopOutput], Dict]] = None,
+        mask_prompt: Optional[bool] = False,
+        len_penalty: float = 0,
+    ):
+
+        if data_collator is None:
+            # 2048, 1000, -100, 0, keep_end, None, False
+            data_collator = PreferenceDataCollatorWithPadding(
+                tokenizer,
+                max_length=max_length,
+                max_prompt_length=max_prompt_length,
+                label_pad_token_id=label_pad_token_id,
+                padding_value=padding_value,
+                truncation_mode=truncation_mode,
+                is_encoder_decoder=False,
+                max_target_length=max_target_length,
+                mask_prompt=mask_prompt,
+            )
+        super().__init__(
+            model=model,
+            ref_model=ref_model,
+            beta=beta,
+            loss_type=loss_type,
+            args=args,
+            data_collator=data_collator,
+            label_pad_token_id=label_pad_token_id,
+            padding_value=padding_value,
+            truncation_mode=truncation_mode,
+            train_dataset=train_dataset,
+            eval_dataset=eval_dataset,
+            tokenizer=tokenizer,
+            model_init=model_init,
+            callbacks=callbacks,
+            optimizers=optimizers,
+            preprocess_logits_for_metrics=preprocess_logits_for_metrics,
+            max_length=max_length,
+            max_prompt_length=max_prompt_length,
+            max_target_length=max_target_length,
+            peft_config=peft_config,
+            is_encoder_decoder=is_encoder_decoder,
+            disable_dropout=disable_dropout,
+            generate_during_eval=generate_during_eval,
+            compute_metrics=compute_metrics,
+        )
+        self.use_dpo_data_collator = True
+        self.len_penalty = len_penalty
+        self.precompute_ref_log_probs = True
+        self._precomputed_train_ref_log_probs = True
+
+    def precompute(self):
+        dataloader_params = {
+                "batch_size": self.args.per_device_train_batch_size,
+                "collate_fn": self.data_collator,
+                "num_workers": self.args.dataloader_num_workers,
+                "pin_memory": self.args.dataloader_pin_memory,
+                "shuffle": False,
+        }
+
+        # prepare dataloader
+        data_loader = self.accelerator.prepare(DataLoader(self.train_dataset, **dataloader_params))
+
+        reference_chosen_logps = []
+        reference_rejected_logps = []
+        for padded_batch in tqdm(iterable=data_loader, desc="Train dataset reference log probs"):
+            reference_chosen_logp, reference_rejected_logp = self.compute_reference_log_probs(padded_batch)
+            reference_chosen_logp, reference_rejected_logp = self.accelerator.gather_for_metrics(
+                (reference_chosen_logp, reference_rejected_logp)
+            )
+            reference_chosen_logps.append(reference_chosen_logp.cpu())
+            reference_rejected_logps.append(reference_rejected_logp.cpu())
+
+        all_reference_chosen_logps = torch.cat(reference_chosen_logps).float().numpy()
+        all_reference_rejected_logps = torch.cat(reference_rejected_logps).float().numpy()
+
+        print(all_reference_chosen_logps.shape, all_reference_rejected_logps.shape)
+        return all_reference_chosen_logps, all_reference_rejected_logps
+
+    def compute_reference_log_probs(self, padded_batch: Dict) -> Tuple[torch.Tensor, torch.Tensor]:
+        """
+        Computes log probabilities of chosen and rejected sequences using the reference model.
+        This method is overridden to apply length normalization.
+        """
+        # compute reference logps
+        with torch.no_grad():
+            if self.ref_model is None:
+                with self.accelerator.unwrap_model(self.model).disable_adapter():
+                    (
+                        reference_chosen_logps,
+                        reference_rejected_logps,
+                        _,
+                        _,
+                    ) = self.get_log_probs(self.model, padded_batch)
+            else:
+                (
+                    reference_chosen_logps,
+                    reference_rejected_logps,
+                    _,
+                    _,
+                ) = self.get_log_probs(self.ref_model, padded_batch)
+
+        return reference_chosen_logps, reference_rejected_logps
+
+    def get_log_probs(
+            self,
+            model: Union[PreTrainedModel, nn.Module],
+            batch: Dict[str, Union[List, torch.LongTensor]],
+    ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
+        """
+        A modified version of DPOTrainer's `concatenated_forward` to get log probabilities.
+        We add the `average_log_prob=True` flag here.
+        """
+        concatenated_batch = self.concatenated_inputs(batch)
+        len_chosen = batch["chosen_labels"].shape[0]
+
+        model_kwargs = (
+            {
+                "labels": concatenated_batch["concatenated_labels"],
+                "decoder_input_ids": concatenated_batch.pop("concatenated_decoder_input_ids", None),
+            }
+            if self.is_encoder_decoder
+            else {}
+        )
+
+        all_logits = model(
+            concatenated_batch["concatenated_input_ids"],
+            attention_mask=concatenated_batch["concatenated_attention_mask"],
+            **model_kwargs,
+        ).logits
+
+        all_logps = self.get_batch_logps(
+            all_logits,
+            concatenated_batch["concatenated_labels"],
+            average_log_prob=True,  # <--- core modification
+        )
+
+        chosen_logps = all_logps[:len_chosen]
+        rejected_logps = all_logps[len_chosen:]
+
+        chosen_logits = all_logits[:len_chosen]
+        rejected_logits = all_logits[len_chosen:]
+
+        return chosen_logps, rejected_logps, chosen_logits, rejected_logits
