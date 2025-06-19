@@ -1,7 +1,7 @@
 import os
 import json
 from dataclasses import dataclass, field
-from typing import Optional
+from typing import Optional, List
 
 import numpy as np
 import torch
@@ -152,6 +152,37 @@ def prepare_data(
 
     return dataset
 
+def precompute_multi_history(
+    history_model_paths: List[str],
+):
+    history_logps_list = []
+    for step_idx, model_path in enumerate(history_model_paths):
+        print(f"[History Step {step_idx}] Loading model from: {model_path}")
+
+        history_model = AutoModelForCausalLM.from_pretrained(
+            model_path,
+            torch_dtype=torch.bfloat16,
+            use_flash_attention_2=True
+        )
+
+        pre = PreComputer(
+            random_model,
+            ref_model=history_model,
+            args=training_args,
+            beta=script_args.beta,
+            train_dataset=train_dataset,
+            tokenizer=tokenizer,
+            loss_type=script_args.loss_type,
+            max_prompt_length=script_args.max_prompt_length,
+            max_length=script_args.max_length,
+            mask_prompt=script_args.mask_prompt,
+            len_penalty=script_args.len_penalty,
+        )
+
+        chosen_logps, rejected_logps = pre.precompute()
+        history_logps_list.append((chosen_logps, rejected_logps))
+    return history_logps_list
+
 
 if __name__ == "__main__":
     parser = HfArgumentParser(ScriptArguments)
@@ -250,31 +281,25 @@ if __name__ == "__main__":
     # for s in pre_dataset:
     #     print(len(s["chosen_input_ids"]), len(s["chosen_attention_mask"]), len(s["chosen_labels"]))
 
-    model = AutoModelForCausalLM.from_pretrained(
-        last_name,
-        torch_dtype=torch.bfloat16,
-        use_flash_attention_2=True,
-    )
-    pre = PreComputer(
-        random_model,
-        ref_model=model,
-        args=training_args,
-        beta=script_args.beta,
-        train_dataset=train_dataset,
-        tokenizer=tokenizer,
-        loss_type=script_args.loss_type,
-        max_prompt_length=script_args.max_prompt_length,
-        max_length=script_args.max_length,
-        mask_prompt=script_args.mask_prompt,
-        len_penalty=script_args.len_penalty,
-    )
-    last_chosen_logps, last_rejected_logps = pre.precompute()
+    # precompute history model logps
+    history_paths = script_args.history_paths
+    if script_args.max_history_t > 0 and history_paths:
+        history_paths = history_paths[-script_args.max_history_t:][::-1]
+
+    history_logps = []
+    if history_paths:
+        history_logps = precompute_multi_history(
+            history_model_paths=history_paths,
+        )
+
     pre_dataset = pre.train_dataset
 
     pre_dataset = pre_dataset.add_column(name="reference_chosen_logps", column=reference_chosen_logps)
     pre_dataset = pre_dataset.add_column(name="reference_rejected_logps", column=reference_rejected_logps)
-    pre_dataset = pre_dataset.add_column(name="last_chosen_logps", column=last_chosen_logps)
-    pre_dataset = pre_dataset.add_column(name="last_rejected_logps", column=last_rejected_logps)
+
+    for j, (cj, rj) in enumerate(history_logps):
+        pre_dataset = pre_dataset.add_column(f"history{j}_chosen_logps", cj)
+        pre_dataset = pre_dataset.add_column(f"history{j}_rejected_logps", rj)
 
     pre_dataset.save_to_disk(script_args.output_dir, num_shards=1)
     # with open(output_path, "w", encoding="utf8") as f:

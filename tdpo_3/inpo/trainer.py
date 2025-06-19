@@ -296,6 +296,7 @@ class MyPreferenceTrainer(DPOTrainer):
         compute_metrics: Optional[Callable[[EvalLoopOutput], Dict]] = None,
         mask_prompt: Optional[bool] = False,
         len_penalty: float = 0,
+        max_history_t: Optional[int] = 2,
     ):
 
         if data_collator is None:
@@ -343,6 +344,7 @@ class MyPreferenceTrainer(DPOTrainer):
         self.denom = eta
         self.ratio = ratio
         print(self.ratio, self.denom)
+        self.max_history_t = max_history_t
 
     def inpo_loss(
         self,
@@ -350,8 +352,7 @@ class MyPreferenceTrainer(DPOTrainer):
         policy_rejected_logps: torch.FloatTensor,
         reference_chosen_logps: torch.FloatTensor,
         reference_rejected_logps: torch.FloatTensor,
-        last_chosen_logps: torch.FloatTensor,
-        last_rejected_logps: torch.FloatTensor,
+        history_logps_list,
         reference_free: bool = False,
         margin: Optional[torch.FloatTensor] = None,
         len_penalty: float = 0,
@@ -373,18 +374,42 @@ class MyPreferenceTrainer(DPOTrainer):
         """
         pi_logratios = policy_chosen_logps - policy_rejected_logps
         ref_logratios = reference_chosen_logps - reference_rejected_logps
-        last_logratios = last_chosen_logps - last_rejected_logps
-        
+
+        t = self.max_history_t
+        weighted_logratios = 0.0
+        weights = [1.0, 0.0]
+
+        if history_logps_list and t > 0:
+            effective_t = len(history_logps_list)
+
+            if effective_t == 1:
+                chosen_j, rejected_j = history_logps_list[0]
+                weighted_logratios = chosen_j - rejected_j
+
+            elif effective_t > 1:
+                for j, (chosen_j, rejected_j) in enumerate(history_logps_list):
+                    lambda_j = weights[j]
+                    weighted_logratios += lambda_j * (chosen_j - rejected_j)
+
+
         # if reference_free:
         #     ref_logratios = 0
 
-        logits = pi_logratios -  self.ratio * ref_logratios - (1 - self.ratio) * last_logratios
+        logits = pi_logratios -  self.ratio * ref_logratios - (1 - self.ratio) * weighted_logratios
         losses = (logits - 1 / (2 * self.denom)) ** 2
         
         chosen_rewards = self.beta * (policy_chosen_logps - reference_chosen_logps).detach()
         rejected_rewards = self.beta * (policy_rejected_logps - reference_rejected_logps).detach()
 
         return losses, chosen_rewards, rejected_rewards
+
+    def pack_history_logps_from_dataset(self, inputs):
+        history_logps_list = []
+        for j in range(self.max_history_t):
+            key_c = f"history{j}_chosen_logps"
+            key_r = f"history{j}_rejected_logps"
+            history_logps_list.append((inputs[key_c], inputs[key_r]))
+        return history_logps_list
 
     def get_batch_loss_metrics(
         self,
@@ -411,9 +436,12 @@ class MyPreferenceTrainer(DPOTrainer):
         
         reference_chosen_logps = batch['reference_chosen_logps'].to(self.accelerator.device)
         reference_rejected_logps = batch['reference_rejected_logps'].to(self.accelerator.device)
-        last_chosen_logps = batch['last_chosen_logps'].to(self.accelerator.device)
-        last_rejected_logps = batch['last_rejected_logps'].to(self.accelerator.device)
-        
+        history_logps_list = self.pack_history_logps_from_dataset(batch)
+        history_logps_list = [
+            (c.to(self.accelerator.device), r.to(self.accelerator.device))
+            for c, r in history_logps_list
+        ]
+
         if self.len_penalty > 0:
             chosen_len = batch["chosen_input_ids"].shape[1] * self.len_penalty
             rejected_len = batch["rejected_input_ids"].shape[1] * self.len_penalty
@@ -428,8 +456,7 @@ class MyPreferenceTrainer(DPOTrainer):
             policy_rejected_logps,
             reference_chosen_logps,
             reference_rejected_logps,
-            last_chosen_logps,
-            last_rejected_logps,
+            history_logps_list,
             len_penalty=len_penalty,
         )
         reward_accuracies = (chosen_rewards > rejected_rewards).float()
