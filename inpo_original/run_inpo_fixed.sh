@@ -73,7 +73,7 @@ run_iteration() {
     
     /home/hubing/.conda/envs/rlhf/bin/accelerate launch --config_file ./configs/zero3.yaml ./inpo/inpo_train.py --run_name "${iteration_prefix}_${iteration}" \
         --output_dir $output_model_path --model_name_or_path $previous_model --learning_rate 5e-7 --ratio $ratio --eta $eta \
-        --train_dir $pref_prob_path --loss_type inpo --lr_scheduler_type cosine
+        --train_dir $pref_prob_path --loss_type inpo --lr_scheduler_type cosine --report_to wandb
 
     echo "Completed iteration ${iteration}"
 }
