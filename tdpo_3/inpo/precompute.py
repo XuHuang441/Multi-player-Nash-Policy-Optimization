@@ -110,6 +110,8 @@ class ScriptArguments:
     eot_token: Optional[str] = field(default="", metadata={"help": "the end of text token"})
     mask_prompt: Optional[bool] = field(default=False, metadata={"help": "mask prompt"})
     len_penalty: Optional[float] = field(default=0, metadata={"help": "the length penalty"})
+    history_paths: Optional[List[str]] = field(default_factory=list)
+    max_history_t: Optional[int] = field(default=2, metadata={"help": "the maximum history length"})
 
 
 def prepare_data(

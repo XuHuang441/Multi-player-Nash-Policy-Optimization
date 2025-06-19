@@ -7,7 +7,7 @@ base_model_path="model_path/models"
 ratio=$(python -c "print(f'{1/3:.10f}')")
 # ratio=0
 eta=0.005
-iteration_prefix="inpo"
+iteration_prefix="tdpo"
 export WANDB_PROJECT="INPO"
 
 
@@ -60,20 +60,28 @@ run_iteration() {
     pref_prob_path="${base_dataset_path}/${iteration_prefix}_${iteration_name}/data_pref_prob"
     mkdir -p $pref_prob_path
 
+    history_args=""
+    if [ ${#history_paths[@]} -gt 0 ]; then
+        history_args="--history_paths ${history_paths[@]}"
+    fi
+
     echo "Starting precomputing for iteration ${iteration}..."
 
     /home/hubing/.conda/envs/rlhf/bin/accelerate launch --config_file ./configs/zero2.yaml ./inpo/precompute.py --run_name "${iteration_prefix}_${iteration}" --train_dir "${pref_output}_data.json" \
     --output_dir $pref_prob_path --ref_model $initial_model --last_model $previous_model \
-    --loss_type inpo --lr_scheduler_type cosine
+    --loss_type inpo --lr_scheduler_type cosine \
+    $history_args
 
     output_model_path="${base_model_path}/${iteration_prefix}_iter${iteration}"
     mkdir -p $output_model_path
 
-    echo "Starting INPO training for iteration ${iteration}..."
+    echo "Starting TDPO training for iteration ${iteration}..."
     
     /home/hubing/.conda/envs/rlhf/bin/accelerate launch --config_file ./configs/zero3.yaml ./inpo/inpo_train.py --run_name "${iteration_prefix}_${iteration}" \
         --output_dir $output_model_path --model_name_or_path $previous_model --learning_rate 5e-7 --ratio $ratio --eta $eta \
         --train_dir $pref_prob_path --loss_type inpo --lr_scheduler_type cosine --report_to wandb
+
+    history_paths+=("$output_model_path")
 
     echo "Completed iteration ${iteration}"
 }
@@ -102,3 +110,5 @@ do
     run_iteration $i $previous_model $input_path $json_output $pref_output
 
 done
+
+echo "All iterations completed successfully!"
