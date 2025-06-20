@@ -9,6 +9,7 @@ ratio=$(python -c "print(f'{1/3:.10f}')")
 eta=0.005
 iteration_prefix="tdpo"
 export WANDB_PROJECT="INPO"
+num_rounds=3
 
 history_paths=("Timia123/inpo_iter1_jun19" "Timia123/inpo_iter2_jun19")
 
@@ -90,7 +91,7 @@ run_iteration() {
 
 
 # Main loop for iterations
-for i in {1..3}
+for ((i=3; i<=$num_rounds; i++))
 do
     iteration_name="iter${i}"
     input_path="RLHFlow/iterative-prompt-v1-iter${i}-20K"
