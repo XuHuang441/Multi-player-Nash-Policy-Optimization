@@ -377,7 +377,8 @@ class MyPreferenceTrainer(DPOTrainer):
 
         t = self.max_history_t
         weighted_logratios = 0.0
-        weights = [1.0, 0.0]
+        self.ratio = 1/6
+        weights = [4/5, 1/5] # t-1, t-2 ....
 
         if history_logps_list and t > 0:
             effective_t = len(history_logps_list)
