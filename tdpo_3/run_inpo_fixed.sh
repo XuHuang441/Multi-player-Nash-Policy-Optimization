@@ -11,12 +11,12 @@ iteration_prefix="tdpo"
 export WANDB_PROJECT="INPO"
 num_rounds=4
 
-history_paths=("Timia123/inpo_iter1_jun19" "Timia123/inpo_iter2_jun19" "Timia123/tdpo_iter4_jun21")
+history_paths=("Timia123/inpo_iter1_jun19" "Timia123/inpo_iter2_jun19" "Timia123/tdpo_iter3_jun21")
 
 # Function to run a set of operations for a model iteration
 run_iteration() {
     local iteration=$1
-    local previous_model="Timia123/tdpo_iter4_jun21"
+    local previous_model="Timia123/tdpo_iter3_jun21"
     local input_path=$3
     local json_output=$4
     local pref_output=$5
