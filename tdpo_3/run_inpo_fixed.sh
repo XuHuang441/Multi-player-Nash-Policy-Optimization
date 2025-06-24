@@ -9,14 +9,14 @@ ratio=$(python -c "print(f'{1/3:.10f}')")
 eta=0.005
 iteration_prefix="tdpo"
 export WANDB_PROJECT="INPO"
-num_rounds=4
+num_rounds=3
 
-history_paths=("Timia123/inpo_iter1_jun19" "Timia123/inpo_iter2_jun19" "Timia123/tdpo_iter3_jun21")
+history_paths=("Timia123/inpo_iter1_jun19" "Timia123/inpo_iter2_jun19")
 
 # Function to run a set of operations for a model iteration
 run_iteration() {
     local iteration=$1
-    local previous_model="Timia123/tdpo_iter3_jun21"
+    local previous_model="Timia123/inpo_iter2_jun19"
     local input_path=$3
     local json_output=$4
     local pref_output=$5
@@ -90,7 +90,7 @@ run_iteration() {
 
 
 # Main loop for iterations
-for ((i=4; i<=$num_rounds; i++))
+for ((i=3; i<=$num_rounds; i++))
 do
     iteration_name="iter${i}"
     input_path="RLHFlow/iterative-prompt-v1-iter${i}-20K"
