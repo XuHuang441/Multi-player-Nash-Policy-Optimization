@@ -164,7 +164,8 @@ def precompute_multi_history(
         history_model = AutoModelForCausalLM.from_pretrained(
             model_path,
             torch_dtype=torch.bfloat16,
-            use_flash_attention_2=True
+            use_flash_attention_2=True,
+            use_cache=False
         )
 
         pre = PreComputer(
@@ -197,7 +198,7 @@ if __name__ == "__main__":
     # )
     # model.config.use_cache = False
 
-    random_model = AutoModelForCausalLM.from_pretrained(script_args.model_name_or_path)
+    random_model = AutoModelForCausalLM.from_pretrained(script_args.model_name_or_path, use_cache=False)
 
     if script_args.ignore_bias_buffers:
         # torch distributed hack
@@ -216,10 +217,13 @@ if __name__ == "__main__":
         ref_name,
         torch_dtype=torch.bfloat16,
         use_flash_attention_2=True,
+        use_cache=False
     )
     
 
     tokenizer = AutoTokenizer.from_pretrained(ref_name)
+    tokenizer.padding_side = 'left'
+
     if script_args.eos_padding:
         tokenizer.pad_token = tokenizer.eos_token
     else:
