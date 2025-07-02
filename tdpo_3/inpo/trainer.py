@@ -234,11 +234,32 @@ class PrecomputeDataCollator:
                         raise ValueError(f"Unexpected key in batch '{k}'")
                     padded_batch[k] = pad_sequence(to_pad, batch_first=True, padding_value=padding_value)
                 else:
-                    # adapted from https://stackoverflow.com/questions/73256206
-                    if "prompt" in k:
-                        to_pad = [torch.LongTensor(ex[k][::-1]) for ex in batch]
-                    else:
-                        to_pad = [torch.LongTensor(ex[k]) for ex in batch]
+                    to_pad = []
+                    # Iterate through the batch with an index to know the location
+                    for i, ex in enumerate(batch):
+
+                        if ex[k][i] is None:
+                            ex[k][i] = ex[k][i + 1]
+
+                        try:
+                            # This is the operation that might fail
+                            tensor_data = torch.LongTensor(ex[k])
+                            to_pad.append(tensor_data)
+                        except TypeError:
+                            # This block executes ONLY if the above line fails!
+                            print("\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                            print(f"!!! DATA ERROR FOUND in collate function !!!")
+                            print(f"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                            print(f"Batch Index: The error is in the {i}-th sample of this batch.")
+                            print(f"Problematic Key: '{k}'")
+                            print(f"Problematic Value: The value is '{ex.get(k)}', which is causing the TypeError.")
+                            print("\n--- Full content of the problematic sample ---")
+                            print(ex)
+                            print("------------------------------------------------\n")
+
+                            # After printing, re-raise the exception to stop the program
+                            raise
+
                     if k.endswith("_input_ids"):
                         padding_value = self.tokenizer.pad_token_id
                     elif k.endswith("_labels"):
@@ -409,7 +430,10 @@ class MyPreferenceTrainer(DPOTrainer):
         for j in range(self.max_history_t):
             key_c = f"history{j}_chosen_logps"
             key_r = f"history{j}_rejected_logps"
-            history_logps_list.append((inputs[key_c], inputs[key_r]))
+            if key_c in inputs and key_r in inputs:
+                history_logps_list.append((inputs[key_c], inputs[key_r]))
+            else:
+                break
         return history_logps_list
 
     def get_batch_loss_metrics(

@@ -293,7 +293,11 @@ if __name__ == "__main__":
         history_paths = history_paths[-script_args.max_history_t:][::-1]
 
     history_logps = []
-    if history_paths:
+    if not history_paths: # iter = 1
+        history_logps = precompute_multi_history(
+            history_model_paths=[script_args.last_model],
+        )
+    else:
         history_logps = precompute_multi_history(
             history_model_paths=history_paths,
         )
