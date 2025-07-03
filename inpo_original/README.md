@@ -8,7 +8,7 @@ Use ``run_inpo.sh`` to run the pipeline
 conda create -n vllm python=3.10.9
 conda activate vllm
 pip install datasets
-pip install torch-2.1.2+cu118-cp310-cp310-linux_x86_64.whl
+pip install https://download.pytorch.org/whl/cu118/torch-2.1.2%2Bcu118-cp310-cp310-linux_x86_64.whl
 pip install torchvision==0.16.2 torchaudio==2.1.2 --index-url https://download.pytorch.org/whl/cu118
 
 pip install https://github.com/vllm-project/vllm/releases/download/v0.4.0/vllm-0.4.0-cp310-cp310-manylinux1_x86_64.whl 
@@ -26,7 +26,7 @@ pip install numpy==1.26.4
 ```sh
 conda create -n rlhf python=3.10.9
 conda activate rlhf
-pip install torch-2.1.2+cu118-cp310-cp310-linux_x86_64.whl
+pip install https://download.pytorch.org/whl/cu118/torch-2.1.2%2Bcu118-cp310-cp310-linux_x86_64.whl
 pip install torchvision==0.16.2 torchaudio==2.1.2 --index-url https://download.pytorch.org/whl/cu118
 
 git clone https://github.com/huggingface/alignment-handbook.git
@@ -35,6 +35,9 @@ git checkout d17fd7cd3b71c6a7bf7af34d8dc73135bb7ea8e9
 python -m pip install .
 pip install https://github.com/Dao-AILab/flash-attention/releases/download/v2.5.7/flash_attn-2.5.7+cu122torch2.1cxx11abiFALSE-cp310-cp310-linux_x86_64.whl
 pip install accelerate==0.27.2
+pip install numpy==1.26.4
+pip install wandb
+pip install transformers==4.38.2
 ```
 
 **Evaluation**
