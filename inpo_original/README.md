@@ -34,10 +34,7 @@ cd ./alignment-handbook/
 git checkout d17fd7cd3b71c6a7bf7af34d8dc73135bb7ea8e9
 python -m pip install .
 pip install https://github.com/Dao-AILab/flash-attention/releases/download/v2.5.7/flash_attn-2.5.7+cu122torch2.1cxx11abiFALSE-cp310-cp310-linux_x86_64.whl
-pip install accelerate==0.27.2
-pip install numpy==1.26.4
-pip install wandb
-pip install transformers==4.38.2
+pip install accelerate==0.27.2 numpy==1.26.4 wandb transformers==4.38.2
 ```
 
 **Evaluation**
