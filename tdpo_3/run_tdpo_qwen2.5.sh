@@ -11,7 +11,8 @@ iteration_prefix="tdpo"
 export WANDB_PROJECT="INPO"
 num_rounds=3
 
-history_paths=("model_path/models/inpo_iter1" "model_path/models/inpo_iter2")
+#history_paths=("model_path/models/inpo_iter1" "model_path/models/inpo_iter2")
+history_paths=()
 
 # Function to run a set of operations for a model iteration
 run_iteration() {
@@ -30,32 +31,32 @@ run_iteration() {
     K=8 # todo
 
     echo "Starting generation for iteration ${iteration}..."
-#
-#    CUDA_VISIBLE_DEVICES=0 conda run -n vllm python ./generation/get_hf2.py --model_name_or_path ${previous_model} --dataset_name_or_path ${input_path} --output_dir ${json_output} --sanity_check $sanity_check --K $K --temperature 1.0 --local_index 0 --my_world_size ${my_world_size} --eos_ids 128009 &
-#    CUDA_VISIBLE_DEVICES=1 conda run -n vllm python ./generation/get_hf2.py --model_name_or_path ${previous_model} --dataset_name_or_path ${input_path} --output_dir ${json_output} --sanity_check $sanity_check --K $K --temperature 1.0 --local_index 1 --my_world_size ${my_world_size} --eos_ids 128009 &
-#    CUDA_VISIBLE_DEVICES=2 conda run -n vllm python ./generation/get_hf2.py --model_name_or_path ${previous_model} --dataset_name_or_path ${input_path} --output_dir ${json_output} --sanity_check $sanity_check --K $K --temperature 1.0 --local_index 2 --my_world_size ${my_world_size} --eos_ids 128009 &
-#    CUDA_VISIBLE_DEVICES=3 conda run -n vllm python ./generation/get_hf2.py --model_name_or_path ${previous_model} --dataset_name_or_path ${input_path} --output_dir ${json_output} --sanity_check $sanity_check --K $K --temperature 1.0 --local_index 3 --my_world_size ${my_world_size} --eos_ids 128009 &
-#    CUDA_VISIBLE_DEVICES=4 conda run -n vllm python ./generation/get_hf2.py --model_name_or_path ${previous_model} --dataset_name_or_path ${input_path} --output_dir ${json_output} --sanity_check $sanity_check --K $K --temperature 1.0 --local_index 4 --my_world_size ${my_world_size} --eos_ids 128009 &
-#    CUDA_VISIBLE_DEVICES=5 conda run -n vllm python ./generation/get_hf2.py --model_name_or_path ${previous_model} --dataset_name_or_path ${input_path} --output_dir ${json_output} --sanity_check $sanity_check --K $K --temperature 1.0 --local_index 5 --my_world_size ${my_world_size} --eos_ids 128009 &
-#    CUDA_VISIBLE_DEVICES=6 conda run -n vllm python ./generation/get_hf2.py --model_name_or_path ${previous_model} --dataset_name_or_path ${input_path} --output_dir ${json_output} --sanity_check $sanity_check --K $K --temperature 1.0 --local_index 6 --my_world_size ${my_world_size} --eos_ids 128009 &
-#    CUDA_VISIBLE_DEVICES=7 conda run -n vllm python ./generation/get_hf2.py --model_name_or_path ${previous_model} --dataset_name_or_path ${input_path} --output_dir ${json_output} --sanity_check $sanity_check --K $K --temperature 1.0 --local_index 7 --my_world_size ${my_world_size} --eos_ids 128009 &
-#    wait
-#
-#    conda run -n vllm python ./generation/merge_data.py --base_path $json_output --output_dir "${json_output}.json" --num_datasets $my_world_size
+
+    CUDA_VISIBLE_DEVICES=0 conda run -n vllm python ./generation/get_hf2.py --model_name_or_path ${previous_model} --dataset_name_or_path ${input_path} --output_dir ${json_output} --sanity_check $sanity_check --K $K --temperature 1.0 --local_index 0 --my_world_size ${my_world_size} --eos_ids 128009 &
+    CUDA_VISIBLE_DEVICES=1 conda run -n vllm python ./generation/get_hf2.py --model_name_or_path ${previous_model} --dataset_name_or_path ${input_path} --output_dir ${json_output} --sanity_check $sanity_check --K $K --temperature 1.0 --local_index 1 --my_world_size ${my_world_size} --eos_ids 128009 &
+    CUDA_VISIBLE_DEVICES=2 conda run -n vllm python ./generation/get_hf2.py --model_name_or_path ${previous_model} --dataset_name_or_path ${input_path} --output_dir ${json_output} --sanity_check $sanity_check --K $K --temperature 1.0 --local_index 2 --my_world_size ${my_world_size} --eos_ids 128009 &
+    CUDA_VISIBLE_DEVICES=3 conda run -n vllm python ./generation/get_hf2.py --model_name_or_path ${previous_model} --dataset_name_or_path ${input_path} --output_dir ${json_output} --sanity_check $sanity_check --K $K --temperature 1.0 --local_index 3 --my_world_size ${my_world_size} --eos_ids 128009 &
+    CUDA_VISIBLE_DEVICES=4 conda run -n vllm python ./generation/get_hf2.py --model_name_or_path ${previous_model} --dataset_name_or_path ${input_path} --output_dir ${json_output} --sanity_check $sanity_check --K $K --temperature 1.0 --local_index 4 --my_world_size ${my_world_size} --eos_ids 128009 &
+    CUDA_VISIBLE_DEVICES=5 conda run -n vllm python ./generation/get_hf2.py --model_name_or_path ${previous_model} --dataset_name_or_path ${input_path} --output_dir ${json_output} --sanity_check $sanity_check --K $K --temperature 1.0 --local_index 5 --my_world_size ${my_world_size} --eos_ids 128009 &
+    CUDA_VISIBLE_DEVICES=6 conda run -n vllm python ./generation/get_hf2.py --model_name_or_path ${previous_model} --dataset_name_or_path ${input_path} --output_dir ${json_output} --sanity_check $sanity_check --K $K --temperature 1.0 --local_index 6 --my_world_size ${my_world_size} --eos_ids 128009 &
+    CUDA_VISIBLE_DEVICES=7 conda run -n vllm python ./generation/get_hf2.py --model_name_or_path ${previous_model} --dataset_name_or_path ${input_path} --output_dir ${json_output} --sanity_check $sanity_check --K $K --temperature 1.0 --local_index 7 --my_world_size ${my_world_size} --eos_ids 128009 &
+    wait
+
+    conda run -n vllm python ./generation/merge_data.py --base_path $json_output --output_dir "${json_output}.json" --num_datasets $my_world_size
 
     echo "Starting preference modeling..."
 
-#    CUDA_VISIBLE_DEVICES=0 /home/hubing/.conda/envs/vllm/bin/accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_0.json" --output_dir "${pref_output}_0.json" --K $K &
-#    CUDA_VISIBLE_DEVICES=1 /home/hubing/.conda/envs/vllm/bin/accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_1.json" --output_dir "${pref_output}_1.json" --K $K &
-#    CUDA_VISIBLE_DEVICES=2 /home/hubing/.conda/envs/vllm/bin/accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_2.json" --output_dir "${pref_output}_2.json" --K $K &
-#    CUDA_VISIBLE_DEVICES=3 /home/hubing/.conda/envs/vllm/bin/accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_3.json" --output_dir "${pref_output}_3.json" --K $K &
-#    CUDA_VISIBLE_DEVICES=4 /home/hubing/.conda/envs/vllm/bin/accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_4.json" --output_dir "${pref_output}_4.json" --K $K &
-#    CUDA_VISIBLE_DEVICES=5 /home/hubing/.conda/envs/vllm/bin/accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_5.json" --output_dir "${pref_output}_5.json" --K $K &
-#    CUDA_VISIBLE_DEVICES=6 /home/hubing/.conda/envs/vllm/bin/accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_6.json" --output_dir "${pref_output}_6.json" --K $K &
-#    CUDA_VISIBLE_DEVICES=7 /home/hubing/.conda/envs/vllm/bin/accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_7.json" --output_dir "${pref_output}_7.json" --K $K &
-#
-#    wait
-#    conda run -n vllm python ./annotate_data/merge.py --base_path $pref_output --output_dir "${pref_output}_data.json" --num_datasets $my_world_size
+    CUDA_VISIBLE_DEVICES=0 /home/hubing/.conda/envs/vllm/bin/accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_0.json" --output_dir "${pref_output}_0.json" --K $K &
+    CUDA_VISIBLE_DEVICES=1 /home/hubing/.conda/envs/vllm/bin/accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_1.json" --output_dir "${pref_output}_1.json" --K $K &
+    CUDA_VISIBLE_DEVICES=2 /home/hubing/.conda/envs/vllm/bin/accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_2.json" --output_dir "${pref_output}_2.json" --K $K &
+    CUDA_VISIBLE_DEVICES=3 /home/hubing/.conda/envs/vllm/bin/accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_3.json" --output_dir "${pref_output}_3.json" --K $K &
+    CUDA_VISIBLE_DEVICES=4 /home/hubing/.conda/envs/vllm/bin/accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_4.json" --output_dir "${pref_output}_4.json" --K $K &
+    CUDA_VISIBLE_DEVICES=5 /home/hubing/.conda/envs/vllm/bin/accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_5.json" --output_dir "${pref_output}_5.json" --K $K &
+    CUDA_VISIBLE_DEVICES=6 /home/hubing/.conda/envs/vllm/bin/accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_6.json" --output_dir "${pref_output}_6.json" --K $K &
+    CUDA_VISIBLE_DEVICES=7 /home/hubing/.conda/envs/vllm/bin/accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_7.json" --output_dir "${pref_output}_7.json" --K $K &
+
+    wait
+    conda run -n vllm python ./annotate_data/merge.py --base_path $pref_output --output_dir "${pref_output}_data.json" --num_datasets $my_world_size
 
     conda activate /home/hubing/.conda/envs/rlhf
 
@@ -69,10 +70,10 @@ run_iteration() {
 
     echo "Starting precomputing for iteration ${iteration}..."
 
-#    /home/hubing/.conda/envs/rlhf/bin/accelerate launch --config_file ./configs/zero2.yaml ./inpo/precompute.py --run_name "${iteration_prefix}_${iteration}" --train_dir "${pref_output}_data.json" \
-#    --output_dir $pref_prob_path --ref_model $initial_model --last_model $previous_model \
-#    --loss_type inpo --lr_scheduler_type cosine \
-#    $history_args
+    /home/hubing/.conda/envs/rlhf/bin/accelerate launch --config_file ./configs/zero2.yaml ./inpo/precompute.py --run_name "${iteration_prefix}_${iteration}" --train_dir "${pref_output}_data.json" \
+    --output_dir $pref_prob_path --ref_model $initial_model --last_model $previous_model \
+    --loss_type inpo --lr_scheduler_type cosine \
+    $history_args
 
     output_model_path="${base_model_path}/${iteration_prefix}_iter${iteration}"
     mkdir -p $output_model_path
@@ -90,7 +91,7 @@ run_iteration() {
 
 
 # Main loop for iterations
-for ((i=3; i<=$num_rounds; i++))
+for ((i=1; i<=$num_rounds; i++))
 do
     iteration_name="iter${i}"
     input_path="RLHFlow/iterative-prompt-v1-iter${i}-20K"
