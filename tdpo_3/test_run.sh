@@ -23,7 +23,7 @@ run_iteration() {
     local pref_output=$5
 
     source ~/miniconda3/etc/profile.d/conda.sh
-    conda activate /home/hubing/miniconda/envs/vllm
+    conda activate /home/hubing/miniconda3/envs/vllm
 
     my_world_size=8 # todo
     sanity_check=False # todo
@@ -46,19 +46,19 @@ run_iteration() {
 
     echo "Starting preference modeling..."
 
-#    CUDA_VISIBLE_DEVICES=0 /home/hubing/miniconda/envs/vllm/bin/accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_0.json" --output_dir "${pref_output}_0.json" --K $K &
-#    CUDA_VISIBLE_DEVICES=1 /home/hubing/miniconda/envs/vllm/bin/accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_1.json" --output_dir "${pref_output}_1.json" --K $K &
-#    CUDA_VISIBLE_DEVICES=2 /home/hubing/miniconda/envs/vllm/bin/accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_2.json" --output_dir "${pref_output}_2.json" --K $K &
-#    CUDA_VISIBLE_DEVICES=3 /home/hubing/miniconda/envs/vllm/bin/accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_3.json" --output_dir "${pref_output}_3.json" --K $K &
-#    CUDA_VISIBLE_DEVICES=4 /home/hubing/miniconda/envs/vllm/bin/accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_4.json" --output_dir "${pref_output}_4.json" --K $K &
-#    CUDA_VISIBLE_DEVICES=5 /home/hubing/miniconda/envs/vllm/bin/accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_5.json" --output_dir "${pref_output}_5.json" --K $K &
-#    CUDA_VISIBLE_DEVICES=6 /home/hubing/miniconda/envs/vllm/bin/accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_6.json" --output_dir "${pref_output}_6.json" --K $K &
-#    CUDA_VISIBLE_DEVICES=7 /home/hubing/miniconda/envs/vllm/bin/accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_7.json" --output_dir "${pref_output}_7.json" --K $K &
+#    CUDA_VISIBLE_DEVICES=0 /home/hubing/miniconda3/envs/vllm/bin/accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_0.json" --output_dir "${pref_output}_0.json" --K $K &
+#    CUDA_VISIBLE_DEVICES=1 /home/hubing/miniconda3/envs/vllm/bin/accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_1.json" --output_dir "${pref_output}_1.json" --K $K &
+#    CUDA_VISIBLE_DEVICES=2 /home/hubing/miniconda3/envs/vllm/bin/accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_2.json" --output_dir "${pref_output}_2.json" --K $K &
+#    CUDA_VISIBLE_DEVICES=3 /home/hubing/miniconda3/envs/vllm/bin/accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_3.json" --output_dir "${pref_output}_3.json" --K $K &
+#    CUDA_VISIBLE_DEVICES=4 /home/hubing/miniconda3/envs/vllm/bin/accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_4.json" --output_dir "${pref_output}_4.json" --K $K &
+#    CUDA_VISIBLE_DEVICES=5 /home/hubing/miniconda3/envs/vllm/bin/accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_5.json" --output_dir "${pref_output}_5.json" --K $K &
+#    CUDA_VISIBLE_DEVICES=6 /home/hubing/miniconda3/envs/vllm/bin/accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_6.json" --output_dir "${pref_output}_6.json" --K $K &
+#    CUDA_VISIBLE_DEVICES=7 /home/hubing/miniconda3/envs/vllm/bin/accelerate launch annotate_data/get_pref_single.py --use_tournament $use_tour --dataset_name_or_path "${json_output}_7.json" --output_dir "${pref_output}_7.json" --K $K &
 #
 #    wait
 #    conda run -n vllm python ./annotate_data/merge.py --base_path $pref_output --output_dir "${pref_output}_data.json" --num_datasets $my_world_size
 
-    conda activate /home/hubing/miniconda/envs/rlhf
+    conda activate /home/hubing/miniconda3/envs/rlhf
 
     pref_prob_path="${base_dataset_path}/${iteration_prefix}_${iteration_name}/data_pref_prob"
     mkdir -p $pref_prob_path
@@ -70,7 +70,7 @@ run_iteration() {
 
     echo "Starting precomputing for iteration ${iteration}..."
 
-    /home/hubing/miniconda/envs/rlhf/bin/accelerate launch --config_file ./configs/zero2.yaml ./inpo/precompute.py --run_name "${iteration_prefix}_${iteration}" --train_dir "${pref_output}_data.json" \
+    /home/hubing/miniconda3/envs/rlhf/bin/accelerate launch --config_file ./configs/zero2.yaml ./inpo/precompute.py --run_name "${iteration_prefix}_${iteration}" --train_dir "${pref_output}_data.json" \
     --output_dir $pref_prob_path --ref_model $initial_model --last_model $previous_model \
     --loss_type inpo --lr_scheduler_type cosine \
     $history_args
@@ -80,7 +80,7 @@ run_iteration() {
 
 #    echo "Starting TDPO training for iteration ${iteration}..."
 #
-#    /home/hubing/miniconda/envs/rlhf/bin/accelerate launch --config_file ./configs/zero3.yaml ./inpo/inpo_train.py --run_name "${iteration_prefix}_${iteration}" \
+#    /home/hubing/miniconda3/envs/rlhf/bin/accelerate launch --config_file ./configs/zero3.yaml ./inpo/inpo_train.py --run_name "${iteration_prefix}_${iteration}" \
 #        --output_dir $output_model_path --model_name_or_path $previous_model --learning_rate 5e-7 --ratio $ratio --eta $eta \
 #        --train_dir $pref_prob_path --loss_type inpo --lr_scheduler_type cosine --report_to wandb
 #
