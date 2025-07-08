@@ -79,13 +79,13 @@ pip install numpy==1.26.4
 
 ```shell
 # for vllm
-/home/hubing/miniconda3/envs/vllm/bin/pip install transformers==0.42.3
+/home/hubing/miniconda3/envs/vllm/bin/pip install transformers==4.42.3
 /home/hubing/miniconda3/envs/vllm/bin/pip install vllm==0.5.3
 /home/hubing/miniconda3/envs/vllm/bin/pip install flashinfer==0.0.9 -i https://flashinfer.ai/whl/cu121/torch2.3/
 /home/hubing/miniconda3/envs/vllm/bin/pip install https://github.com/Dao-AILab/flash-attention/releases/download/v2.7.4.post1/flash_attn-2.7.4.post1+cu12torch2.3cxx11abiFALSE-cp310-cp310-linux_x86_64.whl
 
 # for rlhf
-/home/hubing/miniconda3/envs/rlhf/bin/pip install transformers==0.42.3
+/home/hubing/miniconda3/envs/rlhf/bin/pip install transformers==4.42.3
 
 ```
 Manually add function in `core.py` :
