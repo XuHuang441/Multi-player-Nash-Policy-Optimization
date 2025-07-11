@@ -137,3 +137,20 @@ def top_k_top_p_filtering(
         logits[indices_to_remove] = filter_value
     return logits
 ```
+
+### July 11th
+
+New inference environment
+
+```shell
+conda create -n vllm python=3.10.9
+conda activate vllm
+/home/hubing/miniconda3/envs/vllm/bin/pip install datasets
+# torch2.6+cu124
+/home/hubing/miniconda3/envs/vllm/bin/pip install torch==2.6.0 torchvision==0.21.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cu124
+#vllm
+/home/hubing/miniconda3/envs/vllm/bin/pip install vllm==0.8.5
+#flashinfer
+/home/hubing/miniconda3/envs/vllm/bin/pip install flashinfer-python -i https://flashinfer.ai/whl/cu124/torch2.6/
+/home/hubing/miniconda3/envs/vllm/bin/pip install accelerate deepspeed
+```

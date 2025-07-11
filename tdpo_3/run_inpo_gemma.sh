@@ -10,7 +10,6 @@ eta=0.005
 iteration_prefix="inpo"
 export WANDB_PROJECT="INPO"
 export VLLM_ATTENTION_BACKEND="FLASHINFER"
-export VLLM_TRACE_FUNCTION=1
 num_rounds=3
 
 history_paths=()
