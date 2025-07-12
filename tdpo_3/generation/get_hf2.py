@@ -87,7 +87,7 @@ llm = LLM(
     model=model_path,
     tokenizer=model_path,
     dtype="bfloat16",
-    max_model_len=script_args.max_input_length,
+    max_model_len=script_args.max_new_tokens,
     load_format="auto",
     swap_space=16,
     seed=42,
@@ -109,11 +109,28 @@ ds = load_dataset(script_args.dataset_name_or_path, split="train")
 if script_args.sanity_check:
     ds = ds.select(range(min(len(ds), 100)))
 
-ds = ds.map(
-    lambda x: {
-        "prompt": tokenizer.apply_chat_template(x[script_args.dataset_key], tokenize=False, add_generation_prompt=True)
-    }
-)
+max_prompt_len = script_args.max_new_tokens - 1
+
+def truncate_prompt(example):
+    # apply chat template
+    prompt_string = tokenizer.apply_chat_template(
+        example[script_args.dataset_key],
+        tokenize=False,
+        add_generation_prompt=True
+    )
+
+    # encode prompt
+    prompt_tokens = tokenizer.encode(prompt_string)
+
+    if len(prompt_tokens) > max_prompt_len:
+        # truncate from the begining
+        prompt_tokens = prompt_tokens[-max_prompt_len:]
+
+    final_prompt = tokenizer.decode(prompt_tokens)
+
+    return {"prompt": final_prompt}
+
+ds = ds.map(truncate_prompt)
 
 data_size = len(ds["prompt"])
 print("Data Size:{}".format(data_size))
