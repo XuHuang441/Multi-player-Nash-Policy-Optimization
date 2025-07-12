@@ -153,4 +153,6 @@ conda activate vllm
 #flashinfer
 /home/hubing/miniconda3/envs/vllm/bin/pip install flashinfer-python -i https://flashinfer.ai/whl/cu124/torch2.6/
 /home/hubing/miniconda3/envs/vllm/bin/pip install accelerate deepspeed
+# flash attention
+/home/hubing/miniconda3/envs/vllm/bin/pip install https://github.com/Dao-AILab/flash-attention/releases/download/v2.7.4.post1/flash_attn-2.7.4.post1+cu12torch2.6cxx11abiFALSE-cp310-cp310-linux_x86_64.whl
 ```
